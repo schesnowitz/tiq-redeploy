@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Load Documents</h1>
+
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>File</th>
+      <th>Note</th>
+      <th>Load</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @load_documents.each do |load_document| %>
+      <tr>
+        <td><%= load_document.id %></td>
+        <td><%= load_document.doc_file %></td>
+        <td><%= load_document.note %></td>
+        <td><%= load_document.load_id %></td>
+        <td><%= link_to 'Show', load_document %></td>
+        <td><%= link_to 'Edit', edit_load_document_path(load_document) %></td>
+        <td><%= link_to 'Destroy', load_document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Load Document', new_load_document_path %>

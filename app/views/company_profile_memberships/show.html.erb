@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company profile:</strong>
+  <p>ID: <%= @company_profile_membership.company_profile_id %></p>
+  <p>Company Name: <%= @company_profile_membership.company_profile.company_name %></p> 
+</p>
+
+<p>
+  <strong>User:</strong>
+ <p>ID: <%= @company_profile_membership.user_id %></p> 
+<p>Full Name: <%= @company_profile_membership.user.full_name %></p>
+<p>Full Email: <%= @company_profile_membership.user.email %></p>
+
+<p>
+  <strong>Membership type:</strong>
+  <p></p><%= @company_profile_membership.membership_type %>
+</p>
+
+<%= link_to 'Edit', 
+edit_company_profile_company_profile_membership_path(@company_profile, 
+@company_profile_membership) %>  |
+<%= link_to 'Back', company_profile_company_profile_memberships_path %>

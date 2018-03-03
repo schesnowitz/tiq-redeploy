@@ -1,0 +1,30 @@
+<%= simple_form_for [@load, @transaction] do |f| %> 
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group input-group">
+      <%= f.input :business_name, label: "Business Name" %>
+      <%= f.input :expense_type, collection: Load::ExpenseType, label: "Type" %>
+      <%= f.input :debit, label: "Debit" %>
+      <%= f.input :credit, label: "Credit" %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group input-group">
+      <%= f.input :street, label: "Street" %>
+      <%= f.input :city, label: "City" %>
+      <%= f.input :state, label: "State" %>
+      <%= f.input :zip, label: "zip" %>
+    </div>
+<br />   
+<br /> 
+    <%= link_to "Add New Vendor", new_vendor_profile_path, 
+    class: "btn btn-success btn-sm round pull-left" %>
+  </div>
+  <%= f.button :submit, class: "btn btn-info btn-sm round pull-left" %>
+</div>
+<% end %>
+
+
+
+
+

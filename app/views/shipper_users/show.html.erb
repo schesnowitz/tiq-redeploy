@@ -1,0 +1,113 @@
+<%= render "layouts/view_partials/user_show_css" %>
+<div class="container">
+  <div class="user-profile">
+    <div class="profile-header-background">
+      <%= image_tag("homeheader.jpg", class: "img-rounded img-responsive") %>  
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-info-left">
+          <div class="text-center"> 
+                 <%= image_tag("noUserPhoto.jpg", class: "img-rounded img-responsive img-circle") %> 
+            <h2><%= @shipper.full_name %> <small>(<%= @shipper.type_of_user %>)</small></h2>
+          </div>
+          <div class="action-buttons">
+            <div class="row">
+              <div class="col-xs-6">
+              
+              </div>
+              <div class="col-xs-6">
+             
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h3></h3>
+            <p></p>  
+          </div>
+          <div class="section">
+            <h3>Load Statistics</h3>
+            <p>
+             
+
+              <span class="badge">
+                <%=  %>
+              </span> Live Loads
+            </p>
+            <p>
+              
+              <span class="badge">
+                <%=  %>
+              </span> Completed Loads
+            </p>
+
+
+          </div>
+          <div class="section">
+            <h3>Contact <%= @shipper.first_name %></h3>
+            <ul class="list-unstyled list-social">
+              <li><i class="fa fa-paper-plane"></i> <%= @shipper.email %></li>
+              <li><i class="fa fa-mobile-phone"></i> <%= @shipper.cellphone %></li>
+              <li>
+                <% if @shipper.telephone.present? %>
+                <i class="fa fa-phone"></i> <%= @shipper.telephone %>
+                <% end %>
+                <% if @shipper.extention.present? %>
+                ext. <%= @shipper.extention %>
+                <% end %>
+                </li>
+               <div>
+                <strong>Emergency Contact</strong>
+              <li><i class="fa fa-heart-o"></i> <%= @shipper.emergency_contact %></li>
+              <li><i class="fa fa-user-md"></i> <%= @shipper.emergency_contact_number %></li>
+              </div>
+              <hr>
+              <div>
+                <strong>Home Address</strong>
+              <address>
+                <%= @shipper.street %><br />
+                <%= @shipper.city %><br />
+                <%= @shipper.state %> 
+                <%= @shipper.zip %>
+              </address>
+      </div>
+       
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-info-right">
+          <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
+            <li><a href="#LiveLoads" data-toggle="tab">Live Loads</a></li>
+            <li><a href="#CompletedLoads" data-toggle="tab">Completed Loads</a></li>
+            <li><a href="#LoadInfo" data-toggle="tab">Load Info</a></li> 
+            <li><a href="#Maps" data-toggle="tab">Maps</a></li>
+            <li><a href="#Chat" data-toggle="tab">Chat</a></li> 
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade" id="LiveLoads">
+            <%= render "live_loads" %>
+            </div>
+            <div class="tab-pane fade" id="CompletedLoads">
+            <%= render "completed_loads" %>
+            </div>
+            <div class="tab-pane fade" id="LoadInfo">
+            <%= render "load_info" %>  
+            </div>
+            <div class="tab-pane fade" id="Maps">
+            <%= render "maps" %>
+            </div>
+            <div class="tab-pane fade" id="Chat">
+            <%= render "chat" %> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to "Edit", edit_user_path(@shipper), class: "btn btn-hrcprimary round btn-xs" %>
+<%= link_to "All Users", users_path, class: "btn btn-hrcsuccess round btn-xs" %>
+

@@ -1,0 +1,14 @@
+<h1>Messages from <%= params[:id] %>
+
+</h1>
+<div class="ui one cards">
+  <div class="panel">
+	<div class="panel-body">
+  <%= render 'form' %>
+  </div>
+  </div>
+</div>
+<section>
+<div class="ui one cards thread" data-number="<%= params[:id] %>">
+  <%= render @messages %>
+</div> 

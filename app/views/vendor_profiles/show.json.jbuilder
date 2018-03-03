@@ -1,0 +1,1 @@
+json.partial! "vendor_profiles/vendor_profile", vendor_profile: @vendor_profile

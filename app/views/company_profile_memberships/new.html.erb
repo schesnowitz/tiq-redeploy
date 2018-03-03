@@ -1,0 +1,7 @@
+<h2>
+  New <%= @company_profile.company_name %>  Membership
+</h2>
+
+<%= render 'form', company_profile_membership: @company_profile_membership %>
+
+<%= link_to 'Back', company_profile_company_profile_memberships_path %>

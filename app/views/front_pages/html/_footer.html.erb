@@ -1,0 +1,83 @@
+<section class="no-padding" id="footer">
+  <!-- Footer -->
+  <footer class="footer section-small">
+    <div class="container">
+      <div class="row">
+        <!-- Footer Column -->
+        <div class="col-md-3 col-xs-6 footer-col">
+          <!-- Footer Logo -->
+          <div class="logo">
+            <%= image_tag "front_pages/logo.png", alt: "" %>
+          </div>
+          <!-- /Footer Logo -->
+          <!-- Footer Text -->
+          <p class="text">
+            <% @fpt73.string_input%>
+          </p>
+          <!-- /Footer Text -->
+          <hr>
+          <!-- Copyright -->
+          <p class="copyright">
+            Copyright &copy; <%= Time.now.strftime("%Y") %>
+            <strong>
+            <%= @fpt1.string_input %>
+            </strong>
+          </p>
+          <!-- /Copyright -->
+          <!-- Footer Social -->
+          <ul class="social-inline">
+            <%= render "front_pages/html/social_links" %>
+
+          </ul>
+          <!-- /Footer Social -->
+        </div>
+        <!-- /Footer Column -->
+        <!-- Footer Column -->
+        <div class="col-md-3 col-xs-6 footer-col">
+          <h3 class="title">
+            <%= @fpt75.string_input %> 
+            <span class="text-theme">
+            <%= @fpt76.string_input %>
+            </span>
+          </h3>
+          <!-- Footer Post -->
+
+          <!-- /Footer Post -->
+        </div>
+        <!-- /Footer Column -->
+        <!-- Footer Column -->
+        <div class="col-md-2 col-xs-6 footer-col">
+          <h3 class="title">Site Menu</h3>
+          <!-- Footer Menu -->
+          <ul class="menu">
+            <%= render "front_pages/html/navigation_links" %> 
+          </ul>
+          <!-- /Footer Menu -->
+        </div>
+        <!-- /Footer Column -->
+        <!-- Footer Column -->
+        <div class="col-md-4 col-xs-6 footer-col">
+
+        <%= render "front_pages/html/address" %>
+
+          </div>
+          <!-- /Footer Signup Form -->
+          <hr>
+          <!-- Footer Tags -->
+          <div class="tags">
+            <!--<a href="#" class="tag">web</a>-->
+            <!--<a href="#" class="tag">design</a>-->
+            <!--<a href="#" class="tag">clean</a>-->
+            <!--<a href="#" class="tag">minimal</a>-->
+            <!--<a href="#" class="tag">pixel perfect</a>-->
+            <!--<a href="#" class="tag">blog</a>-->
+            <!--<a href="#" class="tag">gallery</a>-->
+          </div>
+          <!-- /Footer Tags -->
+        </div>
+        <!-- /Footer Column -->
+      </div>
+    </div>
+  </footer>
+</section>
+<!-- /Footer --> 

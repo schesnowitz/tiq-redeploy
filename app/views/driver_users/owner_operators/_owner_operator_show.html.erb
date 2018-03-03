@@ -1,0 +1,113 @@
+<%= render "layouts/view_partials/user_show_css" %>
+<div class="container">
+  <div class="user-profile">
+    <div>
+<header class="jumbotron hero-spacer">
+  <% if @driver.truck && @driver.truck.image_url %>   
+  <%= image_tag @driver.truck.image_url(:large) %>    
+  <% else %>
+  <%= image_tag("front_pages/home-02.jpg", class: "img-rounded img-responsive") %>  
+  <% end %> 
+</header>
+<hr> 
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-info-left">
+          <div class="text-center">
+            <%= image_tag("noUserPhoto.jpg", class: "img-rounded img-responsive img-circle") %> 
+            <h2><%= @driver.full_name %> 
+            <br />
+            <small>Owner Operator</small></h2> 
+          </div>
+          <%= render "driver_show_equipment" %>
+          <div class="section">
+            <h3>Load Statistics</h3>
+            <p>
+              <span class="badge">
+              <%= @active_loads.count if @driver.type == "DriverUser" %>
+              </span> Live Loads
+            </p>
+            <p>
+              <span class="badge">
+              <%= @completed_loads.count if @driver.type == "DriverUser"  %>
+              </span> Completed Loads
+            </p>
+            <p>
+              <span class="badge">
+              <%= @driver_statements.count if @driver.type == "DriverUser"  %>
+              </span> My Statements
+            </p>
+          </div>
+          <div class="section">
+            <h3>Contact <%= @driver.first_name %></h3>
+            <ul class="list-unstyled list-social">
+              <li><i class="fa fa-paper-plane"></i> <%= @driver.email %></li>
+              <li><i class="fa fa-mobile-phone"></i> <%= @driver.cellphone %></li>
+              <li>
+                <% if @driver.telephone.present? %>
+                <i class="fa fa-phone"></i> <%= @driver.telephone %>
+                <% end %>
+                <% if @driver.extention.present? %>
+                ext. <%= @driver.extention %>
+                <% end %>
+              </li>
+              <div>
+                <strong>Emergency Contact</strong>
+                <li><i class="fa fa-heart-o"></i> <%= @driver.emergency_contact %></li>
+                <li><i class="fa fa-user-md"></i> <%= @driver.emergency_contact_number %></li>
+              </div>
+              <hr>
+              <div>
+                <strong>Home Address</strong>
+                <address>
+                  <%= @driver.street %><br />
+                  <%= @driver.city %><br />
+                  <%= @driver.state %> 
+                  <%= @driver.zip %>
+                </address>
+              </div>
+            </ul>
+          </div> 
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-info-right">
+          <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
+            <li class="active"><a href="#location" data-toggle="tab">Location</a></li>
+            <li><a href="#activeLoads" data-toggle="tab">Active Loads</a></li>
+            <li><a href="#CompletedLoads" data-toggle="tab">Completed Loads</a></li>
+            <li><a href="#DriverStatement" data-toggle="tab">Statements</a></li>
+  
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="location">
+               <%= render "driver_locations/driver_location" if @driver_location.present? %>  
+               <%= render "driver_locations/driver_locations"  if @driver_locations.present? %>  
+               <% if !@driver_locations.present? %>
+               No Locations Recorded
+               <% end %> 
+            </div>
+            <div class="tab-pane fade" id="activeLoads">
+              <%= render "driver_users/owner_operators/owner_operator_active_loads" %> 
+            </div>
+            <div class="tab-pane fade" id="CompletedLoads">
+              <%= render "driver_users/owner_operators/owner_operator_completed_loads" %> 
+            </div>
+            <div class="tab-pane fade" id="DriverStatement">
+              <%= render "driver_statements" %>  
+            </div>
+            <% if !current_driver_user %>
+            <div class="tab-pane fade" id="Text">
+               <% render "text" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,50 @@
+<h2>Statements<small> To view statement details, click on the drivers name.</small></h2>
+<%= paginate @statements if @statements.present? %>  
+<%= search_form_for @search_statements do |f| %>  
+<%= link_to "Reload", 
+  driver_statements_path, class: 'btn btn-primary btn-xs round'%> 
+<br />
+<div>
+  <%= f.label :driver_statements_search_params_cont, "Search" %>  
+  <%= f.text_field :driver_statements_search_params_cont %>     
+</div>
+<%= f.submit "Search", class: 'btn btn-success btn-xs round' %> 
+<% end %>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th><%= sort_link @search_statements, :id, "ID" %></th>
+      <th><%= sort_link @search_statements, :first_name, "Driver Name" %></th>
+      <th><%= sort_link @search_statements, :payment_status, "Payment Status" %></th>
+      <th><%= sort_link @search_statements, :created_at, "Created On" %></th>
+      <th><%= sort_link @search_statements, :due_date, "Due On" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @driver_statements.each do |driver_statement| %>
+    <tr> 
+      <td><%= driver_statement.id %></td>
+      <td><%= link_to driver_statement.driver_user.full_name, driver_user_driver_statement_path(driver_statement.driver_user, driver_statement ) %></td>
+      <td><%= driver_statement.payment_status %></td>
+      <td><%= driver_statement.created_at.strftime("%A %B %-d, %Y %-l:%M %p %Z") %></td>
+      <td><%= driver_statement.due_date.strftime("%A %B %-d, %Y") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<div class="row">
+  <div class="col-sm-3">
+    <h4>Import Statements</h4>
+    <%= form_tag import_driver_statements_path, multipart: true do %>
+    <%= file_field_tag :file, class: "btn btn-success btn-xs" %><br>
+    <%= submit_tag "Upload Statements", class: "btn btn-info btn-xs" %>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <h4>Export Statements</h4>
+    <%= link_to "Download Statements", driver_statements_path(format: :csv), 
+      class: "btn btn-primary btn-xs round" %> 
+  </div>
+</div> 

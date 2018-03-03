@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @mobile_user.email %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @mobile_user.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @mobile_user.password %>
+</p>
+
+<p>
+  <strong>Mobile user:</strong>
+  <%= @mobile_user.driver_user_id %>      
+</p>
+
+
+
+<%= link_to 'Edit', edit_driver_user_mobile_user_path(@driver, @mobile_user) %> |
+<%= link_to 'Back', driver_user_mobile_user_path(@driver, @mobile_user %>

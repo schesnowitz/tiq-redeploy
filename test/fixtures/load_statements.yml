@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trailer_rent: 9.99
+  truck_rent: 9.99
+  insurance: 9.99
+  notes: MyString
+
+two:
+  trailer_rent: 9.99
+  truck_rent: 9.99
+  insurance: 9.99
+  notes: MyString

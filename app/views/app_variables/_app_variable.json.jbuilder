@@ -1,0 +1,2 @@
+json.extract! app_variable, :id, :app_name, :app_logo, :app_logo_name, :app_tab_name, :app_slogan, :app_favi, :app_terms, :app_conditions, :app_agree_terms, :created_at, :updated_at
+json.url app_variable_url(app_variable, format: :json)

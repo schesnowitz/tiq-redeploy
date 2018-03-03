@@ -1,0 +1,126 @@
+<%= render "layouts/view_partials/user_show_css" %>
+<div class="container">
+  <div class="user-profile">
+    <div class="profile-header-background">
+      <% if @company_user.profile_bg_url.present? %>
+        <%= image_tag @company_user.profile_bg_url(:bg_main), class: "round" %>  
+      <% else %>
+        <%= image_tag("homeheader.jpg", class: "img-rounded img-responsive") %>  
+      <% end %> 
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-info-left">
+          <div class="text-center"> 
+              <% if @company_user.profile_image_url.present? %> 
+              <%= image_tag @company_user.profile_image_url(:main_image), 
+                class: "img-rounded img-responsive img-circle" %>
+              <% else %>
+              <%= image_tag("noUserPhoto.jpg", 
+                class: "img-rounded img-responsive img-circle") %> 
+              <% end %>
+ 
+            <h2><%= @company_user.full_name %><br /> <small>(<%= @company_user.type_of_user %>)</small></h2>
+          </div>
+          <div class="action-buttons">
+            <div class="row">
+              <div class="col-xs-6">
+              </div>
+              <div class="col-xs-6">
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h3></h3>
+            <p></p>  
+          </div>
+          <div class="section">
+            <h3>Load Statistics</h3>
+            <p>
+              <span class="badge">
+                <%= @active_loads.count %>
+              </span> Active Loads 
+            </p>
+            <p>
+              <span class="badge">
+                <%= @pending_loads.count %>
+              </span> Pending Loads  
+            </p>
+            <p>
+              <span class="badge">
+                <%= @completed_loads.count  %>
+              </span> Completed Loads
+            </p>
+            <p>
+              <span class="badge">
+                <%= @paid_loads.count  %>
+              </span> Paid Loads
+            </p>
+          </div>
+          <div class="section">
+            <h3>Contact <%= @company_user.first_name %></h3>
+            <ul class="list-unstyled list-social">
+              <li><i class="fa fa-paper-plane"></i> <%= @company_user.email %></li>
+              <li><i class="fa fa-mobile-phone"></i> <%= @company_user.cellphone %></li>
+              <li>
+                <% if @company_user.telephone.present? %>
+                <i class="fa fa-phone"></i> <%= @company_user.telephone %>
+                <% end %>
+                <% if @company_user.extention.present? %>
+                ext. <%= @company_user.extention %>
+                <% end %>
+                </li>
+               <div>
+                <strong>Emergency Contact</strong>
+              <li><i class="fa fa-heart-o"></i> <%= @company_user.emergency_contact %></li>
+              <li><i class="fa fa-user-md"></i> <%= @company_user.emergency_contact_number %></li>
+              </div>
+              <hr>
+              <div>
+                <strong>Home Address</strong>
+              <address>
+                <%= @company_user.street %><br />
+                <%= @company_user.city %><br />
+                <%= @company_user.state %> 
+                <%= @company_user.zip %>
+              </address>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-info-right">
+          <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
+            <li class="active"><a href="#activeLoads" data-toggle="tab">Active Loads</a></li>
+            <li><a href="#PendingLoads" data-toggle="tab">Pending Loads</a></li> 
+            <li><a href="#CompletedLoads" data-toggle="tab">Completed Loads</a></li>
+            <li><a href="#PaidLoads" data-toggle="tab">Paid Loads</a></li> 
+            <li><a href="https://www.google.com/maps/" target="_blank">Maps</a></li> 
+            <li><a href="#Chat" data-toggle="tab">Chat</a></li> 
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane  active" id="activeLoads">
+            <%= render "active_loads" %> 
+            </div>
+            <div class="tab-pane fade" id="PendingLoads">
+            <%= render "pending_loads" %>
+            </div>
+            <div class="tab-pane fade" id="CompletedLoads">
+            <%= render "completed_loads" %>
+            </div>
+            <div class="tab-pane fade" id="PaidLoads">
+            <%= render "paid_loads" %>  
+            </div>
+            <div class="tab-pane fade" id="Maps">
+            <%= render "maps" %>
+            </div>
+            <div class="tab-pane fade" id="Chat">
+            <%= render "chat" %> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

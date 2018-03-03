@@ -1,0 +1,10 @@
+<%= simple_form_for[@front_page, @front_page_text] do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :title %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

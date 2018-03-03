@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Vendor Profiles</h1>
+
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>Company name</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Telephone</th>
+      <th>Fax</th>
+      <th>Website</th>
+      <th>Logo</th>
+      <th>Contact name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+    <% @vendor_profiles.each do |vendor_profile| %>
+      <tr>
+        <td><%= vendor_profile.company_name %></td>
+        <td><%= vendor_profile.street %></td>
+        <td><%= vendor_profile.city %></td>
+        <td><%= vendor_profile.state %></td>
+        <td><%= vendor_profile.zip %></td>
+        <td><%= vendor_profile.telephone %></td>
+        <td><%= vendor_profile.fax %></td>
+        <td><%= vendor_profile.website %></td>
+        <td><%= vendor_profile.logo %></td>
+        <td><%= vendor_profile.contact_name %></td>
+        <td><%= vendor_profile.email %></td>
+        <td><%= link_to 'Show', vendor_profile, class: "btn btn-success btn-xs round" %></td>
+        <td><%= link_to 'Edit', edit_vendor_profile_path(vendor_profile), class: "btn btn-info btn-xs round" %></td>
+        <td><%= link_to 'Destroy', vendor_profile, method: :delete, data: { confirm: 'Are you sure?' }, 
+        class: "btn btn-danger btn-xs round" %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+<div class="row">
+  <div class="col-sm-2">
+    <br>
+<%= link_to 'New Vendor Profile', new_vendor_profile_path, class: "btn btn-hrcprimary btn-xs round" %> 
+  </div>
+  <div class="col-sm-3">
+    <h4>Import Vendors</h4>
+    <%= form_tag import_vendor_profiles_path, multipart: true do %>
+    <%= file_field_tag :file, class: "btn btn-success btn-xs" %><br>
+    <%= submit_tag "Upload Vendors", class: "btn btn-info btn-xs" %>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+<h4>Export Vendors</h4>
+  <%= link_to "Download Vendors", vendor_profiles_path(format: :csv), 
+  class: "btn btn-primary btn-xs round" %> 
+  </div>
+</div> 

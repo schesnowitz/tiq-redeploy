@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><% @app_variable.app_company_name %></title>   
+  <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    'front_pages/front_pages_manifest', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'front_pages/front_pages_manifest', 'data-turbolinks-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />  
+
+</head>
+
+<body>
+    <%= bootstrap_flash %>
+<%= yield %>
+
+</body>
+</html>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWUmcnLuxvdArSSCWj6gijI7IcRA5uNDk&callback" async defer></script>

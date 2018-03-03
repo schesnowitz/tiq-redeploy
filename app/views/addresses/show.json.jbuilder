@@ -1,0 +1,1 @@
+json.partial! "load_addresses/load_address", load_address: @load_address

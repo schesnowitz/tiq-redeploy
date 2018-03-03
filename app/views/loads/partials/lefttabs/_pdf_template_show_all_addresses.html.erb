@@ -1,0 +1,63 @@
+<%= render "loads/partials/statuses" %>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+      <strong>Load Origin</strong><br>
+        <% if @load.pick_up_date.present? %>
+        <%= (@load.pick_up_date.strftime("%A %B %-d, %Y")) %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <address>
+          <strong><%= @load.shipper_company_name %></strong><br>
+          <%= @load.origin_street %><br>
+          <%= @load.origin_city  %> <%= @load.origin_state  %> <%= @load.origin_zip  %><br>
+          <small>Phone: </small><%= @load.origin_phone %><br />
+          <small>Contact: </small><%= @load.origin_contact %>
+        </address>
+      </div>
+      <div class="panel-footer">
+        <h4>----</h4>
+        <% if @load.pick_up_notes.present? %>
+        <span class="text-red"><%= @load.pick_up_notes %></span>
+        <% else %>
+        No notes entered.
+        <% end %> 
+      </div>
+    </div>
+  </div>
+  <% if !@load.receiver_company_name.blank? %>          
+  <div class="col-sm-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+      <strong>Load Destination</strong><br>
+        <% if @load.delivery_date.present? %>
+        <%= @load.delivery_date.strftime("%A %B %-d, %Y") %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <address>
+          <strong><%= @load.receiver_company_name %></strong><br>
+          <%= @load.destination_street %><br>
+          <%= @load.destination_city  %> <%= @load.destination_state  %> <%= @load.destination_zip  %><br>
+          <small>Phone: </small><%= @load.destination_phone %><br />
+          <small>Contact: </small><%= @load.destination_contact %>
+        </address>
+      </div>
+      <div class="panel-footer">
+        <h4>----</h4>
+
+        <% if @load.delivery_notes.present? %>
+        <span class="text-red"><%= @load.delivery_notes %></span>
+        <% else %>
+        No notes entered.
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+ 
+  <%= render "loads/partials/lefttabs/pdf_template_origin_addresses" %>  
+</div>

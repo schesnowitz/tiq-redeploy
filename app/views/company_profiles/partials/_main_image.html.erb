@@ -1,0 +1,113 @@
+<style>
+  .business-header {
+  height: 400px;
+
+  background-image: asset-data-url("homeheader.jpg") center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  border-radius:15px; 
+  -o-background-size: cover;
+  }
+  /* Customize the text color and shadow color and to optimize text legibility. */
+  .tagline {
+  text-shadow: 0 0 10px #000;
+  color: #fff;
+  }
+  .img-center {
+  margin: 0 auto;
+  }
+</style>
+<header class="business-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="tagline">
+          <h1><%= @company_profile.company_name %> <small></small></h1>
+        </h1>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Page Content -->
+<div class="container">
+<hr>
+<div class="row">
+  <div class="col-sm-2">
+    <span data-toggle="collapse" data-target="#vendors">Vendors</span>
+    <div id="vendors" class="collapse">
+      Add A New Vendor"<br /> 
+      "All Vendors"
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "All Company Members", company_profile_company_profile_memberships_path(@company_profile) %>
+  </div>
+  <div class="col-sm-4">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <h2>What We Do</h2>
+    <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
+    <p>
+      <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <h2>Contact Us</h2>
+    <address>
+      <strong>Start Bootstrap</strong>
+      <br>3481 Melrose Place
+      <br>Beverly Hills, CA 90210
+      <br>
+    </address>
+    <address>
+      <abbr title="Phone">P:</abbr>(123) 456-7890
+      <br>
+      <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+    </address>
+    <p>
+      <% if @company_profile.broker_mc_number.present?  %> 
+        Broker MC <%= link_to @company_profile.broker_mc_number, 
+        company_profile_broker_mc_path(@company_profile, @broker_mc)  %>  
+      <%=link_to "Get and update from FMCSA", 
+        edit_company_profile_broker_mc_path(@company_profile, @broker_mc)  %>
+      <% else %>
+        <%= @company_profile.company_name %> Does not have a Broker MC number on file. 
+      <% end %>
+    </p>
+    <p>
+      <% if @company_profile.carrier_mc_number.present?  %>
+        Carrier MC <%= link_to @company_profile.carrier_mc_number, 
+        company_profile_carrier_mc_path(@company_profile, @carrier_mc)  %>  
+      <%=link_to "Get and update from FMCSA", 
+        edit_company_profile_carrier_mc_path(@company_profile, @carrier_mc) %>
+      <% else %>
+        <%= @company_profile.company_name %> Does not have a Carrier MC number on file. 
+      <% end %>
+    </p>
+  </div>
+</div>
+<!-- /.row -->
+<hr>
+<div class="row">
+  <div class="col-sm-4">
+    <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+    <h2>Marketing Box #1</h2>
+    <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+  </div>
+  <div class="col-sm-4">
+    <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+    <h2>Marketing Box #2</h2>
+    <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+  </div>
+  <div class="col-sm-4">
+    <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+    <h2>Marketing Box #3</h2>
+    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+  </div>
+</div>
+<!-- /.row -->
+<hr>

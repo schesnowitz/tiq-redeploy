@@ -1,0 +1,15 @@
+<%= simple_form_for [@driver, @mobile_user] do |f| %> 
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email %>
+    <%= f.input :username %>
+    <%= f.input :password %>
+    <%= f.input :driver_user_id %> 
+    <%= f.input :type %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

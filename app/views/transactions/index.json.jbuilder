@@ -1,0 +1,1 @@
+json.array! @load_expenses, partial: 'load_expenses/load_expense', as: :load_expense

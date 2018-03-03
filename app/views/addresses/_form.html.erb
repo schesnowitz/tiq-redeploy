@@ -1,0 +1,159 @@
+<% if @address.type == "LoadOriginAddress" %>
+
+<%= simple_form_for @address, url: { controller: "load_origin_addresses", action: "update"} do |f| %>
+<%= f.error_notification %>
+<div class="col-sm-10 col-sm-offset-1 shadow animated">
+  <div class="well animated"> 
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group input-group">  
+          <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+          <%= f.input :type, disabled: true, label: false %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-institution"></i></span>
+          <%= f.input :company, label: false, placeholder: "Company Name" %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+          <%= f.input :contact, label: false, placeholder: "Contact Person" %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+          <%= f.input :phone, label: false, placeholder: "Telephone" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+          <%= f.input :street, label: false, placeholder: "Street Address" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map"></i></span>
+          <%= f.input :city, label: false, placeholder: "City" %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
+          <%= f.input :state, collection: ApplicationRecord::States, label: false %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map"></i></span>
+          
+          <%= f.input :zip, label: false, placeholder: "zip code" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+          <%= f.input :notes, label: false, placeholder: "Notes" %>
+        </div>
+      </div>
+    </div>
+    
+    <%= f.button :submit, class: 'btn btn-success btn-sm round' %> 
+    <%= link_to 'Back to Load', load_path(@load), class: 'btn btn-hrcprimary btn-sm round' %>
+    <% end %>
+  </div>
+</div>
+    <% elsif @address.type == "LoadDestinationAddress" %>
+
+<%= simple_form_for @address, url: { controller: "load_destination_addresses", action: "update"} do |f| %>
+<%= f.error_notification %>
+<div class="col-sm-10 col-sm-offset-1 shadow animated">
+  <div class="well animated"> 
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group input-group">  
+          <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+          <%= f.input :type, disabled: true, label: false %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-institution"></i></span>
+          <%= f.input :company, label: false, placeholder: "Company Name" %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+          <%= f.input :contact, label: false, placeholder: "Contact Person" %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+          <%= f.input :phone, label: false, placeholder: "Telephone" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+          <%= f.input :street, label: false, placeholder: "Street Address" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map"></i></span>
+          <%= f.input :city, label: false, placeholder: "City" %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
+          <%= f.input :state, collection: ApplicationRecord::States, label: false %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map"></i></span>
+          
+          <%= f.input :zip, label: false, placeholder: "zip code" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+          <%= f.input :notes, label: false, placeholder: "Notes" %>
+        </div>
+      </div>
+    </div>
+    
+    <%= f.button :submit, class: 'btn btn-success btn-sm round' %> 
+    <%= link_to 'Back to Load', load_path(@load), class: 'btn btn-hrcprimary btn-sm round' %>
+    <% end %>
+  </div>
+</div>
+     <% end %>
+
+    
+
+

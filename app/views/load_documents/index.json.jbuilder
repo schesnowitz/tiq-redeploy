@@ -1,0 +1,1 @@
+json.array! @load_documents, partial: 'load_documents/load_document', as: :load_document

@@ -1,0 +1,36 @@
+<h1>Statements</h1>
+
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Payment Status</th>
+      <th>Created On</th>
+      <th>Due On</th>
+
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @driver_statements.each do |driver_statement| %>
+      <tr>
+        <td><%= driver_statement.id %></td>
+        <td><%= driver_statement.payment_status %></td>
+        <td><%= driver_statement.created_at.strftime("%A %B %-d, %Y %-l:%M %p %Z") %></td>
+        <td><%= driver_statement.due_date.strftime("%A %B %-d, %Y") %></td>     
+        <td>
+          <%= link_to 'View Statement', 
+          driver_user_driver_statement_path(@driver, driver_statement),
+          class: "btn btn-info btn-xs round" %>
+        </td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

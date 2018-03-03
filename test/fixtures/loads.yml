@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  commodity: MyString
+  weight: MyString
+  units: MyString
+  load_size: MyString
+  rate: 9.99
+  distance: 1
+  pick_up_time: 2016-10-02 15:52:13
+  delevery_time: 2016-10-02 15:52:13
+  equipment_type: MyString
+
+two:
+  commodity: MyString
+  weight: MyString
+  units: MyString
+  load_size: MyString
+  rate: 9.99
+  distance: 1
+  pick_up_time: 2016-10-02 15:52:13
+  delevery_time: 2016-10-02 15:52:13
+  equipment_type: MyString

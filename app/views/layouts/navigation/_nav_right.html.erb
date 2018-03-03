@@ -1,0 +1,75 @@
+<% if current_company_user.try(:admin) == true %>  
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+    aria-haspopup="true" aria-expanded="false">Administration 
+  <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li> 
+      <%= link_to rails_admin_path, target: '_blank' do %>
+      <span class="fa fa-edit"></span>   
+      App Admin 
+      <% end %>
+    </li>
+    <li> 
+      <%= link_to app_variables_path, target: '_blank' do %>  
+      <span class="fa fa-toggle-off"></span> 
+      App Variables
+      <% end %>
+    </li>
+    <li> 
+      <%= link_to root_url + "sidekiq", target: '_blank' do %>  
+      <span class="fa fa-line-chart"></span> 
+      Sidekiq
+      <% end %>
+    </li>
+    <li role="separator" class="divider"></li>
+    <li> 
+      <%= link_to edit_show_path do %> 
+      <span class="fa fa-pencil"></span> 
+      Edit Front Page 
+      <% end %>
+    </li>
+  </ul>
+</li>
+<% end %>
+<% if current_company_user %>  
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+    aria-haspopup="true" aria-expanded="false"><%= current_company_user.full_name %> 
+  <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><%= link_to "Edit My Profile", edit_company_user_registration_path %></li>
+    <li role="separator" class="divider"></li>
+    <li><%= link_to "End My Session", destroy_company_user_session_path,
+      method: :delete %></li>
+  </ul>
+</li>
+<% end %>
+<% if current_driver_user %>  
+<li></li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+    aria-haspopup="true" aria-expanded="false"><%= current_driver_user.full_name %> 
+  <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><%= link_to "Edit My Profile", edit_driver_user_registration_path %></li>
+    <li role="separator" class="divider"></li>
+    <li><%= link_to "End My Session", destroy_driver_user_session_path,
+      method: :delete %></li>
+  </ul>
+</li>
+<% end %>
+<% if current_shipper_user %>  
+<li></li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+    aria-haspopup="true" aria-expanded="false"><%= current_shipper_user.full_name %> 
+  <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><%= link_to "Edit My Profile", edit_shipper_user_registration_path %></li>
+    <li role="separator" class="divider"></li>
+    <li><%= link_to "End My Session", destroy_shipper_user_session_path,
+      method: :delete %></li>
+  </ul>
+</li>
+<% end %>

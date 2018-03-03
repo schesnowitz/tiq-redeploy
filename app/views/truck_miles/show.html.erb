@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mileage:</strong>
+  <%= @mile.mileage %>
+</p>
+
+
+<p>
+  <strong>Notes:</strong>
+  <%= @mile.notes %>
+</p> 
+
+<%= link_to 'Edit', edit_truck_truck_mile_path(@truck, @mile) %> |
+<%= link_to 'All Truck Miles', truck_truck_miles_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mobile Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Mobile user</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mobile_users.each do |mobile_user| %>
+      <tr>
+        <td><%= mobile_user.email %></td>
+        <td><%= mobile_user.username %></td>
+        <td><%= mobile_user.password %></td>
+        <td><%= mobile_user.mobile_user_id %></td>
+        <td><%= mobile_user.type %></td>
+        <td><%= link_to 'Show', mobile_user %></td>
+        <td><%= link_to 'Edit', edit_mobile_user_path(mobile_user) %></td>
+        <td><%= link_to 'Destroy', mobile_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mobile User', new_mobile_user_path %>

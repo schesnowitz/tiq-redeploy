@@ -1,0 +1,22 @@
+<h4>
+Load Status
+<% if @load.status_name == "Active" %>
+<span class="label label-success round">
+   <%= @load.status_name %>
+</span>
+<% elsif @load.status_name == "Pending" %>
+<span class="label label-warning round">
+   <%= @load.status_name %>
+</span>         
+<% elsif @load.status_name == "Complete" %>
+<span class="label label-info round">
+   <%= @load.status_name %>
+<% elsif @load.status_name == "Cancelled" %>
+<span class="label label-danger round">
+   <%= @load.status_name %>
+<% elsif @load.status_name == "Paid" %>
+<span class="label label-success round">
+   <%= @load.status_name %>
+<% end %>
+</span>    
+</h4>

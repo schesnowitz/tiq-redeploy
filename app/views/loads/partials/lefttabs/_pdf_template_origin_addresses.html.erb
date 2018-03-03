@@ -1,0 +1,96 @@
+
+<% @load_origin_addresses.each do |origin| %> 
+<% unless origin.address_category_id == 4 %>
+<div class="col-sm-6">
+  <div class="panel panel-default shadow">
+    <div class="panel-heading">
+      
+        <% if origin.address_category_id == 1 %>
+        <span class="label label-success round"> 
+        Pick Up
+        </span><br />
+         
+         <% if origin.pick_up_date.present? %>
+         <%= origin.pick_up_date.strftime("%A %B %-d, %Y") %>
+         <% end %>
+
+        <% elsif origin.address_category_id == 2 %>
+        <span class="label label-primary round">
+        Delivery
+        </span><br />
+         
+         <% if origin.pick_up_date.present? %>
+         <%= origin.pick_up_date.strftime("%A %B %-d, %Y") %>
+         <% end %>
+
+       <% elsif origin.address_category_id == 3 %>
+        <span class="label label-warning round"> 
+        Pick Up & Delivery
+        </span>  <br />
+
+      <% if origin.pick_up_date.present? %>
+      <%= origin.pick_up_date.strftime("%A %B %-d, %Y") %>
+      <% end %>
+      <% end %>
+      
+    </div>
+    <div class="panel-body">
+      <address>
+        <strong><%= origin.company %></strong><br>
+        <%= origin.street %><br>
+        <%= origin.city  %>, <%= origin.state  %>, <%= origin.zip  %><br>
+        <small>Phone: </small><%= origin.phone  %><br />
+        <small>Contact: </small><%= origin.contact  %><br />
+      </address>
+
+    </div>
+    <div class="panel-footer">
+      <h4>----</h4>
+      <% if origin.notes.present? %>
+
+      <%= origin.notes %>  
+      <% else %>
+      No notes entered.
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% end %>
+<% if @load_origin_addresses.count > 3 %> 
+<div class="page-break"></div>
+<% end %>
+<% if @load_origin_addresses.count > 6 %>  
+<div class="page-break"></div>
+<% end %>
+<% end %>
+
+<% if @destination.present? %>               
+<div class="col-sm-6">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <strong>Load Destination</strong><br>
+      <% if @destination.pick_up_date.present? %>
+      <%= @destination.pick_up_date.strftime("%A %B %-d, %Y") %>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <address>
+        <strong><%= @destination.company %></strong><br>
+        <%= @destination.street %><br>
+        <%= @destination.city  %> <%= @destination.state  %> <%= @destination.zip  %><br>
+        <small>Phone: </small><%= @destination.phone  %><br />
+        <small>Contact: </small><%= @destination.contact  %>
+      </address>
+    </div>
+    <div class="panel-footer">
+      <h4>----</h4>
+      <% if @destination.notes.present? %>
+      <span class="text-red"><%= @destination.notes %></span>
+      <% else %>
+      No notes entered.
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>    

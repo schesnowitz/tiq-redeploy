@@ -1,0 +1,17 @@
+
+language: ruby  
+dist: trusty  
+sudo: required  
+install: sudo bash -c "$(curl -fsSL https://s3.amazonaws.com/tools.nanobox.io/bootstrap/ci.sh)"  
+
+rvm:
+  - 2.4.2  
+
+script:
+  - nanobox evar add local RAILS_ENV=production
+  - nanobox run true # replace 'true' with a test thing
+
+
+after_success:  
+  - nanobox remote add transport-sandbox   
+  - nanobox deploy

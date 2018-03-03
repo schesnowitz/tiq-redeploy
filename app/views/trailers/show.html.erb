@@ -1,0 +1,153 @@
+<header class="jumbotron hero-spacer">
+  <% if @trailer.image_url.present? %>
+  <%= image_tag @trailer.image_url(:large) %>   
+  <% else %>
+  <%= image_tag("homeheader.jpg", class: "img-rounded img-responsive") %>  
+  <% end %> 
+</header>
+<hr>
+<div class="col-lg-12">
+  <div class="panel panel-default well round shadow">
+    <div class="panel-heading well round shadow">
+      <h2>
+        <%= @trailer.year.strftime("%Y") %>   
+        <%= @trailer.make %>
+        <small>
+        <% if @trailer.driver_user.present? %>
+        Operated By: <%= link_to @trailer.driver_user.try(:full_name), driver_user_path(@trailer.driver_user) %> 
+        <% else %>
+        No Driver Assigned  
+        <% end %>
+        </small>
+        <%= link_to 'All Trailers', trailers_path, class:"btn btn-warning btn-sm round pull-right" %> 
+      </h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-bordered table-striped table-condensed table-responsive">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Plate</th>
+            <th>Length</th>
+            <th>Door Type</th>
+            <th>Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @trailer.year.strftime("%Y") %></td>  
+            <td><%= @trailer.make %></td>
+            <td><%= @trailer.model %></td>
+            <td><%= @trailer.plate %></td>
+            <td><%= @trailer.length %></td>
+            <td><%= @trailer.door_type %></td>
+            <td><%= @trailer.color %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel-footer well round shadow">
+      <table class="table table-bordered table-striped table-condensed table-responsive">
+        <thead>
+          <tr>
+            <th>Trailer Number</th>
+            <th>Service Status</th>
+            <th>VIN</th>
+            <th>GPS Identifier</th>
+            <th>Driver</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @trailer.number %></td>
+            <td><%= @trailer.service_status %></td>
+            <td><%= @trailer.vin %></td>
+            <td><%= @trailer.gps_unit_ident %></td>
+            <td>  
+              <% if @driver.present? %>
+              <%= link_to @driver.try(:full_name), driver_user_path(@driver) %>  
+              <% else %>
+              No Driver Assigned 
+              <% end %>
+            </td>
+            <td><%= @trailer.notes %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% running_total = 0 %>
+      <% @trailer_miles.each do |mile| %>
+      <table class="table table-bordered table-striped table-condensed table-responsive">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Mileage</th>
+            <th>Entered On</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= mile.id %></td>
+            <td><%= mile.mileage %></td>
+            <td><%= mile.created_at.strftime("%A %B %-d, %Y") %> <%= mile.created_at.strftime("%-l:%M %p %Z") %></td>
+            <td><%= mile.notes %></td>
+            <td><%= link_to 'Edit', edit_trailer_trailer_mile_path(@trailer, mile),
+              class: "btn btn-success btn-xs round " %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% running_total = running_total + mile.mileage %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<strong> <% running_total %></strong>
+<div class="row">
+  <div class="col-xs-4">
+    <%= simple_form_for [@trailer, @trailer_mile] do |f| %>
+    <%= f.error_notification %>
+    <div class="col-lg-12">
+      <div class="panel panel-default well round shadow">
+        <div class="panel-heading well round shadow">
+          Add Miles
+        </div>
+        <div class="panel-body">
+          <p>
+          <div class="form-inputs">
+            <%= f.input :mileage %>
+            <%= f.input :notes %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Add Mileage Record", class: "btn btn-info btn-sm round"  %>
+          </div>
+          <% end %>
+          </p>
+        </div>
+        <div class="panel-footer well round shadow">
+          <%= link_to 'Edit Trailer Info', edit_trailer_path(@trailer), class:"btn btn-hrcinfo btn-sm round" %> |
+          <%= link_to 'All Trailers', trailers_path, class:"btn btn-success btn-sm round" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-8">
+    <%= simple_form_for [@trailer, @trailer_image] do |trailer_image| %>
+    <%= trailer_image.input :image_file, as: :file, label: "Add Image" %> 
+    <%= trailer_image.input :notes %>
+    <div class="form-actions">
+      <%= trailer_image.button :submit, "Add Image", class: "btn btn-info btn-xs round"  %> 
+    </div>
+    <% end %>
+    <% @trailer_images.each do |trailer_image|  %>
+    <%= link_to trailer_image.image_file_url(:large), target: '_blank' do %>
+    <%= image_tag(trailer_image.image_file_url(:small)) unless trailer_image.image_file_url.blank? %>
+    <% end %>
+    <br />
+    <%= (trailer_image.notes) %> 
+    <% end %>  
+  </div>
+</div>
+</div>

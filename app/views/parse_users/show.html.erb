@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @parse_user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @parse_user.password %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @parse_user.username %>
+</p>
+
+<%= link_to 'Edit', edit_parse_user_path(@parse_user) %> |
+<%= link_to 'Back', parse_users_path %>

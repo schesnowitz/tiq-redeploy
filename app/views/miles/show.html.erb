@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mileage:</strong>
+  <%= @mile.mileage %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @mile.type %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @mile.notes %>
+</p>
+
+<%= link_to 'Edit', edit_mile_path(@mile) %> |
+<%= link_to 'Back', miles_path %>

@@ -1,0 +1,34 @@
+<%= simple_form_for(@load, html: { class: "input-sm" }) do |f| %>
+<%= render "loads/new_load_partials/new_top_row", f: f %>  
+<br>  
+<%= render "loads/new_load_partials/load_truck_info", f: f %>    
+<%= render "loads/new_load_partials/rate_details_broker_contact", f: f %>  
+<%= render "loads/new_load_partials/multiple_weight_cool", f: f %>
+<%= render "loads/new_load_partials/load_addresses", f: f %>
+<%= f.input :broker_after_hours_instructions, label: "After hours instructions", placeholder: "ask for jim at gate, call frank at...", class: 'form-control'  %>
+<div class="row">
+  <div id="idToHide">
+    <div class="col-sm-3">
+      <div class="form-group input-group">
+        <%= f.input :miles, label: "Total Miles" %> 
+        <%= f.input :kilometers, label: "Total Kilometers" %> 
+        <%= f.input :truck_mpg, label: "Truck MPG" %>
+        <% @national_average_diesel_price %> 
+        <%= f.text_field :national_average_diesel_price,
+          value: (number_with_precision(@national_average_diesel_price, :precision => 2) || 0), 
+          label: "National Average Fuel Price", hidden: true %>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of row-->
+<div class="form-actions pull-right">
+  <div id="theSubmitButton">
+    <%= f.button :submit, class: "btn btn-success round" %>
+    <% end %>
+  </div>
+</div>
+<div id="idToHide2" class="pull-left"><%= render "calculate_distance" %></div>
+</div>
+</div>
+<div id="idToHide3"><%= render "new_map" %></div>

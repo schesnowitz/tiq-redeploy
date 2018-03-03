@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_name: MyString
+  app_logo: MyString
+  app_logo_name: MyString
+  app_tab_name: MyString
+  app_slogan: MyString
+  app_favi: MyString
+  app_terms: MyText
+  app_conditions: MyText
+  app_agree_terms: false
+
+two:
+  app_name: MyString
+  app_logo: MyString
+  app_logo_name: MyString
+  app_tab_name: MyString
+  app_slogan: MyString
+  app_favi: MyString
+  app_terms: MyText
+  app_conditions: MyText
+  app_agree_terms: false

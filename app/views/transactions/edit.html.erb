@@ -1,0 +1,7 @@
+<h4>Editing Load Expense <%= @load.title %></h4>
+<hr>
+
+<%= render 'form', load_expense: @transaction %>
+<hr>
+<%= link_to 'Show',load_transaction_path(@transaction) %> |
+<%= link_to 'Back', load_transaction_path %>

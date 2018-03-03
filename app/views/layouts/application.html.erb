@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @app_variable.app_tab_text %> </title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+
+    <%= stylesheet_link_tag 'application_manifest', media: 'all' %>
+
+     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+    <%= javascript_include_tag "application" %>
+
+  </head>
+
+  <body>
+    <%= render 'layouts/navigation/navbar' %>
+    <%= bootstrap_flash %>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+  </body>
+      <%= render 'layouts/navigation/footer' %>
+</html>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWUmcnLuxvdArSSCWj6gijI7IcRA5uNDk&callback=initMap" async defer></script>

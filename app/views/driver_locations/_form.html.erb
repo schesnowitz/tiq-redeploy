@@ -1,0 +1,19 @@
+<%= simple_form_for(@driver_location) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :driver_email %>
+    <%= f.input :parse_id %>
+    <%= f.input :latitude %>
+    <%= f.input :longitude %>
+    <%= f.input :speed %>
+    <%= f.input :bearing %>
+    <%= f.input :parse_created_at %>
+    <%= f.input :parse_updated_at %>
+    <%= f.input :driver_user_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

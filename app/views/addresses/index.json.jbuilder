@@ -1,0 +1,1 @@
+json.array! @load_addresses, partial: 'load_addresses/load_address', as: :load_address

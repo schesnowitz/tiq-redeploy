@@ -1,0 +1,73 @@
+<h1>Trailers</h1>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Year</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Plate Number</th>
+      <th>Plate State</th>
+      <th>Color</th>
+      <th>Number</th>
+      <th>Service status</th>
+      <th>Vin</th>
+      <th>GPS Identifier</th>
+      <th>Notes</th>
+      <th>Driver</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody> 
+    <% @trailers.each do |trailer| %>
+    <tr>
+      <td><%= trailer.id %></td>
+      <td><%= trailer.year.strftime("%Y") %></td> 
+      <td><%= trailer.make %></td>
+      <td><%= trailer.model %></td>
+      <td><%= trailer.plate %></td>
+      <td><%= trailer.plate_state %></td>
+      <td><%= trailer.color %></td>
+      <td><%= trailer.number %></td>
+      <td><%= trailer.service_status %></td>
+      <td><%= trailer.vin %></td>
+      <td><%= trailer.gps_unit_ident %></td>
+      <td><%= truncate(trailer.notes, length: 15) %></td>
+      <td>
+        <% if trailer.driver_user.try(:full_name).present? %>
+        <%= link_to driver_user_path(trailer.driver_user) do %> 
+        <%= trailer.driver_user.try(:full_name) %>
+        <% end %>
+        <% else %>
+        <%= link_to edit_trailer_path(trailer) do %>
+        No Driver Assigned 
+        <% end %>
+        <% end %>
+      </td>
+      <td><%= link_to 'Show', trailer,
+        class: "btn btn-info btn-xs round" %></td>
+      <td><%= link_to 'Assign/Edit', edit_trailer_path(trailer),
+        class: "btn btn-primary btn-xs round" %></td>
+      <td><%= link_to 'Destroy', trailer, method: :delete, data: { confirm: 'Are you sure?' },
+        class: "btn btn-danger btn-xs round" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<div class="row">
+  <div class="col-sm-3">
+    <h4>Import Trailers</h4>
+    <%= form_tag import_trailers_path, multipart: true do %>
+    <%= file_field_tag :file, class: "btn btn-success btn-xs round" %><br>
+    <%= submit_tag "Upload Trailers", class: "btn btn-info btn-xs round" %>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <h4>Export Trailers</h4>
+    <%= link_to "Download Trailers", trailers_path(format: :csv), 
+      class: "btn btn-primary btn-xs round" %> 
+  </div>
+</div>
+<br />      
+<%= link_to 'New Trailer', new_trailer_path, class: "btn btn-hrcinfo btn-sm round" %>

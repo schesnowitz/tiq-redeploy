@@ -1,0 +1,79 @@
+<header class="jumbotron hero-spacer">
+  <% if @trailer.image_url.present? %>
+  <%= image_tag @trailer.image_url(:large) %>   
+  <% else %>
+  <%= image_tag("homeheader.jpg", class: "img-rounded img-responsive") %>  
+  <% end %> 
+</header>
+<hr>
+
+<div class="form-inputs">
+  <div class="col-xs-10 col-xs-offset-1 shadow well">
+    <div class="panel panel-default shadow well">
+      <div class="panel-heading shadow well">
+        <h2>
+          <% if params[:action] == 'edit' %>
+          <%= @trailer.year.strftime("%Y") %> 
+          <%= @trailer.make %> 
+          <% end %>    
+
+          <small>
+          <% if @trailer.driver_user.present? %>
+          Operated By: <%= link_to @trailer.driver_user.try(:full_name), driver_user_path(@trailer.driver_user) %> 
+          <% else %>
+          No Driver Assigned  
+          <% end %>
+          </small> 
+          <%= link_to 'All Trailers', trailers_path, class:"btn btn-warning btn-sm round pull-right" %>
+        </h2>
+      </div>
+      <div class="panel-body">
+        <div class="form-inputs">
+          <%= simple_form_for(@trailer) do |f| %>          
+          <div class="row">
+            <div class="col-sm-6">
+              
+          <% if params[:action] == 'edit' %>
+          <%= f.input :add_remove_driver, collection: ApplicationRecord::AddRemoveDriver, 
+              include_blank: "Select One", :selected => nil %> 
+              <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+                :id, :full_name, include_blank: "Select Driver"  %>
+          <% end %>     
+  
+            </div>
+            <div class="col-sm-6">
+              <%= f.input :service_status, collection: ApplicationRecord::TruckTrailerStatus, include_blank: "Select a status" %>
+            </div>
+          </div>
+          <%= f.input :trailer_type, collection: ApplicationRecord::TrailerType %>
+          <%= f.input :year, as: :date, start_year: Date.today.year - 17,
+                              end_year: Date.today.year + 1, discard_day: true, discard_month: true %>
+          
+          
+          <%= f.input :make %> 
+          <%= f.input :model %>
+          <%= f.input :plate %>
+          <%= f.input :plate_state, 
+            collection: ApplicationRecord::States, include_blank: "State" %>
+          <%= f.input :length %>
+          <%= f.input :door_type, 
+            collection: ApplicationRecord::TrailerDoorType, include_blank: "Select" %>
+          <%= f.input :color %>
+          <%= f.input :number %>
+          <%= f.input :vin %>
+          <%= f.input :gps_unit_ident, label: "GPS identification code"  %>
+          <%= f.input :notes %>
+          <%= f.input :image, as: :file, label: "Add Image" %>
+        </div>
+        </p>
+      </div>
+      <div class="panel-footer shadow well">
+        <div class="form-actions">
+          <%= f.button :submit , class: "btn btn-info btn-sm round" %> 
+          <%= link_to 'All Trailers', trailers_path, class: "btn btn-success btn-sm round" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %> 

@@ -1,0 +1,1 @@
+json.array! @app_variables, partial: 'app_variables/app_variable', as: :app_variable

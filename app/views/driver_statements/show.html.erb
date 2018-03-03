@@ -1,0 +1,5 @@
+<%= link_to "Send PDF",
+send_statement_path(@driver, @driver_statement), class: "btn btn-danger round" %> 
+<%= render "company_driver_show" if @driver.company_driver == true %>
+<%= render "owner_operator_show" if @driver.owner_operator == true %>
+

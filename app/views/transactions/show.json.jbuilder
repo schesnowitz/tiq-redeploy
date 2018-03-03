@@ -1,0 +1,1 @@
+json.partial! "load_expenses/load_expense", load_expense: @load_expense

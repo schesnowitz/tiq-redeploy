@@ -1,0 +1,52 @@
+<%= render "company_profiles/partials/main_image" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company_profile.company_name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @company_profile.city %>
+</p>
+
+
+<p>
+  <strong>Telephone:</strong>
+  <%= @company_profile.telephone %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @company_profile.website %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @company_profile.logo %>
+</p>
+
+<p>
+  <strong>Broker mc:</strong>
+  <%= @company_profile.broker_mc_number %>
+</p>
+
+<p>
+  <strong>Carrier mc:</strong>
+  <%= @company_profile.carrier_mc_number %>
+</p>
+
+<p>
+  <strong>Us dot:</strong>
+  <%= @company_profile.us_dot_number %>
+</p>
+
+<p>
+  <strong>Company manager:</strong>
+  <%=%>
+</p>
+
+<%= link_to 'Edit', edit_company_profile_path(@company_profile) %> |
+<%= link_to 'Back', company_profiles_path %>
+
+

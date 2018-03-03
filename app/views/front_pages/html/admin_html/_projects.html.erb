@@ -1,0 +1,174 @@
+<!-- Section: Projects -->
+<strong>Admin edit view</strong>
+<section id="projects" class="section-small bg-light-gray">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="row">
+      <div class="col-md-6">
+        <header>
+          <h2 class="section-title">
+            <span class="text-theme">
+            <%= link_to @fpt9.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt9.id, :anchor => "editString") %>
+            </span> 
+            <%= link_to @fpt10.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt10.id, :anchor => "editString") %>
+          </h2>
+          <p class="section-subtitle">
+            <%= link_to @fpt11.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt11.id, :anchor => "editString") %> 
+          </p>
+        </header>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+    <!-- /Section Header -->
+    <!-- Section Content -->
+    <div class="row mt">
+      <div class="col-md-4 col-sm-6 fadeIn wow" data-wow-duration="1.3s">
+        <%= link_to "Edit Image", edit_front_page_front_page_text_path(@front_page.id, @fpt1.id, :anchor => "editImage"), class: "btn btn-danger" %>
+        <a href="assets/frontpages/images/project-01.jpg" class="project-item image-popup">
+          <div class="gallery-image">
+            <% if !@fpt1.image_input.present? || @fpt1.show_default_image == true %>
+            <%= image_tag "front_pages/project-01.jpg", alt: "", class: "project-item image-popup" %>
+            <% else %>
+            <%= image_tag @fpt1.image_input.card.url %>
+            <% end %>
+          </div>
+          <div class="info">
+            <div class="h4 title">
+              <%= link_to @fpt12.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt12.id, :anchor => "editString") %>
+            </div>
+            <p class="description">
+              <%= link_to @fpt14.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt14.id, :anchor => "editString") %>
+            </p>
+            <div class="social">
+              <i class="fa fa-fw fa-heart-o"></i> 12
+              <i class="fa fa-fw fa-share-square-o"></i> 4
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 fadeIn wow" data-wow-duration="1.3s" data-wow-delay="0.2s">
+        <%= link_to "Edit Image", edit_front_page_front_page_text_path(@front_page.id, @fpt2.id, :anchor => "editImage"), class: "btn btn-danger" %>
+        <a href="assets/frontpages/images/project-03.jpg" class="project-item image-popup">
+          <div class="gallery-image">
+            <% if !@fpt21.image_input.present? || @fpt1.show_default_image == true %>
+            <%= image_tag "front_pages/project-02.jpg", alt: "", class: "project-item image-popup" %>
+            <% else %>
+            <%= image_tag @fpt2.image_input.card.url %>
+            <% end %>
+          </div>
+          <div class="info">
+            <div class="h4 title">
+              <%= link_to @fpt15.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt15.id, :anchor => "editString") %>
+            </div>
+            <p class="description">
+              <%= link_to @fpt16.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt16.id, :anchor => "editString") %>
+            </p>
+            <div class="social">
+              <i class="fa fa-fw fa-heart-o"></i> 18
+              <i class="fa fa-fw fa-share-square-o"></i> 3
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 fadeIn wow" data-wow-duration="1.3s" data-wow-delay="0.4s">
+        <%= link_to "Edit Image", edit_front_page_front_page_text_path(@front_page.id, @fpt3.id, :anchor => "editImage"), class: "btn btn-danger" %>
+        <a href="assets/frontpages/images/project-03.jpg" class="project-item image-popup">
+          <div class="gallery-image">
+            <% if !@fpt3.image_input.present? || @fpt3.show_default_image == true %>
+            <%= image_tag "front_pages/project-03.jpg", alt: "", class: "project-item image-popup" %>
+            <% else %>
+            <%= image_tag @fpt1.image_input.card.url %>
+            <% end %>
+          </div>
+          <div class="info">
+            <div class="h4 title">
+              <%= link_to @fpt17.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt17.id, :anchor => "editString") %>
+            </div>
+            <p class="description">
+              <%= link_to @fpt18.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt18.id, :anchor => "editString") %>
+            </p>
+            <div class="social">
+              <i class="fa fa-fw fa-heart-o"></i> 14
+              <i class="fa fa-fw fa-share-square-o"></i> 8
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 fadeIn wow" data-wow-duration="1.3s" data-wow-delay="0.6s">
+        <%= link_to "Edit Image", edit_front_page_front_page_text_path(@front_page.id, @fpt4.id, :anchor => "editImage"), class: "btn btn-danger" %>
+        <a href="images/project-04.jpg" class="project-item image-popup project-04">
+          <div class="gallery-image">
+            <% if !@fpt4.image_input.present? || @fpt4.show_default_image == true %>
+            <%= image_tag "front_pages/project-04.jpg", alt: "", class: "project-item image-popup" %>
+            <% else %>
+            <%= image_tag @fpt4.image_input.card.url %>
+            <% end %>
+          </div>
+          <div class="info">
+            <div class="h4 title">
+              <%= link_to @fpt19.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt19.id, :anchor => "editString") %>
+            </div>
+            <p class="description">
+              <%= link_to @fpt20.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt20.id, :anchor => "editString") %>
+            </p>
+            <div class="social">
+              <i class="fa fa-fw fa-heart-o"></i> 32
+              <i class="fa fa-fw fa-share-square-o"></i> 2
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 fadeIn wow" data-wow-duration="1.3s" data-wow-delay="0.8s">
+        <%= link_to "Edit Image", edit_front_page_front_page_text_path(@front_page.id, @fpt5.id, :anchor => "editImage"), class: "btn btn-danger" %>
+        <a href="assets/frontpages/images/project-05.jpg" class="project-item image-popup">
+          <div class="gallery-image">
+            <% if !@fpt5.image_input.present? || @fpt5.show_default_image == true %>
+            <%= image_tag "front_pages/project-05.jpg", alt: "", class: "project-item image-popup" %>
+            <% else %>
+            <%= image_tag @fpt5.image_input.card.url %>
+            <% end %>
+          </div>
+          <div class="info">
+            <div class="h4 title"> 
+              <%= link_to @fpt21.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt21.id, :anchor => "editString") %>
+            </div>
+            <p class="description">
+              <%= link_to @fpt22.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt22.id, :anchor => "editString") %>
+            </p>
+            <div class="social">
+              <i class="fa fa-fw fa-heart-o"></i> 29
+              <i class="fa fa-fw fa-share-square-o"></i> 12
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-sm-6 fadeIn wow" data-wow-duration="1.3s" data-wow-delay="1.0s">
+        <%= link_to "Edit Image", edit_front_page_front_page_text_path(@front_page.id, @fpt6.id, :anchor => "editImage"), class: "btn btn-danger" %>
+        <a href="assets/frontpages/images/project-06.jpg" class="project-item image-popup">
+          <div class="gallery-image">
+            <% if !@fpt6.image_input.present? || @fpt6.show_default_image == true %>
+            <%= image_tag "front_pages/project-06.jpg", alt: "", class: "project-item image-popup" %>
+            <% else %>
+            <%= image_tag @fpt6.image_input.card.url %>
+            <% end %>
+          </div>
+          <div class="info">
+            <div class="h4 title">
+              <%= link_to @fpt23.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt23.id, :anchor => "editString") %>
+            </div>
+            <p class="description">
+              <%= link_to @fpt24.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt24.id, :anchor => "editString") %>
+            </p>
+            <div class="social">
+              <i class="fa fa-fw fa-heart-o"></i> 17
+              <i class="fa fa-fw fa-share-square-o"></i> 3
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- /Section content -->
+  </div>
+</section>
+<!-- /Section: Projects -->

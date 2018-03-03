@@ -1,0 +1,176 @@
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= f.error_notification %>
+<div class="row">
+  <div class="col-md-10 col-xs-offset-1 well shadow">
+    <h2><small>Editing my profile</small></h2>
+    <div class="panel panel-default well">
+      <div class="panel-body">
+        <div class="form-inputs">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i>
+                </span>
+                <%= f.input :first_name, autofocus: true, 
+                  label: false, placeholder: "First Name" %>
+
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-check-circle-o"></i>
+                </span>
+                <%= f.input :last_name, required: true, 
+                  label: false, placeholder: "Last Name" %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-check-square"></i>
+                </span>
+                <%= f.input :email, required: true, 
+                  label: false, placeholder: "Email" %>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-mobile-phone"></i>
+                </span>
+                <label>Cellular</label>
+              <%= f.text_field :cellphone, id: 'cell', class: 'form-control', label: "Cell" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-phone-square"></i>
+                </span>
+                <label>Office and Extention</label>
+                <%= f.text_field :telephone, id: 'phone', class: 'form-control' %>
+              </div>
+            </div> 
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-plug"></i>
+                </span>
+                  <label>Change my TimeZone</label>
+                  <br />
+                  <%= f.time_zone_select :time_zone, 
+                  ActiveSupport::TimeZone.us_zones %>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-street-view"></i>
+                </span>
+                <%= f.input :street, label: false, 
+                  placeholder: "City" %> 
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-map-pin"></i>
+                </span>
+                <%= f.input :city, label: false, 
+                  placeholder: "City" %> 
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-map-o"></i>
+                </span>
+                <%= f.input :state, collection: ApplicationRecord::States, 
+                  label: false, placeholder: "State", include_blank: "Select State" %> 
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-map-marker"></i>
+                </span>
+                <%= f.input :zip, label: false, placeholder: "zip code" %> 
+              </div>
+            </div>
+          </div>
+          <hr>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-medkit"></i>
+                </span>
+                <%= f.input :emergency_contact, label: false, placeholder: "Emergency Contact" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-ambulance"></i>
+                </span>
+                <%= f.input :emergency_contact_number, label: false, 
+                  placeholder: "Emergency Contact Number" %>  
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group input-group">
+                <%= f.input :profile_image, as: :file, label: "Profile Image" %>  
+              </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group input-group">
+                  <%= f.input :profile_bg, as: :file, label: "Profile Background" %>   
+                </div>
+              </div>
+            </div>
+          </div>
+         <hr>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label><small>your current password confirms any changes</small></label>
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-unlock"></i>
+                </span>
+                <%= f.input :current_password, label: false, 
+                  required: true %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label><small>change your password</small></label>
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-user-secret"></i>
+                </span>
+                <%= f.input :password, label: false, autocomplete: "off", required: false %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label><small>confirm your new password</small></label>
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-unlock-alt"></i>
+                </span>
+                <%= f.input :password_confirmation, label: false, 
+                  autocomplete: "off", required: false %>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, 'Update!', class: "btn btn-primary btn-xs round", data: {disable_with: "working.."} %> 
+          </div>
+          <br />
+          <br />
+          <%= link_to "Back", :back, class: "btn btn-info btn-xs round" %>  
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

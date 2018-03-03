@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Miles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mileage</th>
+      <th>Type</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @miles.each do |mile| %>
+      <tr>
+        <td><%= mile.mileage %></td>
+        <td><%= mile.type %></td>
+        <td><%= mile.notes %></td>
+        <td><%= link_to 'Show', mile %></td>
+        <td><%= link_to 'Edit', edit_mile_path(mile) %></td>
+        <td><%= link_to 'Destroy', mile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mile', new_mile_path %>

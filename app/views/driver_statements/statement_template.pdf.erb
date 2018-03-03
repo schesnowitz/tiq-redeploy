@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "pdf", media: 'print' %>
+    <script>
+      function number_pages() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!--<span class="page"></span> of <span class="topage"></span>-->
+    <div id="header">
+      <%= wicked_pdf_image_tag 'front_pages/logo.png' %>
+    </div>
+    <div id="content">
+    <h2>
+
+    <%= @driver_statement.driver_user.full_name %>
+
+  </h2>
+  <p>
+    <strong>Payment Status:</strong>
+    <%= @driver_statement.payment_status %>
+  </p>
+  <p>
+    <strong>Payment Due:</strong>
+    <%= @driver_statement.due_date.strftime("%A %B %-d, %Y") %>
+  </p>
+
+
+  <table class="table table-bordered table-striped table-condensed  table-responsive">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Booked On</th>
+        <th>Pick up / Delivery</th>
+        <th>Rate</th>
+        <th>Distance (Miles)</th>
+        <th>Debits</th>
+        <th>Credits</th>
+        <th>Full / Partial</th>
+        <th>Truck</th>
+        <th>Trailer</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% invoice_price_total = 0.00 %>
+      <% company_debit_running_total = 0.00 %>
+      <% company_credit_running_total = 0.00 %>
+      <% company_debit_total = 0.00 %>
+      <% debit_running_total = 0.00 %>
+      <% credit_running_total = 0.00 %>
+      <% expense_running_total = 0.00 %>
+      <% company_load_pay_running_total = 0.00 %>
+      <% total_miles = 0 %>
+      <% driver_load_pay_running_total = 0.00 %>
+      <% booking_fee_running_total = 0.00 %>
+      <% @loads.each do |load| %>
+      <% load.invoice_price %>
+      <tr>
+        <td>
+          <%= load.id %>
+        </td>
+        <td><%= (load.created_at.strftime("%A %B %-d, %Y")) %></td>
+        <td>
+          <%= load.title %> 
+        </td>
+        <td><%= number_to_currency(load.rate_to_owner_operator) %></td> 
+        <td><%= load.miles %> </td>
+        </td>
+        <td>
+          <% load.transactions.each do |transaction| %>
+          <%= number_to_currency(transaction.debit) %> 
+          <% debit_running_total = debit_running_total + transaction.debit %>
+          <% end %>
+        </td>
+        <td>
+          <% load.transactions.each do |transaction| %>
+          <%= number_to_currency(transaction.credit) %> 
+          <% credit_running_total = credit_running_total + transaction.credit %>
+          <% end %>
+        </td>
+        <!--company Tranactions Start-->
+        <% load.transactions.each do |company_transaction|  %>
+        <% number_to_currency(company_transaction.debit) %> 
+        <% company_debit_running_total = company_debit_running_total + company_transaction.debit %>
+        <% end %>
+        <% load.transactions.each do |company_transaction|  %>
+        <% number_to_currency(company_transaction.credit) %> 
+        <% company_credit_running_total = company_credit_running_total + company_transaction.credit %>
+        <% end %>
+        <!--company Tranactions End-->
+        </td>
+        <td><%= load.load_size %></td>
+        <td><%= load.truck_make %> #<%= load.truck_number %></td>
+        <td><%= load.trailer_make %> #<%= load.trailer_number %></td>
+        <td><%= load.status_name %></td>
+      </tr>
+      <% invoice_price_total = invoice_price_total + load.invoice_price %>
+      <% company_load_pay_running_total = company_load_pay_running_total + load.invoice_price %> 
+      <% booking_fee_running_total = booking_fee_running_total + load.booking_fee %> 
+      <% driver_load_pay_running_total = driver_load_pay_running_total + load.rate_to_owner_operator %> 
+      <% total_miles = total_miles + load.miles %>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <div class="row">
+    <div class="col-xs-7">
+      <% fuel_running_total = 0.00 %>
+      <% cash_running_total = 0.00 %>
+      <% other_running_total = 0.00 %>
+      <% @loads.each do |load| %>
+      <% load.transactions.each do |transaction| if transaction.expense_type == "Fuel" %>
+      <% number_to_currency(transaction.debit) %> 
+      <% fuel_running_total = fuel_running_total + transaction.debit %>
+      <% end %>
+      <% end %>  
+      <% load.transactions.each do |transaction| if transaction.expense_type == "Fuel" %>
+      <% number_to_currency(transaction.credit) %> 
+      <% fuel_running_total = fuel_running_total - transaction.credit %>
+      <% end %>
+      <% end %>
+      <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+      <% number_to_currency(transaction.debit) %> 
+      <% cash_running_total = cash_running_total + transaction.debit %>
+      <% end %>
+      <% end %>  
+      <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+      <% number_to_currency(transaction.credit) %> 
+      <% cash_running_total = cash_running_total - transaction.credit %>
+      <% end %>
+      <% end %>
+      <% load.transactions.each do |transaction| if transaction.expense_type == "Other" %>
+      <% number_to_currency(transaction.debit) %> 
+      <% other_running_total = other_running_total + transaction.debit %>
+      <% end %>
+      <% end %>  
+      <% load.transactions.each do |transaction| if transaction.expense_type == "Other" %>
+      <% number_to_currency(transaction.credit) %> 
+      <% other_running_total = other_running_total - transaction.credit %>
+      <% end %>
+      <% end %>
+      <% end %>
+      <% insurance_and_rentals = @driver_statement.insurance_payment +  @driver_statement.trailer_rental + 
+        @driver_statement.truck_rental + @driver_statement.other %>
+      <% fuel_cash_other =  other_running_total + cash_running_total + fuel_running_total  %>
+      <% invoice_expense = @driver_statement.insurance_payment + @driver_statement.trailer_rental + 
+        @driver_statement.truck_rental + @driver_statement.other %>
+      <% company_debit_total = company_debit_running_total - company_credit_running_total %>
+      <% debit_total = debit_running_total - credit_running_total %>
+      <% net_pay = driver_load_pay_running_total - insurance_and_rentals - fuel_cash_other%> 
+      <br /> 
+      <table class="table table-bordered table-striped table-condensed table-responsive">
+        <thead>
+          <tr>
+            <th>Total Miles</th>
+            <th>Gross $</th>
+            <th>Gross RPM</th>
+            <th>Net RPM</th>
+            <th>Net $</th>
+          </tr>
+        </thead>
+        <% net_after_otr_expense = driver_load_pay_running_total - debit_total %>
+        <tbody>
+          <tr>
+            <td><%= total_miles %></td>
+            <td><%= number_to_currency(driver_load_pay_running_total) %></td>
+            <td><%= number_to_currency(driver_load_pay_running_total / total_miles) %></td>
+            <td><%= number_to_currency(net_pay / total_miles) %></td>
+            <td><%= number_to_currency(net_pay) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-5"> 
+      <ul class="list-group">
+        <li class="list-group-item">
+          Gross Load Pay 
+          <div class="pull-right">
+            <%= number_to_currency(driver_load_pay_running_total) %>
+          </div>
+        </li>
+        <li class="list-group-item">
+          Insurance 
+          <% if @driver_statement.insurance_payment > 0 %>
+          <div class="pull-right text-red">
+            <%= number_to_currency(@driver_statement.insurance_payment) %>
+          </div>
+          <% else %>
+          <div class="pull-right">
+            <%= number_to_currency(@driver_statement.insurance_payment) %>
+          </div>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          Truck Rental
+          <% if @driver_statement.truck_rental > 0 %>
+          <div class="pull-right text-red">
+            - <%= number_to_currency(@driver_statement.truck_rental) %>
+          </div>
+          <% else %>
+          <div class="pull-right">
+            <%= number_to_currency(@driver_statement.truck_rental) %>
+          </div>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+        Trailer Rental
+        <% if @driver_statement.trailer_rental > 0 %>
+        <div class="pull-right text-red">
+          - <%= number_to_currency(@driver_statement.trailer_rental) %>
+        </div>
+        <% else %>
+        <div class="pull-right">
+          <%= number_to_currency(@driver_statement.trailer_rental) %>
+        </div>
+        <% end %>
+      </li>
+        <li class="list-group-item">
+          Fuel Total 
+          <% if fuel_running_total > 0 %>
+          <div class="pull-right text-red">
+            - <%= number_to_currency(fuel_running_total) %>
+          </div>
+          <% else %>
+          <div class="pull-right">
+            <%= number_to_currency(fuel_running_total) %>
+          </div>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          Cash Advance Total
+          <% if cash_running_total > 0 %>
+          <div class="pull-right text-red">
+            - <%= number_to_currency(cash_running_total) %>
+          </div>
+          <% else %>
+          <div class="pull-right">
+            <%= number_to_currency(cash_running_total) %>
+          </div>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          Other OTR Deductions
+          <% if other_running_total > 0 %>
+          <div class="pull-right text-red">
+            - <%= number_to_currency(other_running_total) %>
+          </div>
+          <% else %>
+          <div class="pull-right">
+            <%= number_to_currency(other_running_total) %>
+          </div>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          Other Load Deductions
+          <% if @driver_statement.other > 0 %>
+          <div class="pull-right text-red">
+            - <%= number_to_currency(@driver_statement.other) %>
+          </div>
+          <% else %>
+          <div class="pull-right">
+            <%= number_to_currency(@driver_statement.other) %>
+          </div>
+          <% end %> 
+        </li>
+        <li class="list-group-item">
+          Total Deductions 
+          <% if fuel_cash_other + insurance_and_rentals > 0 %>
+          <div class="pull-right text-red">
+            (<%= number_to_currency(fuel_cash_other + insurance_and_rentals) %>)
+          </div>
+          <% else %>
+          <div class="pull-right">
+            <%= number_to_currency(fuel_cash_other + insurance_and_rentals) %>
+          </div>
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <strong>
+            Payment Due
+            <div class="pull-right">
+              <%= number_to_currency(net_pay) %> 
+            </div>
+          </strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+    </div>
+    <div id="footer">
+    </div>
+  </body>
+</html>

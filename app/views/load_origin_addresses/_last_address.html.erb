@@ -1,0 +1,62 @@
+<% if !@load_origin_address.nil? %>
+<% @load_origin_addresses.each do |address| %>
+<div class="col-sm-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4>
+        <% if address.address_category_id == 1 %>
+        <span class="label label-success round">
+        Pick Up
+        </span>
+        <% elsif address.address_category_id == 2 %>
+        <span class="label label-primary round">
+        Delivery
+        </span>         
+        <% elsif address.address_category_id == 3 %>
+        <span class="label label-warning round">
+        Pick Up & Delivery
+        <% elsif address.address_category_id == 4 %>
+        <span class="label label-danger round">
+        Final Delivery - Last Stop
+        <% end %>
+        </span>    
+      </h4>
+      <%= local_time(address.pick_up_date, format:  '%B %e, %Y') %>
+    </div>
+    <div class="panel-body">
+      <address>
+        <strong><%= address.company %></strong><br> 
+        <div><%= address.street %></div>
+        <div><%= address.city %></div>
+        <div><%= address.state  %></div>
+        <div><%= address.zip  %></div>
+        <div><%= address.latitude  %></div>
+        <div><%= address.longitude  %></div>
+        <br>
+        <small>Phone: </small><%= address.phone  %><br />
+        <small>Contact: </small><%= address.contact  %><br />
+        <small>Miles: </small><%= address.miles %><br />
+        <small>Notes: </small><%= address.notes %>
+      </address>
+      <div class="btn-group pull-right activity-actions">
+        <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-th"></i>
+        <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <li>
+          </li>
+          <li>
+            <%= link_to "Delete Me", load_address_path(@load, address), method: :delete %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <%= address.notes %>
+  </div>
+</div>
+<% end %>
+<% end %>
+</div>

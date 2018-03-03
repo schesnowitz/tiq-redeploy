@@ -1,0 +1,114 @@
+<div>
+<p>Equipment: <%= @load.equipment_type %></p>
+<p>Load Description:  <%= @load.description %></p>
+<p>  
+    Booked by: <%= link_to @load.company_user.full_name, 
+    user_path(@load.company_user_id) %>
+</p>
+
+<p>
+    Updated by:
+  <% if @load.updated_by.present? %>
+  <%= @load.updated_by %>
+  <% else %>
+  No Updates
+  <% end %>  
+</p>
+
+<p>
+     Commodity:
+    <%= @load.commodity %>
+</p>
+
+<p>
+      Load size:
+    <%= @load.load_size %>
+</p>
+<p>
+      Weight:
+    <%= @load.weight %>
+</p>
+<p>
+      Miles:
+    <%= @load.miles %>
+</p>
+
+ 
+<p>
+   Invoice Price: <% @load.invoice_price %>
+</p>
+
+
+
+
+<p>
+  units  <% @load.units %>
+</p>
+ 
+
+
+  <p>
+    Dimentions   Dimentions: 
+  <% if @load.dimentions.present? %>
+  <%= @load.dimentions %>
+  <% else %>
+  None Given
+  <% end %>
+  </p>   
+
+
+
+
+
+<p>
+    Special Instructions:
+  <% if @load.special_instructions.present? %>
+  <%= @load.special_instructions %>
+  <% else %>
+  No Special Instructions
+  <% end %>
+</p>
+
+
+</div>
+
+
+<table class="table table-bordered table-striped table-responsive">
+	<thead>
+		<tr>
+		  <th>Booked/Updated</th>
+			<th>Truck</th>
+			<th>Trailer</th>  
+		</tr>
+	</thead>
+	<tbody> 
+		<tr>
+		  
+		  <td>
+		      Booked by: <%= link_to @load.company_user.full_name, 
+          user_path(@load.company_user_id) %>
+          <br>
+          On: <%= local_time(@load.created_at, format:  '%B %e, %Y') %> 
+  <br>
+  <% if @load.updated_by.present? %>
+    Updated by: <%= @load.updated_by %>
+    <br>
+  On: <%= local_time(@load.updated_at, format:  '%B %e, %Y') %>
+  <% else %>
+  This load has not been updated.
+  <% end %>  
+		  </td>
+		  
+			<td>
+			 # <%= @load.truck_number %><br>
+			  <%= @load.truck_make %><br>
+			  <%= @load.truck_model %>
+			</td>
+			<td>
+			 # <%= @load.trailer_number %><br>
+			  <%= @load.trailer_make %><br> 
+			  <%= @load.trailer_type %>
+			</td>
+		</tr>
+	</tbody>
+</table>

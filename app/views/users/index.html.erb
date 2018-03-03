@@ -1,0 +1,52 @@
+<h1>All Users</h1>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Position</th>
+			<th>Type</th>
+			<th>Employment Status</th>
+
+		</tr>
+	</thead>
+	<tbody>
+	  <% @users.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.full_name %></td>
+			<td><%= truncate(user.user_position, lenght: 25) %></td> 
+			<td><%= user.type_of_user %></td>
+			<td><%= user.employment_status %></td> 
+<td>
+  <div class="btn-group pull-right activity-actions">
+    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-th"></i>
+    <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+      <li></li>
+      <li><%= link_to 'Edit', edit_user_path(user) %></li> 
+      <li class="divider"></li>
+      <li><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+  </div>
+</td>
+
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<div class="row">
+  <div class="col-sm-2">
+    <br>
+    <%= link_to "Download Users", users_path(format: :csv), class: "btn btn-primary btn-xs" %>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+  <div class="col-sm-4">
+
+ 
+  </div>
+</div>

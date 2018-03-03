@@ -1,0 +1,280 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default animated round shadow">
+      <div class="panel-heading animated round shadow">
+        Legal Name <%= @carrier_mc.legal_name %>
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>Internal Entity Type</th>
+              <th>Entity Type</th>
+              <th>Operating Status</th>
+              <th>Out Of Service Date</th>
+              <th>DBA Name</th>
+              <th>Physical Address</th>
+              <th>Telephone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @carrier_mc.type %></td>
+              <td><%= @carrier_mc.entity_type %></td>
+              <td><%= @carrier_mc.operating_status %></td>
+              <td><%= @carrier_mc.out_of_service_date %></td>
+              <td><%= @carrier_mc.dba_name %></td>
+              <td><%= @carrier_mc.physical_address %></td>
+              <td><%= @carrier_mc.phone %></td>
+            </tr>
+          </tbody>
+        </table>
+ <table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>Mailing Address</th>
+              <th>US DOT Number</th>
+              <th>State Carrier ID</th>
+              <th>MC MM FF Numbers</th>
+              <th>DUNS Number</th>
+              <th>Power Units</th>
+              <th>Number of Drivers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <%= @carrier_mc.mailing_address %></td>
+              <td> <%= @carrier_mc.usdot_number %></td>
+              <td>  <%= @carrier_mc.state_carrier_id_number %></td>
+              <td> <%= @carrier_mc.mc_mx_ff_numbers %></td>
+              <td> <%= @carrier_mc.duns_number %></td>
+              <td> <%= @carrier_mc.power_units %> </td>
+              <td> <%= @carrier_mc.driver_count %></td>
+            </tr>
+          </tbody>
+        </table>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>MCS 150 Form Date</th>
+              <th>MCS 150 Mileage Year</th>
+              <th>general freight</th>
+              <th>household goods</th>
+              <th>metal sheets coils rolls</th>
+              <th>motor vehicles</th>
+              <th>drive/tow away</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <%= @carrier_mc.mcs_150_form_date %></td>
+              <td> <%= @carrier_mc.mcs_150_mileage_year %></td>
+              <td><%= @carrier_mc.general_freight %></td>
+              <td><%= @carrier_mc.household_goods %></td>
+              <td><%= @carrier_mc.metal_sheets_coils_rolls %></td>
+              <td><%= @carrier_mc.motor_vehicles %></td>
+              <td><%= @carrier_mc.drivetow_away %></td>
+            </tr>
+          </tbody>
+        </table>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>logs poles beams lumber</th>
+              <th>building materials</th>
+              <th>mobile homes</th>
+              <th>machinery large objects</th>
+              <th>fresh produce</th>
+              <th>safer layout</th>
+              <th>liquids gases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @carrier_mc.logs_poles_beams_lumber %></td>
+              <td><%= @carrier_mc.building_materials %></td>
+              <td><%= @carrier_mc.mobile_homes %></td>
+              <td><%= @carrier_mc.machinery_large_objects %></td>
+              <td><%= @carrier_mc.fresh_produce %></td>
+              <td><%= @carrier_mc.safer_layout %></td>
+              <td><%= @carrier_mc.liquids_gases %></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>intermodal</th>
+              <th>passengers</th>
+              <th>oilfield equipment</th>
+              <th>livestock</th>
+              <th>grain feed hay</th>
+              <th>coal coke</th>
+              <th>meat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @carrier_mc.intermodal %></td>
+              <td><%= @carrier_mc.passengers %></td>
+              <td><%= @carrier_mc.oilfield_equipment %></td>
+              <td><%= @carrier_mc.livestock %></td>
+              <td><%= @carrier_mc.grain_feed_hay %></td>
+              <td><%= @carrier_mc.coal_coke %></td>
+              <td><%= @carrier_mc.meat %></td>
+            </tr>
+          </tbody>
+        </table>
+ <table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>garbage_refuse</th>
+              <th>us mail</th>
+              <th>chemicals</th>
+              <th>commodities dry bulk</th>
+              <th>refrigerated food</th>
+              <th>beverages</th>
+              <th>paper products</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @carrier_mc.garbage_refuse %></td>
+              <td><%= @carrier_mc.us_mail %></td>
+              <td><%= @carrier_mc.chemicals %></td>
+              <td><%= @carrier_mc.commodities_dry_bulk %></td>
+              <td><%= @carrier_mc.refrigerated_food %></td>
+              <td><%= @carrier_mc.beverages %></td>
+              <td><%= @carrier_mc.paper_products %></td>
+            </tr>
+          </tbody>
+        </table> 
+<table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>utilities</th>
+              <th>agricultural farm supplies</th>
+              <th>construction</th>
+              <th>water well</th>
+              <th>driver inspections count</th>
+              <th>vehicle inspections count</th>
+              <th>hazmat inspections count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @carrier_mc.utilities %></td>
+              <td><%= @carrier_mc.agricultural_farm_supplies %></td>
+              <td><%= @carrier_mc.construction %></td>
+              <td><%= @carrier_mc.water_well %></td>
+              <td><%= @carrier_mc.driver_inspections_count %></td>
+              <td><%= @carrier_mc.vehicle_inspections_count %></td>
+              <td><%= @carrier_mc.hazmat_inspections_count %></td>
+            </tr>
+          </tbody>
+        </table>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>iep inspections count</th>
+              <th>driver inspections out of service</th>
+              <th>vehicle inspections out of service</th>
+              <th>hazmat inspections out of service</th>
+              <th>iep inspections out of service</th>
+              <th>driver inspections out of service</th>
+              <th>vehicle inspections out of service </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @carrier_mc.iep_inspections_count %></td>
+              <td><%= @carrier_mc.driver_inspections_out_service %></td>
+              <td><%= @carrier_mc.vehicle_inspections_out_service %></td>
+              <td><%= @carrier_mc.hazmat_inspections_out_service %></td>
+              <td><%= @carrier_mc.iep_inspections_out_service %></td>
+              <td><%= @carrier_mc.driver_inspections_out_service_percent %></td>
+              <td><%= @carrier_mc.vehicle_inspections_out_service_percent %></td>
+            </tr>
+          </tbody>
+        </table>
+ <table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>hazmat inspections out of service %</th>
+              <th>iep inspections out of service</th>
+              <th>crash fatal</th>
+              <th>crash injury</th>
+              <th>crash tow</th>
+              <th>crash total</th>
+              <th>Canadian vehicle inspections</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @carrier_mc.hazmat_inspections_out_service_percent %></td>
+              <td><%= @carrier_mc.iep_inspections_out_service_percent %></td>
+              <td><%= @carrier_mc.crash_fatal %></td>
+              <td><%= @carrier_mc.crash_injury %></td>
+              <td><%= @carrier_mc.crash_tow %></td>
+              <td><%= @carrier_mc.crash_total %></td>
+              <td><%= @carrier_mc.cad_vehicle_inspections %></td>
+            </tr>
+          </tbody>
+        </table>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>Canadian crash injury</th>
+              <th>Canadian crash tow</th>
+              <th>Canadian crash total</th>
+              <th>Canadian inspections prev 24</th>
+              <th>USA inspectionsprev 24</th>
+              <th>Canadian crash results 24 prior</th>
+              <th>USA inspection results for 24 months prior to </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>  <%= @carrier_mc.cad_crash_injury %></td>
+              <td>   <%= @carrier_mc.cad_crash_tow  %></td>
+              <td>  <%= @carrier_mc.cad_crash_total %></td>
+              <td> <%= @carrier_mc.cad_inspections_prev_24 %></td>
+              <td><%= @carrier_mc.us_inspections_prev_24 %></td>
+              <td>  <%= @carrier_mc.crash_results_24_prior %></td>
+              <td><%= @carrier_mc.us_inspection_results_for_24_months_prior_to%></td>
+            </tr>
+          </tbody>
+        </table>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+    <thead>
+      <tr>
+        <th>total inspections</th>
+        <th>total iep_inspections </th>
+        <th>crash inspections</th>
+        <th>the rating below is current as of</th>
+        <th>rating date</th>
+        <th>review rating</th>
+        <th>review type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <%= @carrier_mc.total_inspections%></td>
+        <td><%= @carrier_mc.total_iep_inspections%></td>
+        <td> <%= @carrier_mc.crash_inspections%></td>
+        <td> <%= @carrier_mc.the_rating_below_is_current_as_of%></td>
+        <td>  <%= @carrier_mc.rating_date %></td>
+        <td>  <%= @carrier_mc.review_date %></td>
+        <td>  <%= @carrier_mc.review_rating%></td>
+        <td> <%= @carrier_mc.review_type%></td>
+      </tr>
+    </tbody>
+  </table>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      

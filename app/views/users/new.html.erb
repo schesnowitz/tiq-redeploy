@@ -1,0 +1,27 @@
+<h2>Add New User</h2>
+
+<%= simple_form_for @user do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name, required: true, autofocus: true %>
+    <%= f.input :last_name, required: true %>
+    <%= f.input :email, required: true %>
+    <%= f.input :type, required: true %>
+    <%= f.input :cellphone %>     
+    <%= f.input :telephone %>    
+    <%= f.input :extention %> 
+    <%= f.input :cellphone %>       
+    <%= f.input :street %> 
+    <%= f.input :city %>  
+    <%= f.input :state, collection: ApplicationRecord::States %> 
+    <%= f.input :zip %> 
+    <%= f.input :emergency_contact %> 
+    <%= f.input :emergency_contact_number%>     
+    <%= f.input :password, required: true, input_html: { value: 'password' } %>
+    <%= f.input :password_confirmation, required: true, input_html: { value: 'password' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>

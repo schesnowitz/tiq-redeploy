@@ -1,0 +1,60 @@
+<div class="form-inputs">
+  <div class="col-xs-10 col-xs-offset-1 shadow well">
+    <div class="panel panel-default shadow well">
+      <div class="panel-heading shadow well">
+        <h2>
+          <% if params[:action] == 'edit' %>
+          <%= @truck.year.strftime("%Y") %> 
+          <%= @truck.make %>
+          <% end %>
+          <small>
+          <% if @truck.driver_user.present? %>
+          Operated By: <%= link_to @truck.driver_user.try(:full_name), driver_user_path(@truck.driver_user) %> 
+          <% else %>
+          No Driver Assigned  
+          <% end %>
+          </small>
+          <%= link_to 'All Trucks', trucks_path, class:"btn btn-success btn-sm round pull-right" %>
+        </h2>
+      </div>
+      <div class="panel-body">
+        <div class="form-inputs">
+          <%= simple_form_for(@truck) do |f| %>
+          <div class="row">
+            <div class="col-sm-6">
+          <%= f.input :add_remove_driver, collection: ApplicationRecord::AddRemoveDriver, 
+              include_blank: "Select One", :selected => nil %> 
+              <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+                :id, :full_name, include_blank: "Select_Driver"  %>  
+            </div>
+            <div class="col-sm-6">
+              <%= f.input :service_status, collection: ApplicationRecord::TruckTrailerStatus, include_blank: "Select a status" %>
+            </div>
+          </div>
+          <%= f.input :average_mpg, collection: ApplicationRecord::TruckMPG  %>  
+          <%= f.input :year, as: :date, start_year: Date.today.year + 1,
+                       end_year: Date.today.year - 17, discard_day: true, discard_month: true %> 
+          <%= f.input :make %>
+          <%= f.input :model %>
+          <%= f.input :plate %>
+          <%= f.input :plate_state, 
+            collection: ApplicationRecord::States, include_blank: "State" %>
+          <%= f.input :color %>
+          <%= f.input :number %>
+          <%= f.input :vin %>
+          <%= f.input :gps_unit_ident %>
+          <%= f.input :notes %>     
+          <%= f.input :image, as: :file, label: "Add Image" %>
+        </div>
+        </p>
+      </div>
+      <div class="panel-footer shadow well">
+        <div class="form-actions">
+          <%= f.button :submit , class: "btn btn-info btn-sm round" %>  
+          <%= link_to 'All Trucks', trucks_path, class: "btn btn-success btn-sm round" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %> 

@@ -1,0 +1,1 @@
+json.array! @company_profile_memberships, partial: 'company_profile_memberships/company_profile_membership', as: :company_profile_membership

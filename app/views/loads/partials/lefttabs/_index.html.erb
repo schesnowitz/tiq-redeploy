@@ -1,0 +1,57 @@
+<div class="col-lg-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>
+        <%= link_to @load.company_profile.company_name, 
+          company_profile_path(@company_profile) if current_company_user %>
+        <br />
+      
+
+        <% if @load.miles == 0 %>
+        <h3 class="text-red">
+          <%= @load.title %><br>  
+          (<%= @load.miles if !@load.miles.nil? %> Miles)
+        </h3>
+        <% else %>
+        <small>
+        <%= @load.title %><br>  
+        <%= @load.miles.floor if !@load.miles.nil? %> Miles
+        </small>
+        <% end %>
+      </h3>
+
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+      <!-- Nav tabs -->
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#pud" data-toggle="tab">Pick Up/Delivery</a></li>
+        <li><a href="#details" data-toggle="tab">Details</a></li>
+        <li><a href="#documents" data-toggle="tab">Documents</a></li>
+
+      <li class="pull-right">
+      <% if @load.miles == 0 || @load.miles.nil? %> 
+      <%= link_to 'Calculate Miles!', edit_load_path(@load), class: "btn btn-danger btn-xl round pull-right" %>
+      <% else %>
+      <%= link_to 'Edit Load', edit_load_path(@load), class: "btn btn-info btn-sm round pull-right" %>
+      <% end %>
+        </li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="pud"> 
+        <%= render "loads/partials/lefttabs/show_all_addresses" %>
+        </div>
+        <div class="tab-pane fade" id="details">
+          <%= render "loads/partials/lefttabs/details" %>
+        </div>
+        <div class="tab-pane fade" id="documents">
+          <%= render "loads/partials/lefttabs/documents" %>
+        </div>
+      </div>
+    </div>
+    <!-- /.panel-body -->
+  </div>
+  <!-- /.panel -->
+</div>
+

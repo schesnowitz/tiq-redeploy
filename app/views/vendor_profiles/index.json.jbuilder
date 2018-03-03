@@ -1,0 +1,1 @@
+json.array! @vendor_profiles, partial: 'vendor_profiles/vendor_profile', as: :vendor_profile

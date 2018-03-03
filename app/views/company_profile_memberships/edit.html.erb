@@ -1,0 +1,9 @@
+Editing <%= @company_profile.company_name %>  Membership
+
+<%= render 'form', company_profile_membership: @company_profile_membership %>
+
+<%= link_to 'Show', 
+company_profile_company_profile_membership_path(@company_profile, 
+@company_profile_membership) %> |
+<%= link_to 'Back', 
+company_profile_company_profile_memberships_path%>

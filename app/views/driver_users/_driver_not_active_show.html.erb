@@ -1,0 +1,128 @@
+<%= render "layouts/view_partials/user_show_css" %>
+<div class="container">
+  <div class="user-profile">
+    <div>
+      <%= image_tag("homeheader.jpg", class: "img-rounded img-responsive") %>  
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-info-left">
+          <div class="text-center">
+            <%= image_tag("noUserPhoto.jpg", class: "img-rounded img-responsive img-circle") %> 
+            <h2>
+              <%= @driver.full_name %>
+              <br />
+                <small>
+                  (<%= @driver.type_of_user %>)
+                    <br />
+                      Status <%= @driver.employment_status %> 
+                      <br />
+                      <span class='text-red'>
+                      Company Driver <%= @driver.company_driver %>
+                      <br />
+                      Owner Operator <%= @driver.owner_operator %>
+                      </span>
+                    </small>
+                  </h2>
+                <%= link_to "Update Driver", edit_user_path(@driver), 
+                class: "btn btn-success btn-sm round" if current_company_user %>  
+          </div>
+          <div class="action-buttons">
+            <div class="row">
+              <div class="col-xs-6">
+              </div>
+              <div class="col-xs-6">
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h3>Equipment</h3>
+            <p>
+              <%= @driver.first_name %> has no truck assigned.
+              
+            </p>
+            <p>
+              <%= @driver.first_name %> has no trailer(s) assigned.
+            </p>
+          </div>
+          <div class="section">
+            <h3>Load Statistics</h3>
+            <p>
+              <span class="badge">
+              <%= @active_loads.count if @driver.type == "DriverUser" %>
+              </span> Live Loads
+            </p>
+            <p>
+              <span class="badge">
+              <%= @completed_loads.count if @driver.type == "DriverUser"  %>
+              </span> Completed Loads
+            </p>
+            <p>
+              <span class="badge">
+              <%= @driver_statements.count if @driver.type == "DriverUser"  %>
+              </span> My Statements
+            </p>
+          </div>
+          <div class="section">
+            <h3>Contact <%= @driver.first_name %></h3>
+            <ul class="list-unstyled list-social">
+              <li><i class="fa fa-paper-plane"></i> <%= @driver.email %></li>
+              <li><i class="fa fa-mobile-phone"></i> <%= @driver.cellphone %></li>
+              <li>
+                <% if @driver.telephone.present? %>
+                <i class="fa fa-phone"></i> <%= @driver.telephone %>
+                <% end %>
+                <% if @driver.extention.present? %>
+                ext. <%= @driver.extention %>
+                <% end %>
+              </li>
+              <div>
+                <strong>Emergency Contact</strong>
+                <li><i class="fa fa-heart-o"></i> <%= @driver.emergency_contact %></li>
+                <li><i class="fa fa-user-md"></i> <%= @driver.emergency_contact_number %></li>
+              </div>
+              <hr>
+              <div>
+                <strong>Home Address</strong>
+                <address>
+                  <%= @driver.street %><br />
+                  <%= @driver.city %><br />
+                  <%= @driver.state %> 
+                  <%= @driver.zip %>
+                </address>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-info-right">
+          <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
+            <li class="active"><a href="#activeLoads" data-toggle="tab">Active Loads</a></li>
+            <li><a href="#CompletedLoads" data-toggle="tab">Completed Loads</a></li>
+            <li><a href="#DriverStatement" data-toggle="tab">Statements</a></li>
+            <li><a href="#Maps" data-toggle="tab">Maps</a></li>
+            <li><a href="#Chat" data-toggle="tab">Chat</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="activeLoads">
+               
+            </div>
+            <div class="tab-pane fade" id="CompletedLoads">
+              
+            </div>
+            <div class="tab-pane fade" id="DriverStatement">
+                
+            </div>
+            <div class="tab-pane fade" id="Maps">
+              
+            </div>
+            <div class="tab-pane fade" id="Chat">
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

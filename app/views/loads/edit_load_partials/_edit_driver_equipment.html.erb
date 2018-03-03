@@ -1,0 +1,146 @@
+    <div class="hidden">  
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :driver_rate_set_in_model, {include_blank: "Select Driver"} %>
+      <%= f.input :driver_cents_pm %>
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_all_truck_trailer_info, {include_blank: ""}, 
+        {id: "all_truck_trailer_info"} %>    
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_truck_make, {include_blank: ""}, {id: "truck_make"} %> 
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_truck_model, {include_blank: ""}, {id: "truck_model"} %> 
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_truck_color, {include_blank: ""}, {id: "truck_color"} %>  
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),  
+        :id, :show_truck_number, {include_blank: ""}, {id: "truck_number"} %>          
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_truck_plate, {include_blank: ""}, {id: "truck_plate"} %>  
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name), 
+        :id, :show_truck_state, {include_blank: ""}, {id: "truck_state"} %>     
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name), 
+        :id, :show_truck_mpg, {include_blank: ""}, {id: "truck_mpg"} %>  
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_trailer_make, {include_blank: ""}, {id: "trailer_make"} %> 
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_trailer_type, {include_blank: ""}, {id: "trailer_type"} %> 
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name), 
+        :id, :show_trailer_length, {include_blank: ""}, {id: "trailer_length"} %>  
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name), 
+        :id, :show_trailer_door_type, {include_blank: ""}, {id: "trailer_door_type"} %> 
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name), 
+        :id, :show_trailer_number, {include_blank: ""}, {id: "trailer_number"} %> 
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+        :id, :show_trailer_plate, {include_blank: ""}, {id: "trailer_plate"} %>   
+      <%= f.collection_select :driver_user_id, @driver.all.order(:first_name), 
+        :id, :show_trailer_state, {include_blank: ""}, {id: "trailer_state"} %>    
+      <%= f.input :truck_year %>
+      <%= f.input :truck_number %>
+      <%= f.input :truck_make %>
+      <%= f.input :truck_model %>
+      <%= f.input :truck_color %>
+      <%= f.input :truck_plate %>
+      <%= f.input :truck_state %>
+      <%= f.input :trailer_number %>
+      <%= f.input :trailer_year %>
+      <%= f.input :trailer_make %> 
+      <%= f.input :trailer_type %>
+      <%= f.input :trailer_length %>
+      <%= f.input :trailer_plate %>
+      <%= f.input :trailer_state %>
+      <%= f.input :trailer_door_type %>
+      <%= f.input :equipment_type %> 
+    </div>
+    <div id="hideThisStuff">
+      <div id="noTruckText" class="hidden">   
+        <strong class="label label-danger"> This Driver has no truck!</strong> 
+        <%= link_to "Assign Truck", trucks_path, class: "btn btn-info btn-xs round" %>     
+      </div>
+      </div>
+ 
+
+
+      <div id="noTruck">
+        <table class="table table-bordered table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>Truck Number</th>
+              <th>Truck Make</th>
+              <th>Truck Model</th>
+              <th>Truck Color</th>
+              <th>Truck Plate</th>
+              <th>Truck Plate State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div id="the_truck_number"></div>
+              </td>
+              <td>
+                <div id="the_truck_make"></div>
+              </td>
+              <td>
+                <div id="the_truck_model"></div>
+              </td>
+              <td>
+                <div id="the_truck_color"></div>
+              </td>
+              <td>
+                <div id="the_truck_plate"></div>
+              </td>
+              <td>
+                <div id="the_truck_state"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="noTrailerText" class="hidden">   
+        <strong class="label label-danger"> This Driver has no trailer!</strong> 
+        <%= link_to "Assign Trailer", trailers_path, class: "btn btn-info btn-xs round" %>    
+      </div>
+ 
+      <div id="noTrailer">
+        <table class="table table-bordered table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th>Trailer Number</th>
+              <th>Trailer Make</th>
+              <th>Trailer Type</th>
+              <th>Trailer Length</th>
+              <th>Trailer Door Type</th>
+              <th>Trailer Plate</th>
+              <td>Trailer Plate State</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div id="the_trailer_number"></div>
+              </td>
+              <td>
+                <div id="the_trailer_make"></div>
+              </td>
+              <td>
+                <div id="the_trailer_type"></div>
+              </td>
+              <td>
+                <div id="the_trailer_length"></div>
+              </td>
+              <td>
+                <div id="the_trailer_door_type"></div>
+              </td>
+              <td>
+                <div id="the_trailer_plate"></div>
+              </td>
+              <td>
+                <div id="the_trailer_state"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    <!--end hideThisStuff --> 
+    <hr>

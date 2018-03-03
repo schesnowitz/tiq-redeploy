@@ -1,0 +1,95 @@
+<%= simple_form_for(@company_profile) do |f| %>
+<div class="col-sm-12 col-sm-offset-0 shadow round well">
+  <div class="well well">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group input-group">  
+          <span class="input-group-addon"><i class="fa fa-building"></i></span>
+          <%= f.input :company_name, label: false,  
+            placeholder: 'Company Name' %>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group input-group">  
+          <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+          <%= f.input :contact, label: false, 
+            placeholder: 'Contact Name' %> 
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">  
+          <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+          <%= f.input :email, label: false, 
+            placeholder: 'Contact Email' %> 
+        </div>
+      </div>
+       </div>
+    <div class="row">
+
+      <div class="col-sm-3">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map-pin"></i></span>
+            <%= f.input :street, label: false, placeholder: "Street" %>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map"></i></span>
+            <%= f.input :city, label: false, placeholder: "City" %> 
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
+            <%= f.input :state, label: false, prompt: "Select State", 
+                collection: ApplicationRecord::States %>  
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-map"></i></span>
+            <%= f.input :zip, label: false, placeholder: "zip code" %>   
+        </div>
+      </div>
+    </div>
+   <div class="row">
+
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+            <%= f.input :telephone, label: false, placeholder: "Telephone" %> 
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+            <%= f.input :fax, label: false, placeholder: "Fax" %>  
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+            <%= f.input :website, label: false, placeholder: "Website" %>   
+        </div>
+      </div>
+    </div>
+    
+   <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-check-circle"></i></span>
+            <%= f.input :broker_mc_number, label: "Broker MC" %>  
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-check-square"></i></span>
+            <%= f.input :carrier_mc_number, label: "Carrier MC" %>   
+        </div>
+      </div>
+    </div>
+      <%= f.button :submit, class: "btn btn-success btn-sm round" %>
+      <%= link_to 'All Brokers/Shippers', company_profiles_path, class: "btn btn-info btn-sm round" %> 
+</div>
+</div>  
+<% end %>

@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-xs-6">
+    <div class="shadow2 round">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Origin Address <em>(shipper/consignor)</em></h3>
+        </div>
+        <div class="panel-body">
+
+          <%= f.input :pick_up_date %>
+          <%= f.input :shipper_company_name, label: false, placeholder: "Pick Up Company Name" %>
+          <%= f.input :origin_street, label: false, placeholder: "Street Address"  %>
+          <%= f.input :origin_city, label: false, placeholder: "City"  %>
+          <%= f.input :origin_state, label: false,
+            collection: ApplicationRecord::States, include_blank: "State" %>
+          <%= f.input :origin_zip, label: false, placeholder: "zip code" %>
+          <label>phone</label><br>
+          <%= f.text_field :origin_phone, id: 'phone3' %> 
+          <%= f.input :origin_contact, label: false, placeholder: "Contact Person" %>
+          <%= f.input :pick_up_notes, placeholder: "dock 34 @12.45am" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="idToHide">
+    <div class="col-xs-6">
+      <div class="shadow2 round">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">Destination Address <em>(receiver/consignee)</em></h3>
+          </div>
+          <div class="panel-body">
+            <% if @load.has_multiple_pd? %>
+            <%= render 'loads/edit_load_partials/calculate_address_section', f: f %>
+            <% else %>
+
+            <%= f.input :delivery_date %>
+            <%= f.input :receiver_company_name, label: false, placeholder: "Deliver to Company Name"  %>
+            <%= f.input :destination_street, label: false, placeholder: "Street Address"  %>
+            <%= f.input :destination_city, label: false, placeholder: "City"  %>
+            <%= f.input :destination_state, label: false,
+              collection: ApplicationRecord::States, include_blank: "State"  %>
+            <%= f.input :destination_zip, label: false, placeholder: "zip code" %>
+            <label>phone</label><br>
+            <%= f.text_field :destination_phone, id: 'phone4' %>
+            <%= f.input :destination_contact, label: false, placeholder: "Contact Person" %>
+            <%= f.input :delivery_notes, placeholder: "see sally @3pm"  %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

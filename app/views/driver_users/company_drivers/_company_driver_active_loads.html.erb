@@ -1,0 +1,68 @@
+<% if @active_loads.present? %>
+<h1>Active Loads</h1>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Booked On</th>
+      <th>Description</th>
+      <th>Rate</th>
+      <th>Distance (Miles)</th>
+      <th>Gross Pay</th>
+      <th>Debits</th>
+      <th>Credits</th>
+      <td>Truck</td>
+      <th>Trailer</th>
+      <th>Load Size</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% debit_running_total = 0.00 %>
+    <% credit_running_total = 0.00 %>
+    <% expense_running_total = 0.00 %>
+    <% company_load_running_total = 0.00 %>
+    <% total_miles = 0 %>
+    <% driver_load_running_total = 0.00 %>
+    <% booking_fee_running_total = 0.00 %>
+    <% @active_loads.each do |load| %> 
+    <tr>
+      <td>
+        <%= link_to load do %>
+        <%= load.id %>
+        <% end %>
+      </td>
+      <td><%= (load.created_at.strftime("%A %B %-d, %Y")) %></td>
+      <td>
+        <%= link_to load do %>
+        <%= load.title %>  
+        <% end %>
+      </td>
+      <td><%= number_to_currency(load.driver_cents_pm) %></td>
+      <td><%= load.miles %> </td>
+      <td><%= number_to_currency(load.driver_cents_pm * load.miles) %> </td>
+      <td>
+        <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance"  %> 
+        <%= number_to_currency(transaction.debit) %> 
+        <% debit_running_total = debit_running_total + transaction.debit %>
+        <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+        <%= number_to_currency(transaction.credit) %> 
+        <% credit_running_total = credit_running_total + transaction.credit %>
+        <% end %>
+        <% end %>
+      </td>
+      <td><%= load.truck_make %> #<%= load.truck_number %></td>
+      <td><%= load.trailer_make %> #<%= load.trailer_number %></td>
+      <td><%= load.load_size %></td>
+      <td><%= load.status_name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<h1>No Active Loads</h1>
+<% end %> 

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Front Pages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @front_pages.each do |front_page| %>
+      <tr>
+        <td><%= front_page.title %></td>
+        <td><%= link_to 'Show', front_page %></td>
+        <td><%= link_to 'Edit', edit_front_page_path(front_page) %></td>
+        <td><%= link_to 'Destroy', front_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Front Page', new_front_page_path %>

@@ -1,0 +1,71 @@
+<h3>Active Loads</h3>  
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th class="col-xs-3">Booked On</th>
+      <th>Description</th>
+      <th>Driver</th>
+      <th>Shipper/Broker</th>
+
+      <th>Driver Rate</th>
+      <th>Company Driver Pay</th>
+      <th>Distance (Miles)</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% debit_running_total = 0.00 %>
+    <% credit_running_total = 0.00 %>
+    <% invoice_running_total = 0.00 %>
+    <% total_miles = 0 %>
+    <% company_driver_pay_running_total = 0.00 %>
+    <% owner_operator_pay_running_total = 0.00 %>
+    <% booking_fee_running_total = 0.00 %>
+    <% @pending_loads.each do |load| %>  
+    <tr> 
+      <td>
+        <%= link_to load do %>
+        <%= load.id %>
+        <% end %>
+      </td>
+      <td>
+        <%= local_time(load.created_at, format: '%B %e, %Y %l:%M%P %Z') %> 
+      </td>
+      <td>
+        <%= link_to load_path(load) do %>
+        <%= load.title %>  
+        <% end %>
+      </td>
+      <td>
+        <% if current_company_user %>
+        <%= link_to driver_user_path(load.driver_user_id) do %>
+        <%= load.driver_user.full_name %>
+        <% end %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to company_profile_path(load.company_profile_id) do %>
+        <%= load.company_profile.company_name %> 
+        <% end %>
+      </td>
+
+      <% if load.driver_user.company_driver? %>
+      <td><%= number_to_currency(load.driver_cents_pm) %></td>
+      <% end %>
+      <% if load.driver_user.owner_operator? %>
+      <td><%= number_to_currency(load.rate_to_owner_operator) %></td>
+      <% end %>
+      <td><%= number_to_currency(load.driver_cents_pm * load.miles) if load.driver_user.company_driver?%> </td>
+      <td><%= load.miles %> </td>
+      <td><%= load.status_name %></td>
+    </tr>
+    <% invoice_running_total = invoice_running_total + load.invoice_price %> 
+    <% booking_fee_running_total = booking_fee_running_total + load.booking_fee %> 
+    <% company_driver_pay = (load.driver_cents_pm * load.miles) if load.driver_user.company_driver?%>
+    <% company_driver_pay_running_total = company_driver_pay_running_total + company_driver_pay if load.driver_user.company_driver?%> 
+    <% owner_operator_pay_running_total = owner_operator_pay_running_total + load.rate_to_owner_operator %>
+    <% total_miles = total_miles + load.miles %>
+    <% end %>
+  </tbody>
+</table>

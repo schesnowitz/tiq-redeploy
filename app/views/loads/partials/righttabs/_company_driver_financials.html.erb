@@ -1,0 +1,215 @@
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <% if @transactions.present? %>
+    <tr>
+      <th>ID</th>
+      <th>Entered On</th>
+      <th>Type</th>
+      <th>Debit</th>
+      <th>Credit</th>
+    </tr>
+    <% end %>
+  </thead>
+  <tbody>
+    <% total_credits = 0.00 %>
+    <% total_debits = 0.00 %>
+    <% cd_total_credits = 0.00 %>
+    <% cd_total_debits = 0.00 %>
+    <% cd_total_debits = 0.00 %>
+    <% all_transactions = 0.00 %> 
+    <% cd_all_transactions = 0.00 %>
+    <% running_total = 0.00 %>
+    <% @transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction.id %></td>
+      <td><%= local_time(transaction.created_at, format: '%B %e, %Y %l:%M%P %Z') %> </td>
+      <td><%= transaction.expense_type %></td>
+      <td>
+        <%= link_to load_transaction_path(@load, transaction) do %>
+        <%= number_to_currency(transaction.debit) %>
+        <% end %> 
+      </td>
+      <td>
+        <%= link_to load_transaction_path(@load, transaction) do %>
+        <%= number_to_currency(transaction.credit) %>
+        <% end %> 
+      </td>
+    </tr>
+    <% total_credits = total_credits + transaction.credit %>
+    <% total_debits = total_debits + transaction.debit %>
+    <% end %>
+  </tbody>
+</table>
+<% @cd_transactions.each do |cd_transaction| %>
+<% number_to_currency(cd_transaction.credit) %>
+<% number_to_currency(cd_transaction.debit) %>
+<% cd_total_credits = cd_total_credits + cd_transaction.credit %>
+<% cd_total_debits = cd_total_debits + cd_transaction.debit %> 
+
+<% end %>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>
+        Invoice Price
+      </th>
+      <th>
+        Miles
+      </th>
+      <th>
+        Gross RPM
+      </th>
+      <th>
+        Booking Fee
+      </th>
+      <th>
+        Rate To Driver
+      </th>
+      <th>
+        Driver Pay
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= number_to_currency(@load.invoice_price) %>
+      </td>
+      <td>
+        <%= (@load.miles) if !@load.miles.nil? %>
+      </td>
+     <td>
+        <%= number_to_currency(@load.invoice_price / @load.miles) if !@load.miles.nil? %>
+      </td>
+      <td>
+        <%= number_to_currency(@load.booking_fee) %>
+      </td>
+      <td>
+        <%= number_to_currency(@load.driver_cents_pm)  %>/mile
+      </td>
+      <td>
+        <%= number_to_currency(@load.driver_cents_pm * @load.miles) if !@load.miles.nil? %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% @miles_divided_truck_mpg = @load.miles / @load.truck_mpg if !@load.miles.nil? %>
+<% @projected_diesel_cost = @load.national_average_diesel_price * @miles_divided_truck_mpg if !@load.miles.nil? %>
+<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+	<thead>
+		<tr>
+			<th>Average Fuel Price</th>
+			<th>Projected Fuel Cost</th> 
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= number_to_currency(@load.national_average_diesel_price) %></td>
+			<td><%= number_to_currency(@projected_diesel_cost) %></td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<% driver_pay = (@load.driver_cents_pm * @load.miles) if !@load.miles.nil? %>
+<% rate_after_driver_pay = (@load.invoice_price - driver_pay) if !@load.miles.nil? %>
+<% load_expense = (total_debits - total_credits) %>
+<% total_otr_expense = driver_pay + load_expense if !@load.miles.nil? %>
+<% cash_after_expenses = (@load.invoice_price - total_otr_expense) if !@load.miles.nil? %>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>
+        Rate After Driver Pay
+      </th>
+      <th>
+        OTR Expenses
+      </th>
+      <th>
+        Total Expenses
+      </th>
+      <th>
+       Cash After Expenses
+      </th>
+      <th>
+        Profit / Mile
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <!--Rate After Driver Pay-->
+        <%= number_to_currency(rate_after_driver_pay)  %>
+      </td>
+      <td>
+        <%= number_to_currency(load_expense) %>
+      </td>
+      <td>
+        <%= number_to_currency(total_otr_expense) %>
+      </td>
+      <td>
+        <%= number_to_currency(cash_after_expenses) %>
+      </td>
+      <td>
+         <%= number_to_currency(cash_after_expenses / @load.miles) if !@load.miles.nil? %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Driver Section
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>
+        Load Rate
+      </th>
+      <th>
+        Paid Miles
+      </th>
+      <th>
+        Load Pay
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= number_to_currency(@load.driver_cents_pm)  %>/mile
+      </td>
+      <td>
+        <%= @load.miles if !@load.miles.nil? %>
+      </td>
+      <td>
+        <%= number_to_currency(@load.driver_cents_pm * @load.miles) if !@load.miles.nil? %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+	<% cd_rate = @load.driver_cents_pm * @load.miles if !@load.miles.nil? %>
+	<% cd_debit_credit_total = cd_total_debits - cd_total_credits %>
+	<% debit_credit_total = total_debits - total_credits %>
+	<% cd_rate_after_expenses = cd_rate - cd_debit_credit_total if !@load.miles.nil?  %> 
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>Total Debits</th>
+      <th>Total Credits</th>
+      <th>Total Debits/Credits</th>
+      <th>Rate After Expenses</th>
+      <th>Net RPM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-<%= number_to_currency(cd_total_debits) %></td>
+      <td>+<%= number_to_currency(cd_total_credits) %></td>
+      <td>-<%= number_to_currency(cd_debit_credit_total) %></td>
+      <td><%= number_to_currency(cd_rate_after_expenses)  %></td>
+      <td><%= number_to_currency(cd_rate_after_expenses / @load.miles) if !@load.miles.nil? %></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<%= render "loads/partials/righttabs/route" %>

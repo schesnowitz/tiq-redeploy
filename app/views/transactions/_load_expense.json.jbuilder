@@ -1,0 +1,2 @@
+json.extract! load_expense, :id, :type, :latitude, :longitude, :amount, :street, :city, :state, :zip, :business_name, :load_id, :created_at, :updated_at
+json.url load_expense_url(load_expense, format: :json)

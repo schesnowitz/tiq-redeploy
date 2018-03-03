@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <strong>Street:</strong>
+  <%= @address.street %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @address.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @address.longitude %>
+</p>
+
+
+
+<p>
+  <strong>City:</strong>
+  <%= @address.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @address.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @address.zip %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @address.company %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @address.contact %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @address.phone %>
+</p>
+
+<p>
+  <strong>Load:</strong>
+  <%= @address.load_id %>
+</p>
+
+<%= link_to 'Edit', edit_load_load_origin_address_path(@address) %> |
+<%= link_to 'All Addresses', load_addresses_path %>

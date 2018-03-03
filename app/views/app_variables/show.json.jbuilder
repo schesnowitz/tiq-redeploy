@@ -1,0 +1,1 @@
+json.partial! "app_variables/app_variable", app_variable: @app_variable

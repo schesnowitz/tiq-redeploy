@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Business name:</strong>
+  <%= @transaction.business_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @transaction.expense_type %>
+</p>
+
+<p>
+  <strong>Debit Amount:</strong>
+  <%= number_to_currency(@transaction.debit) %>
+</p>
+
+<p>
+  <strong>Credit Amount:</strong>
+  <%= number_to_currency(@transaction.credit) %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @transaction.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @transaction.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @transaction.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @transaction.zip %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_load_transaction_path(@load, @transaction),
+class: "btn btn-info btn-sm round" %> |
+<%= link_to 'Back', load_path(@load),
+class: "btn btn-success btn-sm round" %> 
+<%= link_to 'Destroy', load_transaction_path(@load, @transaction), 
+method: :delete, data: { confirm: 'Are you sure?' },
+class: "btn btn-danger btn-sm round" %>

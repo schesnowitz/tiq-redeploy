@@ -1,0 +1,69 @@
+<%= render "loads/partials/lefttabs/pdf_temp_control_hazmat" %>  
+<div class="panel panel-info">
+<div class="panel-heading">
+  <h3 class="panel-title">
+    <p>Driver:  <%= @load.driver_user.full_name %></p>
+  </h3>
+</div>
+<div class="panel-body">
+  <div class="row">
+    <div class="col-xs-6">
+      <strong>Truck</strong>
+      <p>Make: <%= @load.truck_make %></p>
+      <p>Color: <%= @load.truck_color %></p>
+      <p>Number: <%= @load.truck_number %></p>
+      <p>Plate: <%= @load.truck_plate %></p>
+      <p>State: <%= @load.truck_state %></p>
+    </div>
+    <div class="col-xs-6">
+      <strong>Trailer</strong> 
+      <p>Make: <%= @load.trailer_make %></p>
+      <p>Number: <%= @load.trailer_number %></p>
+      <p>Plate: <%= @load.trailer_plate %></p>
+      <p>State: <%= @load.trailer_state %></p>
+      <p>Dispatcher: <%= @load.company_user.first_name %> <%= @load.company_user.email %></p>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel panel-warning">
+<div class="panel-heading">
+  <h3 class="panel-title">
+    <p>Brokered by:  <%= @load.company_profile.company_name %></p>
+  </h3>
+</div>
+<div class="panel-body">
+  <div class="row">
+    <div class="col-xs-6">
+      <p>
+        <strong>Load ID: <%= @load.broker_shipper_load_id %></strong><br>
+      </p>
+      <p>Telephone: <%= @load.company_profile.telephone %></p>
+      <p>Fax: <%= @load.company_profile.fax %></p>
+      <p>Weight: <%= @load.weight %></p>
+      <p>Load Size: <%= @load.load_size %></p>
+      <p>Dimentions: <%= @load.dimentions %></p>
+    </div>
+    <div class="col-xs-6">
+      <p>
+        Rate: <%= number_to_currency(@load.rate_to_owner_operator) if @load.driver_user.owner_operator? %>
+        <%= number_to_currency(@load.driver_cents_pm * @load.miles) if @load.driver_user.company_driver? && !@load.miles.nil? %>
+      </p>
+      <p>Miles: <%= @load.miles.floor if !@load.miles.nil? %></p>
+      <p>
+        Has multiple stops: 
+        <% if @load.has_multiple_pd? %>
+        Yes
+        <% else %> 
+        No
+        <% end %>
+      </p>
+      <p>Commodity: <%= @load.commodity %></p>
+      <p>Contact: <%= @load.broker_rep_name %></p>
+      <p>Email: <%= @load.broker_rep_email %></p>
+      <p>Phone: <%= @load.broker_rep_number %></p>
+      <p>Cell: <%= @load.broker_rep_cell %></p>
+    </div>
+  </div>
+</div>
+</div>

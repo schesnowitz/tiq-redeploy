@@ -1,0 +1,71 @@
+<% fuel_running_total = 0.00 %> 
+<% lumper_running_total = 0.00 %>
+<% cash_running_total = 0.00 %>
+
+<% @all_loads.each do |load| %>
+<% load.transactions.each do |transaction| if transaction.expense_type == "Fuel" %>
+<% number_to_currency(transaction.debit) %> 
+<% fuel_running_total = fuel_running_total + transaction.debit %>
+<% end %>
+<% end %>  
+<% load.transactions.each do |transaction| if transaction.expense_type == "Fuel" %>
+<% number_to_currency(transaction.credit) %> 
+<% fuel_running_total = fuel_running_total - transaction.credit %>
+<% end %>
+<% end %>
+<% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+<% number_to_currency(transaction.debit) %> 
+<% cash_running_total = cash_running_total + transaction.debit %>
+<% end %>
+<% end %>  
+<% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+<% number_to_currency(transaction.credit) %> 
+<% cash_running_total = cash_running_total - transaction.credit %>
+<% end %>
+<% end %>
+<% load.transactions.each do |transaction| if transaction.expense_type == "Other" %>
+<% number_to_currency(transaction.debit) %> 
+<% other_running_total = other_running_total + transaction.debit %>
+<% end %>
+<% end %>  
+<% load.transactions.each do |transaction| if transaction.expense_type == "Other" %>
+<% number_to_currency(transaction.credit) %> 
+<% other_running_total = other_running_total - transaction.credit %>
+<% end %>
+<% end %>
+<% load.transactions.each do |transaction| if transaction.expense_type == "Lumper" %>
+<% number_to_currency(transaction.debit) %> 
+<% lumper_running_total = lumperlumper_running_total + transaction.debit %>
+<% end %>
+<% end %>  
+<% load.transactions.each do |transaction| if transaction.expense_type == "Lumper" %>
+<% number_to_currency(transaction.credit) %> 
+<% lumper_running_total = lumper_running_total - transaction.credit %>
+<% end %>
+<% end %>
+<% end %>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>Total Fuel</th>
+      <th>Total Lumper</th>
+      <th>Company Cash</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= number_to_currency(fuel_running_total) %>
+      </td>
+      <td>
+        <%= number_to_currency(fuel_running_total * invoice_running_total) %>
+      </td>
+      <td>
+        <%= number_to_currency(lumper_running_total) %>
+      </td>
+      <td>
+        <%= number_to_currency(cash_running_total) %>
+      </td>
+    </tr>
+  </tbody>
+</table>

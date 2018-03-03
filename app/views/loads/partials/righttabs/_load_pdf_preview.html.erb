@@ -1,0 +1,41 @@
+
+<%= link_to "Send PDF",
+send_pdf_path(@load.id), class: "btn btn-sm btn-danger pull-right" %>   
+
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "pdf", media: 'print' %>
+
+    <script>
+      function number_pages() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+  </head>
+ <body>
+   <!--<span class="page"></span> of <span class="topage"></span>-->
+    <div id="header">
+      <% wicked_pdf_image_tag 'front_pages/logo.png' %>
+    </div>
+    <div id="content">
+
+    <%= render "loads/partials/pdf_driver_broker_info" %>
+    <%= render "loads/partials/lefttabs/show_all_addresses" %>
+
+    </div>
+    <div id="footer">
+
+    </div>
+  </body>
+</html>

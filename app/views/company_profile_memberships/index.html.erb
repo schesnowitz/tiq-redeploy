@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Company Profile Memberships</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company profile</th>
+      <th>User</th>
+      <th>Membership type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company_profile_memberships.each do |company_profile_membership| %>
+      <tr>
+        <td><%= company_profile_membership.company_profile_id %></td>
+        <td><%= company_profile_membership.user_id %></td>
+        <td><%= company_profile_membership.membership_type %></td>
+        <td><%= link_to 'Show', 
+        company_profile_company_profile_membership_path(@company_profile, 
+        company_profile_membership) %></td>
+        <td><%= link_to 'Edit', 
+        edit_company_profile_company_profile_membership_path(@company_profile, 
+        company_profile_membership) %></td>
+        <td><%= link_to 'Destroy', 
+        company_profile_company_profile_membership_path(@company_profile, 
+        company_profile_membership), method: :delete, 
+        data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company Profile Membership', 
+new_company_profile_company_profile_membership_path(@company_profile, @company_profile_membership) %> 

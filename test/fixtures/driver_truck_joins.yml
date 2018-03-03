@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  truck: one
+  driver_user: one
+  has_driver: false
+
+two:
+  truck: two
+  driver_user: two
+  has_driver: false

@@ -1,0 +1,15 @@
+<% @load_doc.each do |doc| %>
+<div>
+  <p>
+<%= doc.file_type %>
+<a href="<%= (doc.doc_file_url) %>"target="_blank">View Document</a>
+<%= doc.note %> 
+  </p>
+</div>
+
+
+<% end %>
+<br>
+<br>  
+<%= link_to 'Add Documents', new_load_load_document_path(@load), 
+class: "btn btn-warning btn-xs round pull-right" %>

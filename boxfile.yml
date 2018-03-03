@@ -1,0 +1,52 @@
+run.config:
+  engine: ruby
+  engine.config:
+    runtime: ruby-2.4
+  extra_packages:
+    - nodejs
+    - nginx
+    - pkgconf
+    - libxml2
+    - libxslt
+    - ImageMagick
+    - libXrender 
+
+
+
+deploy.config:
+  extra_steps:
+    - rake assets:precompile RAILS_ENV=production
+  before_live:
+    web.main:
+      - rake db:setup_or_migrate
+      - rake db:seeds
+data.db:
+  image: nanobox/postgresql:9.5
+
+web.main:
+  start:
+    nginx: nginx -c /app/config/nginx.conf
+    puma: bundle exec puma -C /app/config/puma.rb
+  writable_dirs:
+    - tmp
+    - db
+    - public/uploads
+
+
+  log_watch:
+    rails: 'log/production.log'
+
+worker.sidekiq:
+  # start: sidekiq # if your app uses mailers we need to start them up, comment out this line and use ...
+  
+  start: bundle exec sidekiq -q default -q mailers -C /app/config/sidekiq.rb
+
+  log_watch:
+    sidekiq: 'log/production.log'
+
+  writable_dirs:
+    - tmp
+    - log
+
+data.queue:
+  image: nanobox/redis:4.0

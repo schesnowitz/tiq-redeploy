@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mileage: 1
+  type: 
+  notes: MyString
+
+two:
+  mileage: 1
+  type: 
+  notes: MyString

@@ -1,0 +1,45 @@
+<%= simple_form_for [@front_page, @front_page_text] do |f| %>
+
+<form class="form-horizontal">
+  <fieldset>
+    <legend></legend>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label"></label>
+      <div class="col-lg-10">
+          <div class="form-inputs">
+    <div class="hideStringInput">
+      <%= f.input :string_input, label: "Edit Text" %>
+    </div>  
+    <div class="hideTextInput">
+      <%= f.input :text_input, label: "Edit Text" %>
+    </div>  
+    <div class="hideImageInput">
+      <%= f.input :image_input, as: :file %>
+      <%= f.input :show_default_image %>
+    </div>  
+  </div> 
+  </div>
+</div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= f.button :submit, class: "btn btn-success btn-sm" %>
+        <%= link_to 'Back', edit_show_path, class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<% end %>
+
+<script>
+$(document).ready(function () {
+  if (window.location.href.indexOf("editString") != -1) {
+    $(".hideTextInput, .hideImageInput").hide(); 
+  } else if (window.location.href.indexOf("editText") != -1) {
+    $(".hideStringInput, .hideImageInput").hide(); 
+  } else if (window.location.href.indexOf("editImage") != -1) {
+    $(".hideStringInput, .hideTextInput").hide(); 
+  }
+});
+</script>
+
+

@@ -1,0 +1,109 @@
+<!--sets :trailer_type column as hidden field for record keeping in case trailer 
+is removed from system-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#all_truck_trailer_info').val(this.value);  
+      var dropValue = $("#all_truck_trailer_info option:selected").text();
+      $('#load_equipment_type').val(dropValue); 
+    });
+  });
+});
+</script>
+
+
+<!--sets the truck year based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#truck_year').val(this.value);  
+      var truckYear = $("#truck_year option:selected").text();
+      $('#the_truck_year').html(truckYear);    
+    }); 
+  });
+});
+</script>
+
+
+<!--sets the truck make based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#truck_make').val(this.value);  
+      var truckMake = $("#truck_make option:selected").text();
+      $('#the_truck_make').html(truckMake);    
+    });
+  });
+});
+</script>
+
+<!--sets the truck model based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#truck_model').val(this.value);   
+      var truckModel = $("#truck_model option:selected").text();
+      $('#the_truck_model').html(truckModel);    
+    });
+  });
+});
+</script>
+
+
+<!--sets the truck color type based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#truck_color').val(this.value);   
+      var truckColor = $("#truck_color option:selected").text();  
+      $('#the_truck_color').html(truckColor);   
+    });
+  });
+});
+</script>
+
+<!--sets the truck number type based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {       
+    $("#select-driver").change(function() {  
+      $('#truck_number').val(this.value);   
+      var truckNumber = $("#truck_number option:selected").text();  
+      $('#the_truck_number').html(truckNumber);   
+    });
+  });
+});
+</script>
+
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#truck_plate').val(this.value);   
+      var truckPlate = $("#truck_plate option:selected").text();
+      $('#the_truck_plate').html(truckPlate);   
+    });
+  });
+});
+</script>
+
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#truck_state').val(this.value);   
+      var truckState = $("#truck_state option:selected").text();
+      $('#the_truck_state').html(truckState);     
+    });
+  });
+});
+</script>
+
+
+
+

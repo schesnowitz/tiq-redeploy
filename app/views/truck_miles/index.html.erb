@@ -1,0 +1,31 @@
+
+<h1>Truck Miles</h1>
+
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>Mileage</th>
+      <th>Type</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @truck_miles.each do |mile| %>
+      <tr>
+        <td><%= mile.mileage %></td>
+        <td><%= mile.type %></td> 
+        <td><%= mile.notes %></td>
+        <td><%= link_to 'Show', truck_truck_mile_path(@truck, mile), class:"btn btn-hrcinfo btn-xs round" %></td>
+        <td><%= link_to 'Edit', edit_truck_truck_mile_path(@truck, mile), class:"btn btn-hrcsuccess btn-xs round" %></td>
+        <td><%= link_to 'Destroy', truck_truck_mile_path(@truck, mile), 
+        method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-xs round" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

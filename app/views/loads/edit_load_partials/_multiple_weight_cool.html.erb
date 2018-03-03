@@ -1,0 +1,143 @@
+<div class="row">
+  <div class="col-xs-3">
+    <div class="shadow2 round">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <p class="text-center">      
+              <%= image_tag 'stop' %> <br> 
+              <% if @load.has_multiple_pd? %>
+              <%= @load.has_multiple_deliveries %>, this load has has multiple stops
+              <% else %>
+              <%= f.input :has_multiple_pd, label: "Has Multiple Stops?" %>
+              <% end %>
+            </p>
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @load.pounds.present? || @load.kilos.present? %>
+  <div class="col-xs-3">
+    <div class="shadow2 round">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Weight</h3>
+        </div>
+        <div class="panel-body">
+          <p>current weight in pounds <%= number_with_precision(@load.pounds, precision: 2) %></p>
+          <p>current weight in kilograms <%= number_with_precision(@load.kilos, precision: 2) %></p>
+          <%= f.input :pounds, input_html: { id: "edit_load_pounds" } %> 
+          <%= f.input :kilos, input_html: { id: "edit_load_kilos" } %>  
+        </div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <div class="col-xs-3">
+    <div class="shadow2 round">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Weight</h3>
+        </div>
+        <div class="panel-body">
+          <div id="show_hide_is_pounds_check">
+            <h4><%= f.input :is_pounds, label: "Enter weight in pounds" %></h4>
+          </div>
+          <div id="show_hide_is_kilos_check">
+            <h4><%= f.input :is_kilos, label: "Enter weight in kilograms" %></h4>
+          </div>
+          <div id='show_me_the_pounds' class="hidden">
+            <p>
+              <label>Pounds</label>
+              <input id="inputPounds" type="number" placeholder="Pounds"> 
+            </p>
+            <p>= <span id="outputKilograms"></span>kilograms</p>
+          </div>
+          <div id='show_me_the_kilograms' class="hidden">
+            <input id="inputKilograms" type="number" placeholder="Kilograms">
+            <p>= <span id="outputPounds"></span> pounds</p>
+          </div>
+          <div class="hidden">
+            <%= f.input :pounds, class: "hidden" %>
+            <%= f.input :kilos, class: "hidden" %> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% if @load.fahrenheit.present? || @load.celsius.present? %>
+  <div class="col-xs-6">
+    <div class="shadow2 round">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Keep it cool?  Is it hazardous?</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <div id="is_temp_control_check">
+                <h4><%= image_tag "hazardous.jpg" %><%= f.input :is_hazmat, label: "Load contains Hazardous Materials?" %> 
+                </h4>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <%= image_tag 'tempcontrol' %> 
+              <p>current temp in fahrenheit <%= @load.fahrenheit %></p>
+              <p>current temp in celsius <%= @load.celsius %></p>
+              <%= f.input :fahrenheit, input_html: { id: "edit_load_fahrenheit" } %>
+              <%= f.input :celsius, input_html: { id: "edit_load_celsius" } %> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+<div class="col-xs-6">
+  <div class="shadow2 round">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Keep it cool?  Is it hazardous?</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-6">
+            <div id="is_temp_control_check">
+              <h4><%= image_tag "hazardous.jpg" %><%= f.input :is_hazmat, label: "Load contains Hazardous Materials?" %> 
+                <%= image_tag 'tempcontrol' %> 
+                <%= f.input :is_temp_control, label: "needs temperature control?" %>
+              </h4>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div id="is_fahrenheit_check" class="hidden">
+              <%= image_tag 'fahrenheit.jpg' %>
+              <h4><%= f.input :is_fahrenheit, label: "input fahrenheit?" %></h4>
+            </div>
+            <div id="is_celsius_check" class="hidden">
+              <%= image_tag 'celsius.jpg' %>
+              <h4><%= f.input :is_celsius, label: "input celsius?" %></h4>
+            </div>
+            <div id="celsius_input" class="hidden">
+              <input id="inputCelsius" type="number" placeholder="Celsius">
+              <p>= <span id="outputFahrenheit"></span> fahrenheit</p>
+            </div>
+            <div id="fahrenheit_input" class="hidden">
+              <input id="inputFahrenheit" type="number" placeholder="Fahrenheit">
+              <p>= <span id="outputCelsius"></span> celsius:</p>
+            </div>
+            <div class="hidden">
+              <%= f.input :celsius %> 
+              <%= f.input :fahrenheit %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<% end %>

@@ -1,0 +1,150 @@
+
+<!-- Section: Projects -->
+<strong>Admin edit view</strong>
+<!-- Section: Projects -->
+<section id="flip_cards">
+  <div class="container">
+    <div class="row margin-top-bottom">
+      <div class="col-sm-4">
+        <%= link_to "Edit Front Image", edit_front_page_front_page_text_path(@front_page.id, @fpt108.id, :anchor => "editImage"), class: "btn btn-xs btn-success" %>
+        <%= link_to "Edit Back Image", edit_front_page_front_page_text_path(@front_page.id, @fpt109.id, :anchor => "editImage"), class: "btn btn-xs btn-success" %>
+        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+          <div class="flipper">
+            <div class="front">
+              <!-- front content -->
+              <!--card  start-->
+              <div class="card">
+                <% if !@fpt108.image_input.present? || @fpt108.show_default_image == true %>
+                <%= image_tag "front_pages/man.png", alt: "Responsive image", class: "project-item gallery-image" %> 
+                <% else %>
+                <%= image_tag @fpt108.image_input_url(:bio), class: "project-item gallery-image" %> 
+                <% end %>
+                <div class="card-container">
+                  <h4><b><%= @fpt108.string_input %></b></h4>
+                  <p><%= @fpt109.string_input %></p>
+                  
+                </div>
+              </div>
+              <!--Card  end-->
+              <!--END  front content -->	
+            </div> 
+            <div class="back">
+              <!-- back content -->
+              <!--card  start-->
+              <div class="card">
+                <% if !@fpt109.image_input.present? || @fpt109.show_default_image == true %>
+                <%= image_tag "front_pages/woman.png", alt: "Responsive image", class: "project-item gallery-image" %>
+                <% else %>
+                <%= image_tag @fpt109.image_input_url(:bio), class: "project-item gallery-image" %>
+                <% end %>
+                <div class="card-container">
+<h4><b><%= link_to @fpt108.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt108.id, :anchor => "editString") %></b></h4>
+                  <p><%= link_to @fpt109.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt109.id, :anchor => "editString") %></p>
+                </div>
+              </div>
+              <!--Card  end-->
+              <!--END  back content -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      <!--end "col-sm-3"-->
+      <div class="col-sm-4">
+        <%= link_to "Edit Front Image", edit_front_page_front_page_text_path(@front_page.id, @fpt110.id, :anchor => "editImage"), class: "btn btn-xs btn-success" %>
+        <%= link_to "Edit Back Image", edit_front_page_front_page_text_path(@front_page.id, @fpt111.id, :anchor => "editImage"), class: "btn btn-xs btn-success" %>
+        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+          <div class="flipper">
+            <div class="front">
+              <!-- front content -->
+              <!--card  start-->
+              <div class="card">
+                <% if !@fpt110.image_input.present? || @fpt110.show_default_image == true %>
+                <%= image_tag "front_pages/man.png", alt: "Responsive image", class: "project-item gallery-image" %> 
+                <% else %>
+                <%= image_tag @fpt110.image_input_url(:bio), class: "project-item gallery-image" %>
+                <% end %>
+                <div class="card-container">
+
+                           <h4><b><%= @fpt110.string_input %></b></h4>
+                  <p><%= @fpt111.string_input %></p>
+                </div>
+              </div>
+              <!--Card  end-->
+              <!--END  front content -->	
+            </div>
+            <div class="back">
+              <!-- back content -->
+              <!--card  start-->
+              <div class="card">
+                <% if !@fpt111.image_input.present? || @fpt111.show_default_image == true %>
+                <%= image_tag "front_pages/woman.png", alt: "Responsive image", class: "project-item gallery-image" %>
+                <% else %>
+                <%= image_tag @fpt111.image_input_url(:bio), class: "project-item gallery-image" %>
+                <% end %>
+                <div class="card-container">
+          <h4><b><%= link_to @fpt110.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt112.id, :anchor => "editString") %></b></h4>
+                  <p><%= link_to @fpt111.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt113.id, :anchor => "editString") %></p>
+
+                </div>
+              </div>
+              <!--Card  end-->
+              <!--END  back content -->			
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end "col-sm-3"-->
+      <div class="col-sm-4">
+                <%= link_to "Edit Front Image", edit_front_page_front_page_text_path(@front_page.id, @fpt112.id, :anchor => "editImage"), class: "btn btn-xs btn-success" %>
+        <%= link_to "Edit Back Image", edit_front_page_front_page_text_path(@front_page.id, @fpt113.id, :anchor => "editImage"), class: "btn btn-xs btn-success" %>
+        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+          <div class="flipper">
+            <div class="front">
+              <!-- front content -->
+              <!--card  start-->
+              <div class="card">
+                <% if !@fpt112.image_input.present? || @fpt112.show_default_image == true %>
+                <%= image_tag "front_pages/man.png", alt: "Responsive image", class: "project-item gallery-image" %> 
+                <% else %>
+                <%= image_tag @fpt112.image_input_url(:bio), class: "project-item gallery-image" %>
+                <% end %>
+                <div class="card-container"> 
+                  <h4><b><%= @fpt112.string_input %></b></h4>
+                  <p><%= @fpt113.string_input %></p>
+                </div>
+              </div>
+              <!--Card  end-->
+              <!--END  front content -->	
+            </div>
+            <div class="back">
+              <!-- back content -->
+              <!--card  start-->
+              <div class="card">
+                <% if !@fpt113.image_input.present? || @fpt113.show_default_image == true %>
+                <%= image_tag "front_pages/woman.png", alt: "Responsive image", class: "project-item gallery-image" %>
+                <% else %>
+                <%= image_tag @fpt113.image_input_url(:bio), class: "project-item gallery-image" %>
+                <% end %>
+                <div class="card-container">
+                                    <h4><b><%= link_to @fpt112.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt112.id, :anchor => "editString") %></b></h4>
+                  <p><%= link_to @fpt113.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt113.id, :anchor => "editString") %></p>
+
+                </div>
+              </div>
+              <!--Card  end-->
+              <!--END  back content -->			
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end "col-sm-3"--> 
+    </div>
+    <!--end row-->
+  </div>
+  <!--end main container-->
+</section>

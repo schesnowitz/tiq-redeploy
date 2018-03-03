@@ -1,0 +1,217 @@
+<h2>
+  <%= link_to driver_user_path(@driver) do %>
+  <%= @driver.full_name %>
+  <% end %>
+</h2>
+<p>
+  <strong>Notes:</strong>
+  <%= @driver_statement.notes %>
+</p>
+<p>
+  <strong>Payment Status:</strong>
+  <%= @driver_statement.payment_status %>
+</p>
+<p>
+  <strong>Payment Due:</strong>
+  <%= @driver_statement.due_date.strftime("%A %B %-d, %Y") %>
+</p>
+<p>
+  <strong>Updated On:</strong>
+  <%= local_time(@driver_statement.updated_at, format: '%B %e, %Y %l:%M%P %Z') %>
+</p>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Broker Load ID</th> 
+      <th>Booked On</th>
+      <th>Description</th>
+      <th>Rate</th>
+      <th>Distance (Miles)</th>
+      <th>Pay to <%= @driver.first_name %></th>
+      <th>Debits</th>
+      <th>Credits</th>
+      <th>Load Size</th>
+      <th>Truck</th>
+      <th>Trailer</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% hrc_debit_running_total = 0.00 %>
+    <% hrc_credit_running_total = 0.00 %>
+    <% hrc_debit_total = 0.00 %>
+    <% driver_debit_running_total = 0.00 %>
+    <% driver_credit_running_total = 0.00 %>
+    <% expense_running_total = 0.00 %>
+    <% hrc_load_running_total = 0.00 %>
+    <% total_miles = 0 %>
+    <% driver_pay_running_total = 0.00 %>
+    <% booking_fee_running_total = 0.00 %>
+    <% miles_to_dollars = 0.00  %>
+    <% invoice_price_total = 0.00 %>
+    <% @loads.each do |load| %>
+    <% load.invoice_price %>
+    <tr>
+      <td>
+        <%= link_to load do %>
+        <%= load.id %>
+        <% end %>
+      </td>
+      <td><%= load.broker_shipper_load_id %></td>
+      <td><%= (load.created_at.strftime("%A %B %-d, %Y")) %></td>
+      <td>
+        <%= link_to load do %>
+        <%= load.title %> 
+        <% end %>
+      </td>
+      <td><%= number_to_currency(load.driver_cents_pm) %>/mile</td>
+      <td><%= load.miles %> </td>
+      <% load_miles_to_dollars = (load.miles * load.driver_cents_pm) %>
+      <td><%= number_to_currency(load_miles_to_dollars) %> </td>
+      <td>
+        <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+        <%= number_to_currency(transaction.debit) %> 
+        <% driver_debit_running_total = driver_debit_running_total + transaction.debit %>
+        <% end %>
+        <% end %>  
+      </td>
+      <td>
+        <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+        <%= number_to_currency(transaction.credit) %> 
+        <% driver_credit_running_total = driver_credit_running_total + transaction.credit %>
+        <% end %>
+        <% end %>
+      </td>
+      <!--HRC Tranactions Start-->
+      <% load.transactions.each do |hrc_transaction|  %>
+      <% number_to_currency(hrc_transaction.debit) %> 
+      <% hrc_debit_running_total = hrc_debit_running_total + hrc_transaction.debit %>
+      <% end %>
+      <% load.transactions.each do |hrc_transaction|  %>
+      <% number_to_currency(hrc_transaction.credit) %> 
+      <% hrc_credit_running_total = hrc_credit_running_total + hrc_transaction.credit %>
+      <% end %>
+      <!--HRC Tranactions End-->
+      <td><%= load.load_size %></td>
+      <td><%= load.truck_make %> #<%= load.truck_number %></td>
+      <td><%= load.trailer_make %> #<%= load.trailer_number %></td>
+      <td><%= load.status_name %></td>
+    </tr>
+    <% invoice_price_total = invoice_price_total + load.invoice_price %>
+    <% driver_pay_running_total = driver_pay_running_total + load_miles_to_dollars %> 
+    <% total_miles = total_miles + load.miles %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<% hrc_net = hrc_load_running_total - driver_pay_running_total %>
+<% driver_credit_debit_total = driver_debit_running_total - driver_credit_running_total %>
+<% driver_net = driver_pay_running_total - driver_credit_debit_total %>
+<% hrc_debit_total = hrc_debit_running_total - hrc_credit_running_total %>
+<% rate_after_expenses = driver_pay_running_total - driver_credit_debit_total %>
+<br /> 
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>Total Miles</th>
+      <th>Gross $</th>
+      <th>Debits</th>
+      <th>Credits</th>
+      <th>Debit/Credit Total</th>
+      <th>Net $</th>
+    </tr>
+  </thead>
+  <% net_after_otr_expense = driver_pay_running_total - driver_credit_debit_total %>
+  <tbody>
+    <tr>
+      <td><%= total_miles %></td>
+      <td><%= number_to_currency(driver_pay_running_total) %></td>
+      <td><%= number_to_currency(driver_debit_running_total) %></td>
+      <td><%= number_to_currency(driver_credit_running_total) %></td>
+      <td>- <%= number_to_currency(driver_credit_debit_total) %></td>
+      <td><%= number_to_currency(net_after_otr_expense) %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="pull-right">
+  <strong>
+  Payment Due  <%= number_to_currency(net_after_otr_expense) %>
+  </strong>  
+</div>
+<div class="col-lg-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    </div>
+    <!-- .panel-heading -->
+    <div class="panel-body">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed"><-----></a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+            <div class="panel-body">
+              <table class="table table-bordered table-striped table-condensed table-responsive">
+                <thead>
+                  <tr>
+                    <th>Insurance</th>
+                    <th>Trailer Rental</th>
+                    <th>Truck Rental</th>
+                    <th>Other</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% insurance_and_rentals = @driver_statement.insurance_payment + @driver_statement.trailer_rental + @driver_statement.truck_rental + @driver_statement.other %>
+                  <tr>
+                    <td><%= number_to_currency(@driver_statement.insurance_payment) %></td>
+                    <td><%= number_to_currency(@driver_statement.trailer_rental) %></td>
+                    <td><%= number_to_currency(@driver_statement.truck_rental) %></td>
+                    <td><%= number_to_currency(@driver_statement.other) %></td>
+                    <td><strong>- <%= number_to_currency(insurance_and_rentals) %></strong></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered table-striped table-condensed table-responsive">
+                <thead>
+                  <tr>
+                    <th>Invoice Total</th>
+                    <th>Total Miles</th>
+                    <th>GRPM</th>
+                    <th>Debits</th>
+                    <th>Credits</th>
+                    <th>Debit/Credit Total</th>
+                    <th>Paid to Driver</th>
+                    <th>NRPM</th>
+                    <th>Company Cash</th>
+                  </tr>
+                </thead>
+                <% net_after_otr_expense = driver_pay_running_total - driver_credit_debit_total %>
+                <% hrc_after_expense = (invoice_price_total - hrc_debit_total - driver_net) %>
+                <tbody>
+                  <tr>
+                    <td><%= number_to_currency(invoice_price_total) %></td>
+                    <td><%= total_miles %></td>
+                    <td><%= number_to_currency(invoice_price_total / total_miles) %></td>
+                    <td><%= number_to_currency(hrc_debit_running_total) %></td>
+                    <td><%= number_to_currency(hrc_credit_running_total) %></td>
+                    <td>- <%= number_to_currency(hrc_debit_total) %></td>
+                    <td>- <%= number_to_currency(driver_net) %></td>
+                    <td><%= number_to_currency(hrc_after_expense / total_miles) %></td>
+                    <td><strong><%= number_to_currency(hrc_after_expense) %></strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= link_to "Edit", edit_driver_user_driver_statement_path(@driver, @driver_statement),
+  class: "btn btn-info btn-xs round" %>

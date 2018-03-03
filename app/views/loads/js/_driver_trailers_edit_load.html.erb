@@ -1,0 +1,118 @@
+<!--sets the driver rate per mile based on driver selected in drop down-->
+<script>
+$(document).ready(function(){ 
+  $(function() {     
+    $("#select-driver").change(function() {  
+      $('#load_driver_user_id').val(this.value); 
+      var dropValue = $("#load_driver_user_id option:selected").text();
+      $('#load_driver_cents_pm').val(dropValue); 
+    });
+  });
+});
+</script>  
+
+
+
+
+<!--sets the trailer number based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_number').val(this.value);  
+      var trailerNumber = $("#trailer_number option:selected").text();
+      $('#the_trailer_number').html(trailerNumber);     
+    }); 
+  });
+});
+</script>
+
+<!--sets the trailer year based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_year').val(this.value);  
+      var trailerYear = $("#trailer_year option:selected").text();
+      $('#the_trailer_year').html(trailerYear);    
+    }); 
+  });
+});
+</script>
+
+
+<!--sets the trailer make based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_make').val(this.value);  
+      var trailerMake = $("#trailer_make option:selected").text();
+      $('#the_trailer_make').html(trailerMake);    
+    });
+  });
+});
+</script>
+
+<!--sets the trailer type based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_type').val(this.value);   
+      var trailerType = $("#trailer_type option:selected").text();
+      $('#the_trailer_type').html(trailerType);   
+    });
+  });
+});
+</script>
+
+<!--sets the trailer length based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_length').val(this.value);   
+      var trailerLength = $("#trailer_length option:selected").text(); 
+      $('#the_trailer_length').html(trailerLength);    
+    });
+  });
+});
+</script>
+<!--sets the trailer door type based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_door_type').val(this.value);   
+      var trailerDoor = $("#trailer_door_type option:selected").text();  
+      $('#the_trailer_door_type').html(trailerDoor);   
+    });
+  });
+});
+</script>
+
+<!--sets the trailer plate based on driver selected-->
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_plate').val(this.value);   
+      var trailerPlate = $("#trailer_plate option:selected").text();
+      $('#the_trailer_plate').html(trailerPlate);   
+    });
+  });
+});
+</script>
+
+<script> 
+$(document).ready(function(){   
+  $(function() {      
+    $("#select-driver").change(function() {  
+      $('#trailer_state').val(this.value);   
+      var trailerState = $("#trailer_state option:selected").text();
+      $('#the_trailer_state').html(trailerState);   
+    });
+  });
+});
+</script>

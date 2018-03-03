@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Load Addresses</h1>
+
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>id</th> 
+      <th>Street</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Phone</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Load</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @addresses.each do |load_address| %>
+      <tr>
+        <td><%= load_address.id %></td>
+        <td><%= load_address.street %></td>
+        <td><%= load_address.city %></td>
+        <td><%= load_address.state %></td>
+        <td><%= load_address.zip %></td>
+        <td><%= load_address.company %></td>
+        <td><%= load_address.contact %></td>
+        <td><%= load_address.phone %></td>
+        <td><%= load_address.latitude %></td>
+        <td><%= load_address.longitude %></td>     
+        <td><%= load_address.load_id %></td> 
+
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Load Address', new_load_address_path %>

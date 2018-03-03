@@ -1,0 +1,64 @@
+<h1>Active Loads</h1>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Booked On</th>
+      <th>Description</th>
+      <th>Distance (Miles)</th>
+      <th>Rate</th>
+      <th>Debits</th>
+      <th>Credits</th>
+      <th>Weight</th>
+      <th>Load Size</th>
+      <th>Truck</th>
+      <th>Trailer</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% debit_running_total = 0.00 %>
+    <% credit_running_total = 0.00 %>
+
+
+    <% total_miles = 0.00 %>
+    <% total_kilometers = 0.00 %>
+    <% driver_gross_pay_running_total = 0.00 %>
+    <% @active_loads.each do |load| %> 
+    <tr>
+      <td>
+        <%= link_to load do %>
+        <%= load.id %>
+        <% end %>
+      </td>
+      <td><%= (load.created_at.strftime("%A %B %-d, %Y")) %></td>
+      <td>
+        <%= link_to load do %>
+        <%= load.title %> 
+        <% end %>
+      </td>
+      <td><%= load.miles %>/MI <%= number_with_precision(load.kilometers, precision: 2) %>/KM</td> 
+      <td><%= number_to_currency(load.rate_to_owner_operator) %></td>
+      <td>
+        <% load.transactions.each do |transaction| %>
+        <%= number_to_currency(transaction.debit) %> 
+        <% debit_running_total = debit_running_total + transaction.debit %>
+        <% end %>
+      </td>
+      <td>
+        <% load.transactions.each do |transaction| %>
+        <%= number_to_currency(transaction.credit) %> 
+        <% credit_running_total = credit_running_total + transaction.credit %>
+        <% end %>
+      </td>
+      <td><%= load.pounds %>/lbs <%= number_with_precision(load.kilos, precision: 2)%>/kilos</td>
+      <td><%= load.load_size %></td>
+      <td><%= load.truck_make %> #<%= load.truck_number %></td>
+      <td><%= load.trailer_make %> #<%= load.trailer_number %></td>
+      <td><%= load.status_name %></td>
+    </tr>
+    <% total_miles = total_miles + load.miles %>
+    <% end %>
+  </tbody>
+</table>
+<br>

@@ -1,0 +1,8 @@
+.slider-image {
+  background: image-url("front_pages/home.jpg") no-repeat center top / cover; 
+ 
+} 
+
+.slider-image-02 { 
+  background: image_url("front_pages/home-02.jpg")  no-repeat center top / cover;
+}

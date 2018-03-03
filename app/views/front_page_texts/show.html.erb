@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>String input:</strong>
+  <%= @front_page_text.string_input %>
+</p>
+
+<p>
+  <strong>Text input:</strong>
+  <%= @front_page_text.text_input %>
+</p>
+
+<p>
+  <strong>Image input:</strong>
+  <%= @front_page_text.image_input %>
+</p>
+
+<p>
+  <strong>Front page:</strong>
+  <%= @front_page_text.front_page_id %>
+</p>
+
+<%= link_to 'Edit', edit_front_page_text_path(@front_page_text) %> |
+<%= link_to 'Back', front_page_texts_path %>

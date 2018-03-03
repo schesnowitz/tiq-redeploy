@@ -1,0 +1,3 @@
+<%= render "driver_users/company_drivers/company_driver_show" if @driver.company_driver == true && @driver.employment_status == "active" %>
+<%= render "driver_users/owner_operators/owner_operator_show" if @driver.owner_operator == true && @driver.employment_status == "active" %>
+<%= render "driver_not_active_show" if @driver.employment_status == "not_active" %>  

@@ -1,0 +1,6 @@
+<% @load_origin_addresses.each do |origin| %>
+  <% unless origin == @load_origin_addresses.where(address_category_id: 4) %>
+    <option value="<%= origin.origin_address %>"><% origin.origin_city_state %></option> 
+  <% end %>
+<% end %> 
+

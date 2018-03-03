@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "pdf", media: 'print' %>
+
+    <script>
+      function number_pages() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+  </head>
+ <body>
+   <!--<span class="page"></span> of <span class="topage"></span>-->
+    <div id="header">
+      <%= wicked_pdf_image_tag 'front_pages/logo.png' %>
+    </div>
+    <div id="content">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <p>Driver:  <%= @load.driver_user.full_name %></p>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <strong>Truck</strong>
+            <p>Make: <%= @load.truck_make %></p>
+            <p>Color: <%= @load.truck_color %></p>
+            <p>Number: <%= @load.truck_number %></p>
+            <p>Plate: <%= @load.truck_plate %></p>
+            <p>State: <%= @load.truck_state %></p>
+            </div>
+            <div class="col-xs-6">
+              <strong>Trailer</strong> 
+            <p>Make: <%= @load.trailer_make %></p>
+            <p>Number: <%= @load.trailer_number %></p>
+            <p>Plate: <%= @load.trailer_plate %></p>
+            <p>State: <%= @load.trailer_state %></p>
+            <p>Dispatcher: <%= @load.company_user.first_name %> <%= @load.company_user.email %></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel panel-warning"> 
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <p>Brokered by:  <%= @load.company_profile.company_name %></p>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <p>
+                <strong>Load ID: <%= @load.broker_shipper_load_id %></strong><br>
+                <%= @load.company_profile.street %><br>
+                <%= @load.company_profile.city %>, <%= @load.company_profile.state %><br>
+                <%= @load.company_profile.zip %>
+              </p>
+              <p>Telephone: <%= @load.company_profile.telephone %></p>
+              <p>Fax: <%= @load.company_profile.fax %></p>
+                            <p>Weight: <%= @load.weight %></p>
+              <p>Load Size: <%= @load.load_size %></p>
+              <p>Dimentions: <%= @load.dimentions %></p>
+            </div>
+            <div class="col-xs-6">
+              <p>
+                Rate: <%= number_to_currency(@load.rate_to_owner_operator) if @load.driver_user.owner_operator? %>
+              <%= number_to_currency(@load.driver_cents_pm * @load.miles) if @load.driver_user.company_driver? %>
+              </p>
+              <p>Miles: <%= @load.miles.floor %></p> 
+              <p>
+                Has multiple stops: 
+                <% if @load.has_multiple_pd? %>
+                Yes
+                <% else %> 
+                No
+                <% end %>
+              </p>
+              <p>Commodity: <%= @load.commodity %></p>
+              <p>Contact: <%= @load.broker_rep_name %></p>
+              <p>Email: <%= @load.broker_rep_email %></p>
+              <p>Phone: <%= @load.broker_rep_number %></p>
+              <p>Cell: <%= @load.broker_rep_cell %></p>
+              
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h4>
+                Load Origin 
+                <p class="pull-right">Date: <%= (@load.pick_up_date.strftime("%A %B %-d, %Y")) %></p>
+              </h4>
+            </div>
+            <div class="panel-body">
+
+              <address>
+                <strong><%= @load.shipper_company_name %></strong><br>
+                <%= @load.origin_street %><br>
+                <%= @load.origin_city  %> <%= @load.origin_state  %> <%= @load.origin_zip  %><br>
+                <small>Phone: </small><%= @load.origin_phone  %><br />
+                <small>Contact: </small><%= @load.origin_contact  %>
+              </address>
+            </div>
+            <div class="panel-footer">
+          <p>Details: <%= @load.description %></p><br>
+          <p>After Hours Instructions: <%= @load.broker_after_hours_instructions %></p>
+              <strong>Notes</strong>
+              <br> 
+              <% if @load.pick_up_notes.present? %>
+              <span class="text-red"><%= @load.pick_up_notes %></span>
+              <% else %>
+              No notes entered.
+              <% end %> 
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="page-break"></div>
+        <% @load_origin_addresses.each do |origin| %> 
+        <% unless origin.address_category_id == 4 %>
+        <div class="col-sm-6">
+          <div class="panel panel-default shadow">
+            <div class="panel-heading">
+              <h4>
+                <% if origin.address_category_id == 1 %>
+                <span class="label label-success round">
+                Pick Up
+                </span><br />
+                <p class="pull-right black"> Date: <%= origin.pick_up_date.strftime("%A %B %-d, %Y")  %></p>
+                </strong>
+              </h4>
+              <h4>
+                <% elsif origin.address_category_id == 2 %>
+                <span class="label label-primary round">
+                Delivery
+                </span><br />
+                <p class="pull-right black"> Date: <%= origin.pick_up_date.strftime("%A %B %-d, %Y")  %></p>
+                </strong>
+              </h4>
+              <h4>
+                <% elsif origin.address_category_id == 3 %>
+                <span class="label label-warning round"> 
+                Pick Up & Delivery
+                </span>
+                <p class="pull-right black"> Date: <%= origin.pick_up_date.strftime("%A %B %-d, %Y")  %></p>
+                </strong>
+                <br />
+              </h4>
+              <% end %>
+            </div>
+            <div class="panel-body">
+              <address>
+                <strong><%= origin.company %><br>
+                <%= origin.street %><br>
+                <%= origin.city  %>, <%= origin.state  %>, <%= origin.zip  %><br>
+                <small>Phone: </small><%= origin.phone  %><br />
+                <small>Contact: </small><%= origin.contact  %><br />
+              </address>
+            </div>
+            <div class="panel-footer">
+              <strong>Notes</strong>
+              <% if origin.notes.present? %>
+              <strong>Notes</strong>
+              <%= origin.notes %>  
+              <% else %>
+              No notes entered.
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+        <% if @load_origin_addresses.count > 3 %>
+        <div class="page-break"></div>
+        <% end %>
+      </div>
+      <% if @destination.present? %>               
+      <div class="col-sm-6">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h4>
+              Load Final Destination 
+              <p class="pull-right">Date: <%= @destination.pick_up_date.strftime("%A %B %-d, %Y") %></p>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <address>
+              <strong><%= @destination.company %></strong><br>
+              <%= @destination.street %><br>
+              <%= @destination.city  %> <%= @destination.state  %> <%= @destination.zip  %><br>
+              <small>Phone: </small><%= @destination.phone  %><br />
+              <small>Contact: </small><%= @destination.contact  %>
+            </address>
+          </div>
+          <div class="panel-footer">
+            <strong>Notes</strong>
+            <br>
+            <% if @destination.notes.present? %>
+            <span class="text-red"><%= @destination.notes %></span>
+            <% else %>
+            No notes entered.
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% else %>               
+      <div class="col-sm-6">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h4>
+              Load Final Destination 
+              <p class="pull-right">Date: <%= @load.delivery_date.strftime("%A %B %-d, %Y") %></p>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <address>
+              <strong><%= @load.receiver_company_name %></strong><br>
+              <%= @load.destination_street %><br>
+              <%= @load.destination_city  %> <%= @load.destination_state  %> <%= @load.destination_zip  %><br>
+              <small>Phone: </small><%= @load.destination_phone %><br />
+              <small>Contact: </small><%= @load.destination_contact %>
+            </address>
+          </div>
+          <div class="panel-footer">
+            <h4>Delivery Details</h4>
+            <br>
+            <% if @load.delivery_notes.present? %>
+            <span class="text-red"><%= @load.delivery_notes %></span>
+            <% else %>
+            No notes were entered.
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div id="footer">
+
+    </div>
+  </body>
+</html>

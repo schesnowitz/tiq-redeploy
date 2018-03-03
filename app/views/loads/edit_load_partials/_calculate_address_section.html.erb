@@ -1,0 +1,64 @@
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        City, State 
+      </th>
+      <th>
+        Location Type
+      </th>
+      <th> 
+        Kilometers
+      </th>
+      <th>
+        Miles
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% total_miles = 0 %>
+    <% total_kilometers = 0 %>
+    <% @load_origin_addresses.each do |address| %>
+    <tr>
+      <td>
+        <%= address.id %>
+      </td>
+      <td>
+        <%= link_to load_load_origin_address_path(@load, address) do %>
+        <%= address.city %>, <%= address.state %>
+        <% end %> 
+      </td>
+      <td>
+        <%= address.pick_up_delivery %> 
+      </td>
+
+      <td> 
+      <% @kilometers = address.miles * 1.60934 %> 
+        <%= number_with_precision(@kilometers, precision: 2) %>
+      </td>
+      <td>
+        <%= address.miles %>
+      </td>
+    </tr>
+    <br>
+    <% total_miles = total_miles + address.miles %>
+    <% total_kilometers = total_kilometers + @kilometers %>
+    <% end %>
+  </tbody>
+</table>
+<div class="row">
+  <div class="col-sm-3 pull-right">
+    <%= f.input :miles, label: "Total Miles" %>
+    <%= f.input :kilometers %>     
+    <input class="pull-right hidden" id="miles" value="<%= total_miles %>"></input>
+        <input class="pull-right hidden" id="kilometers" value="<%= total_kilometers %>"></input>
+  </div> 
+</div>
+<hr>
+<br>
+<div class="form-actions pull-right">
+  <%= f.button :submit, class: "btn btn-success btn-sm round" %>
+</div>

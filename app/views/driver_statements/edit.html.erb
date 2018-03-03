@@ -1,0 +1,7 @@
+<%= render 'owner_operator_form'if @driver.owner_operator == true %>
+<%= render 'owner_operator_form'if @driver.company_driver == true %> 
+
+<%= link_to 'Show',    driver_user_driver_statement_path(@driver, @driver_statement),
+          class: "btn btn-info btn-xs round" %> |
+<%= link_to 'Back', driver_user_driver_statements_path,
+          class: "btn btn-success btn-xs round" %>

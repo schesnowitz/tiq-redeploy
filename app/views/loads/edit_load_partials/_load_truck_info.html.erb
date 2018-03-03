@@ -1,0 +1,79 @@
+<div id="hideDriverEquipment">
+  <table class="table table-bordered table-condensed table-responsive">
+    <thead>
+      <tr>
+        <th>Truck Number</th>
+        <th>Truck Make</th>
+        <th>Truck Model</th>
+        <th>Truck Color</th>
+        <th>Truck Plate</th>
+        <th>Truck Plate State</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= @load.truck_number %>
+        </td>
+        <td>
+          <%= @load.truck_make %>
+        </td>
+        <td>
+          <%= @load.truck_model %>
+        </td>
+        <td>
+          <%= @load.truck_color %>
+        </td>
+        <td>
+          <%= @load.truck_plate %>
+        </td>
+        <td>
+          <%= @load.truck_state %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <table class="table table-bordered table-condensed table-responsive">
+    <thead>
+      <tr>
+        <th>Trailer Number</th>
+        <th>Trailer Make</th>
+        <th>Trailer Type</th>
+        <th>Trailer Length</th>
+        <th>Trailer Door Type</th>
+        <th>Trailer Plate</th>
+        <td>Trailer Plate State</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= @load.trailer_number %>
+        </td>
+        <td>
+          <%= @load.trailer_make %>
+        </td>
+        <td>
+          <%= @load.trailer_type %>
+        </td>
+        <td>
+          <%= @load.trailer_length %>
+        </td>
+        <td>
+          <%= @load.trailer_door_type %>
+        </td>
+        <td>
+          <%= @load.trailer_plate %>
+        </td>
+        <td>
+          <%= @load.trailer_state %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+</div>
+<div id="editDriverEquipment" class="hidden">
+  <%= render "loads/edit_load_partials/edit_driver_equipment", f: f %> 
+</div> 

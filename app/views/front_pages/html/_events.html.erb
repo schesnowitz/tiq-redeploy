@@ -1,0 +1,112 @@
+<section id="events" class="section-small bg-light-gray">
+  <!-- Events -->
+  <div class="events" id="event">
+    <div class="container">
+      <ul class="ch-grid">
+        <div class="col-md-6 col-sm-6 event-grid">
+          <li>
+            <div class="ch-item ch-img-1">
+              <div class="ch-info hand">
+                <%= link_to technology_path do %>
+                <h3>
+                  <%= @fpt101.string_input %>  
+                </h3>
+                <p>
+                  <%= @fpt105.string_input %> 
+                </p>
+                <% end %>
+              </div>
+            </div>
+          </li>
+          <div class="event-info">
+            <p class="description fadeIn wow" data-wow-duration="1.3s" data-wow-delay="0.2s">
+              <%= link_to technology_path do %>
+                          
+             <%= truncate @fpt101.text_input, length: 150 %> 
+            </p>
+              
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 event-grid">
+          <li>
+            <div class="ch-item ch-img-2">
+              <div class="ch-info hand">
+                <%= link_to strategy_path do %>
+                <h3>
+                  <%= @fpt102.string_input %> 
+                </h3>
+                <p>
+                  <%= @fpt106.string_input %> 
+                </p>
+                <% end %>
+              </div>
+            </div>
+          </li>
+          <div class="event-info">
+            <p class="title bounceInUp wow" data-wow-duration="1.3s" data-wow-delay="0.4s">   
+              <%= link_to strategy_path do %>
+              <%= truncate @fpt102.text_input, length: 150 %> 
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 event-grid">
+          <li>
+            <div class="ch-item ch-img-3">
+              <div class="ch-info hand">
+                <%= link_to safety_path do %>
+                <h3>
+                  <%= @fpt103.string_input %> 
+                </h3>
+                <p>
+                  <%= @fpt107.string_input %> 
+                </p>
+                <% end %>
+              </div>
+            </div>
+          </li>
+          <div class="event-info">
+            <p class="title bounceInUp wow" data-wow-duration="1.3s" data-wow-delay="0.6s">
+              <%= link_to safety_path do %>
+              <%= truncate @fpt103.text_input, length: 150 %> 
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 event-grid">
+          <li>
+            <div class="ch-item ch-img-4">
+              <div class="ch-info hand">
+                <%= link_to support_path do %>
+                <h3>
+                  <%= @fpt104.string_input %> 
+                </h3>
+                <p>
+                  <%= @fpt114.string_input %>   
+                </p> 
+                <% end %>
+              </div>
+            </div>
+          </li>
+          <div class="event-info">
+            <p class="description fadeIn wow" data-wow-duration="1.3s" data-wow-delay="0.4s">
+              <%= link_to support_path do %>
+              <%= truncate @fpt104.text_input, length: 150 %> 
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="clearfix"> </div>
+      </ul>
+    </div>
+  </div>
+  <!-- //Events -->
+  
+ 
+  
+</section>
+
+
+

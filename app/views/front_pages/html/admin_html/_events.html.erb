@@ -1,0 +1,102 @@
+<strong>Admin edit view</strong>
+<section id="#events" class="section-small bg-light-gray"> 
+	<!-- Events -->
+	<div class="events" id="event">
+
+		<div class="container">
+			<ul class="ch-grid">
+				<div class="col-md-6 col-sm-6 event-grid">
+					<li>
+						<div class="ch-item ch-img-1"> 
+							<div class="ch-info">
+								<h3>
+								<%= link_to @fpt101.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt101.id, :anchor => "editString") %> 
+								</h3>
+								<p>
+								  <%= link_to @fpt105.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt105.id, :anchor => "editString") %> 
+								</p>
+							</div>
+						</div>
+					</li>
+					<div class="event-info">
+						<p>
+							<%= link_to edit_front_page_front_page_text_path(@front_page.id, @fpt101.id, :anchor => "editText") do %>
+							<%=  truncate @fpt101.text_input, length: 150 %> 
+							<% end %>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6 event-grid">
+					<li>
+						<div class="ch-item ch-img-2">
+							<div class="ch-info">
+							  
+								<h3>
+								<%= link_to @fpt102.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt102.id, :anchor => "editString") %> 
+								</h3>
+								<p>
+									<%= link_to @fpt106.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt106.id, :anchor => "editString") %> 
+								</p>
+							</div>
+						</div>
+					</li>
+					<div class="event-info">
+						<p>
+							<%= link_to edit_front_page_front_page_text_path(@front_page.id, @fpt102.id, :anchor => "editText") do %>
+							<%= truncate @fpt102.text_input, length: 150 %> 
+							<% end %>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6 event-grid">
+					<li>
+						<div class="ch-item ch-img-3">
+							<div class="ch-info">
+								<h3>
+								<%= link_to @fpt103.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt103.id, :anchor => "editString") %> 
+								</h3>
+								<p>
+									<%= link_to @fpt107.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt107.id, :anchor => "editString") %> 
+								</p>
+							</div>
+						</div>
+					</li>
+					<div class="event-info">
+						<p>
+							<%= link_to edit_front_page_front_page_text_path(@front_page.id, @fpt103.id, :anchor => "editText") do %>
+							<%=  truncate @fpt103.text_input, length: 150 %> 
+							<% end %>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6 event-grid">
+					<li>
+						<div class="ch-item ch-img-4">
+							<div class="ch-info">
+								<h3>
+								<%= link_to @fpt104.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt104.id, :anchor => "editString") %> 
+								</h3>
+								<p>
+									<%= link_to @fpt114.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt114.id, :anchor => "editString") %> 
+								</p>
+							</div>
+						</div>
+					</li>
+					<div class="event-info">
+							<p>
+							<%= link_to edit_front_page_front_page_text_path(@front_page.id, @fpt104.id, :anchor => "editText") do %>
+							<%=  truncate @fpt104.text_input, length: 150 %> 
+							<% end %>
+						</p>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</ul>
+		</div>
+	</div>
+	<!-- //Events -->
+
+	</section>

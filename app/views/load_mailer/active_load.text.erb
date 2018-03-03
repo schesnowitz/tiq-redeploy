@@ -1,0 +1,6 @@
+<%= @load.driver_user.first_name %>, You got a new load!
+
+<%= @load.title %>  
+load = Load.last
+mail = LoadMailer.active_load(load)
+mail.deliver_now

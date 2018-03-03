@@ -1,0 +1,103 @@
+<section class="no-padding" id="footer">
+  <!-- Footer -->
+  <strong>Admin edit view</strong>
+  <footer class="footer section-small"> 
+    <div class="container">
+      <div class="row">
+        <!-- Footer Column -->
+        <div class="col-md-3 col-xs-6 footer-col">
+          <!-- Footer Logo -->
+          <div class="logo">
+            <% image_tag "front_pages/logo.png", alt: "" %>
+          </div>
+          <!-- /Footer Logo -->
+          <!-- Footer Text -->
+          <p class="text">
+            <% link_to @fpt73.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt73.id, :anchor => "editString") %>
+          </p>
+          <!-- /Footer Text -->
+          <hr>
+          <!-- Copyright -->
+          <p class="copyright">
+            Copyright &copy; <%= Time.now.strftime("%Y") %>
+            <strong>
+            <%= link_to @fpt1.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt1.id, :anchor => "editString") %>
+            </strong>
+          </p>
+          <!-- /Copyright -->
+          <!-- Footer Social -->
+          <ul class="social-inline">
+          <%= render "front_pages/html/social_links" %>
+
+          </ul>
+          <!-- /Footer Social -->
+        </div>
+        <!-- /Footer Column -->
+        <!-- Footer Column -->
+        <div class="col-md-3 col-xs-6 footer-col">
+          <h3 class="title">
+            <%= link_to @fpt75.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt75.id, :anchor => "editString") %> 
+            <span class="text-theme">
+            <%= link_to @fpt76.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt76.id, :anchor => "editString") %>
+            </span>
+          </h3>
+          <!-- Footer Post -->
+          <!--<div class="media post">-->
+          <!--  <div class="media-left">-->
+          <!--    <div class="image">-->
+          <!--      -->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <div class="media-body">-->
+          <!--    <p class="text">-->
+                
+          <!--    </p>-->
+          <!--    <a href="#"></a>-->
+          <!--  </div>-->
+          <!--</div>-->
+          <!-- /Footer Post -->
+          <!-- Footer Post -->
+          <!--<div class="media post">-->
+          <!--  <div class="media-left">-->
+          <!--    <div class="image">-->
+          <!--     -->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <div class="media-body">-->
+          <!--    <p class="text">-->
+               
+          <!--    </p>-->
+          <!--    <a href="#"></a>-->
+          <!--  </div>-->
+          <!--</div>-->
+          <!-- /Footer Post -->
+        </div>
+        <!-- /Footer Column -->
+        <!-- Footer Column -->
+        <div class="col-md-2 col-xs-6 footer-col">
+          <h3 class="title">Site Menu</h3>
+          <!-- Footer Menu -->
+          <ul class="menu"> 
+            <%= render "front_pages/html/admin_html/navigation_links" %>
+          </ul>  
+          <!-- /Footer Menu -->
+        </div>
+        <!-- /Footer Column -->
+        <!-- Footer Column -->
+        <div class="col-md-4 col-xs-6 footer-col">
+         <%= render "front_pages/html/address" %>
+          </div>
+          <!-- /Footer Signup Form -->
+          <hr>
+          <!-- Footer Tags -->
+          <div class="tags">
+
+          </div>
+          <!-- /Footer Tags -->
+        </div>
+        <!-- /Footer Column -->
+      </div>
+    </div>
+  </footer>
+</section>
+<!-- /Footer -->

@@ -1,0 +1,53 @@
+<% if @load_origin_address.nil? %>
+<input id="originStreet"  class="combineOrigin hide"value="<%= @load.origin_street %>" readonly/>
+<input id="originCity"  class="combineOrigin hide" value="<%= @load.origin_city %>"readonly/>
+<input id="originState"  class="combineOrigin hide" value="<%= @load.origin_state %>"readonly/>
+<input id="originZip"  class="combineOrigin hide" value="<%= @load.origin_zip %>"readonly/>  
+
+<% else %>
+<input id="originStreet"  class="combineOrigin hide" value="<%= @load_origin_address.street %>" readonly/>
+<input id="originCity"  class="combineOrigin hide" value="<%= @load_origin_address.city %>" readonly />
+<input id="originState"  class="combineOrigin hide" value="<%= @load_origin_address.state %>" readonly/>
+<input id="originZip"  class="combineOrigin hide" value="<%= @load_origin_address.zip %>" readonly/>  
+<% end %>
+<br />
+<input id="destinationStreet"  class="combineDestination hide"readonly  /> 
+<input id="destinationCity"  class="combineDestination hide"readonly /> 
+<input id="destinationState"  class="combineDestination hide" readonly/>
+<input id="destinationZip"  class="combineDestination hide"readonly />
+ 
+
+
+
+<script>
+  $(function() {                                      
+    
+    $("#load_origin_address_street").change(function() {                  
+        $('#destinationStreet').val(this.value);                 
+    });
+});
+</script>
+    
+<script>
+  $(function() {                                       
+    $("#load_origin_address_city").change(function() {                  
+        $('#destinationCity').val(this.value);                  
+    });
+});
+</script>
+
+<script>
+  $(function() {                                       
+    $("#load_origin_address_state").change(function() {                  
+        $('#destinationState').val(this.value);                  
+    });
+});
+</script>
+<script>
+  $(function() {                                       
+    $("#load_origin_address_zip").change(function() {                 
+        $('#destinationZip').val(this.value);                  
+    });
+});
+</script>
+

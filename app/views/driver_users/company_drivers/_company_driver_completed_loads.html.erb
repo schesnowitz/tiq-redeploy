@@ -1,0 +1,101 @@
+<% if @completed_loads.present? %>
+<h1>Completed Loads</h1>
+<%= link_to "Create Statement", 
+  new_driver_user_driver_statement_path(@driver),
+  class: 'btn btn-primary btn-xs round' if current_company_user and @completed_loads.present? %>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Booked On</th>
+      <th>Description</th>
+      <th>Rate</th>
+      <th>Distance (Miles)</th>
+      <th>Gross Pay</th>
+      <th>Debits</th>
+      <th>Credits</th>
+      <th>Truck</th>
+      <th>Trailer</th>
+      <th>Load Size</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% debit_running_total = 0.00 %>
+    <% credit_running_total = 0.00 %>
+    <% expense_running_total = 0.00 %>
+    <% company_load_running_total = 0.00 %>
+    <% total_miles = 0 %>
+    <% gross_driver_pay_running_total = 0.00 %>
+    <% @completed_loads.each do |load| %>
+    <tr>
+      <td>
+        <%= link_to load do %>
+        <%= load.id %>
+        <% end %>
+      </td>
+      <td><%= (load.created_at.strftime("%A %B %-d, %Y")) %></td>
+      <td>
+        <%= link_to load do %>
+        <%= load.title %>  
+        <% end %>
+      </td>
+      <td><%= number_to_currency(load.driver_cents_pm) %></td>
+      <td><%= load.miles %> </td>
+      <td><%= number_to_currency(load.driver_cents_pm * load.miles) %> </td>
+      <td>
+        <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance"  %> 
+        <%= number_to_currency(transaction.debit) %> 
+        <% debit_running_total = debit_running_total + transaction.debit %>
+        <% end %>
+        <% end %>
+      </td>
+      <td>
+        <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
+        <%= number_to_currency(transaction.credit) %> 
+        <% credit_running_total = credit_running_total + transaction.credit %>
+        <% end %>
+        <% end %>
+      </td>
+      <td><%= load.truck_make %> #<%= load.truck_number %></td>
+      <td><%= load.trailer_make %> #<%= load.trailer_number %></td>
+      <td><%= load.load_size %></td>
+      <td><%= load.status_name %></td>
+    </tr>
+    <% total_pay_per_mile = (load.driver_cents_pm * load.miles) %>
+    <% gross_driver_pay_running_total = gross_driver_pay_running_total + total_pay_per_mile %>
+    <% total_miles = total_miles + load.miles %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<% driver_net = gross_driver_pay_running_total - expense_running_total %>
+<% debit_total = debit_running_total - credit_running_total %>
+<% cd_net = (gross_driver_pay_running_total - debit_total) %>
+<br />
+<br /> 
+<table class="table table-bordered table-striped table-condensed table-responsive">
+  <thead>
+    <tr>
+      <th>Total Miles</th>
+      <th>Gross Pay</th>
+      <th>Debits</th>
+      <th>Credits</th>
+      <th>Debit/Credit Total</th>
+      <th>Payment Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= total_miles %></td>
+      <td><%= number_to_currency(gross_driver_pay_running_total) %></td>
+      <td><%= number_to_currency(debit_running_total) %></td>
+      <td><%= number_to_currency(credit_running_total) %></td>
+      <td>- <%= number_to_currency(debit_total) %></td>
+      <td><strong><%= number_to_currency(cd_net) %></strong></td>
+    </tr>
+  </tbody>
+</table>
+<% else %>
+<h1>No loads for this pay cycle</h1>
+<% end %> 

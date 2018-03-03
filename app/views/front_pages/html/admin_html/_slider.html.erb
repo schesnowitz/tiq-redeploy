@@ -1,0 +1,55 @@
+<!-- Slider --> 
+<strong>Admin edit view</strong>
+<section class="no-padding" id="home">
+  <div class="slider owl-carousel owl-theme">
+    <!-- Slide -->
+    <div class="item mask slider-image"  data-stellar-background-ratio="0.4">
+      <div class="container height-100p">
+        <div class="row height-100p">
+          <div class="col-sm-6 col-md-6 height-100p bounceInLeft wow" data-wow-duration="1.3s" data-wow-delay="0.3s" data-stellar-ratio="0.7">
+            <div class="vertical-middle">
+              <h1 class="text-white"><%= link_to @fpt4.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt4.id, :anchor => "editString") %>  
+                <span class="text-theme"><%= link_to @fpt5.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt5.id, :anchor => "editString") %></span>
+              </h1>
+              <div class="text-white h4">
+                <%= link_to @fpt80.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt80.id, anchor: "editString") %>
+              </div>
+              <%= link_to @fpt1.text_input, edit_front_page_front_page_text_path(@front_page.id, @fpt1.id, anchor: "editText") %> 
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-md-offset-2 height-100p bounceInRight wow" data-wow-duration="1.3s" data-stellar-ratio="0.8">
+            <div class="vertical-middle">
+              <% image_tag("front_pages/devices.png", class:"img-responsive") %> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Slide -->
+    <!-- Slide -->
+    <div class="item mask slider-image-02" data-stellar-background-ratio="0.4">
+      <div class="container height-100p">
+        <div class="row height-100p">
+          <div class="col-sm-6 col-md-6 height-100p bounceInLeft wow" data-wow-duration="1.3s" data-wow-delay="0.3s" data-stellar-ratio="0.7">
+            <div class="vertical-middle">
+              <h1 class="text-white"><%= link_to @fpt7.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt7.id, anchor: "editString") %> 
+                <span class="text-theme"><%= link_to @fpt8.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt8.id, anchor: "editString") %></span>
+              </h1>
+              <div class="text-white h4">
+                <%= link_to @fpt81.string_input, edit_front_page_front_page_text_path(@front_page.id, @fpt81.id, anchor: "editString") %>
+              </div>
+                 <%= link_to @fpt2.text_input, edit_front_page_front_page_text_path(@front_page.id, @fpt2.id, anchor: "editText") %>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-md-offset-2 height-100p bounceInRight wow" data-wow-duration="1.3s" data-stellar-ratio="0.8">
+            <div class="vertical-middle">
+              <% image_tag("front_pages/devices.png", class:"img-responsive") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Slide -->
+  </div>
+  <!-- /Slider -->
+</section> 

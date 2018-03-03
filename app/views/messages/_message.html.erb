@@ -1,0 +1,47 @@
+
+
+<% if message.inbound == false %>
+<div class="ui card message">
+  <div class="media-body">
+    <div class="mar-btm">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <a href="#" class="btn-link text-semibold media-heading box-inline"> </a>
+            <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> 
+              <%= message.sent_received %> 
+              by <%= message.user %>
+              on <%= local_time(message.created_at, format: '%B %e, %Y %l:%M%P %Z') %> 
+            </p>
+          </div>
+          <div class="panel-body">
+            <p><%= message.text %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %> 
+<% if message.inbound == true %>
+<div class="ui card message">
+  <div class="media-body">
+    <div class="mar-btm">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <a href="#" class="btn-link text-semibold media-heading box-inline"> </a>
+            <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> 
+              <%= message.sent_received %> 
+              on <%= local_time(message.created_at, format: '%B %e, %Y %l:%M%P %Z') %> 
+            </p>
+          </div>
+          <div class="panel-body">
+            <p><%= message.text %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,78 @@
+<input id="originStreet"  class="combineOrigihiddenn hidden" value="<%= @load.origin_street %>" />
+<input id="originCity"  class="combineOrigin hidden" value="<%= @load.origin_city %>" />
+<input id="originState"  class="combineOrigin hidden" value="<%= @load.origin_state %>" />
+<input id="originZip"  class="combineOrigin hidden" value="<%= @load.origin_zip %>" />
+<br />
+<input id="destinationStreet"  class="combineDestination hidden" value="<%= @load.destination_street %>"/>  
+<input id="destinationCity"  class="combineDestination hidden" value="<%= @load.destination_city %>"/>
+<input id="destinationState"  class="combineDestination hidden" value="<%= @load.destination_state %>"/>
+<input id="destinationZip"  class="combineDestination hidden" value="<%= @load.destination_zip %>"/>
+
+<script>
+$(document).ready(function() {
+    $("#load_origin_street").change(function() {                  
+        $('#originStreet').val(this.value);                 
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {                                     
+    $("#load_origin_street").change(function() {                  
+        $('#originStreet').val(this.value);                 
+    });
+});
+</script>
+    
+<script>
+$(document).ready(function() {                                      
+    $("#load_origin_city").change(function() {                  
+        $('#originCity').val(this.value);                  
+    });
+});
+</script>
+<script>
+$(document).ready(function() {                                     
+    $("#load_origin_state").change(function() {                  
+        $('#originState').val(this.value);                  
+    });
+});
+</script>
+<script>
+$(document).ready(function() {                                    
+    $("#load_origin_zip").change(function() {                 
+        $('#originZip').val(this.value);                  
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {                                     
+    $("#load_destination_street").change(function() {                   
+        $('#destinationStreet').val(this.value);                 
+    });
+});
+</script>
+    
+<script>
+$(document).ready(function() {                                      
+    $("#load_destination_city").change(function() {                  
+        $('#destinationCity').val(this.value);                  
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {                                     
+    $("#load_destination_state").change(function() {                  
+        $('#destinationState').val(this.value);                  
+    });
+});
+</script>
+<script>
+$(document).ready(function() {                                      
+    $("#load_destination_zip").change(function() {                  
+        $('#destinationZip').val(this.value);                  
+    });
+});
+</script>

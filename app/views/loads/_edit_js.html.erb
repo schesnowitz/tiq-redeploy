@@ -1,0 +1,73 @@
+
+<script>
+$(document).ready(function(){
+    $("#load_has_multiple_pd").click(function(){
+        $("#idToHide, #idToHide2, #idToHide3").fadeToggle( "slow", "linear" ); 
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){ 
+  $(function() {     
+    $("#select-driver").change(function() {  
+      $('#load_driver_user_id').val(this.value); 
+      var dropValue = $("#load_driver_user_id option:selected").text();
+      $('#load_driver_cents_pm').val(dropValue); 
+    });
+  });
+});
+</script>
+
+<script>
+  $( window ).ready(function() { 
+    $("#load_percentage_id").change(function() {
+      var percentDeducted = $("#load_percentage_id option:selected").text();   
+            var invoicePrice = $("#load_invoice_price").val();   
+    $("#load_percent_coverted_to_dollars").val(percentDeducted * invoicePrice);  
+
+    });
+});
+</script>
+
+<script>
+$(document).ready(function(){  
+
+  
+  $("#load_invoice_price, #load_booking_fee, #load_percentage_id").change(function () {
+
+    var loadInvoicePrice = parseFloat($("#load_invoice_price").val());    
+    var loadBookingFee = parseFloat($("#load_booking_fee").val());   
+    var loadRateAfterPercent = parseFloat($("#load_percent_coverted_to_dollars").val());   
+    var total = parseFloat(loadInvoicePrice - loadBookingFee - loadRateAfterPercent);
+
+      $("#load_rate_to_owner_operator").val(total);    
+      }).change();
+
+  });
+</script>
+
+
+
+
+
+

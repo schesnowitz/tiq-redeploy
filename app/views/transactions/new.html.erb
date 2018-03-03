@@ -1,0 +1,6 @@
+<h2>New Expense for <%= @load.title %>
+</h2>
+
+<%= render 'form', load_expense: @load_expense %>
+<br />
+<%= link_to 'Back To Load', load_path(@load), class: "btn btn-info btn-sm round" %>

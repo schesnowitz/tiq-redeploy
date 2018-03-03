@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Front Page Texts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>String input</th>
+      <th>Text input</th>
+      <th>Image input</th>
+      <th>Front page</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @front_page_texts.each do |front_page_text| %>
+      <tr>
+        <td><%= front_page_text.string_input %></td>
+        <td><%= front_page_text.text_input %></td>
+        <td><%= front_page_text.image_input %></td>
+        <td><%= front_page_text.front_page_id %></td>
+        <td><%= link_to 'Show', front_page_text %></td>
+        <td><%= link_to 'Edit', edit_front_page_text_path(front_page_text) %></td>
+        <td><%= link_to 'Destroy', front_page_text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Front Page Text', new_front_page_text_path %>
+
+
+<%= render "front_pages/html/navigation" %>
+<%= render "front_pages/html/slider" %>
+
+
+
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+
+
+
+
+<!-- Main -->
+<main class="main-container">
+<%= render "front_pages/html/about" %>
+<%= render "front_pages/html/projects" %>
+<%= render "front_pages/html/features" %>
+<%= render "front_pages/html/statistics" %>   
+<%= render "front_pages/html/best_features" %>    
+<%= render "front_pages/html/testimonials" %> 
+</main>
+<!-- /Main -->
+<% render "front_pages/html/footer" %>  
+
+
+<!-- Scroll To Top -->
+<div id="scroll-to-top" class="scroll-to-top">
+    <i class="icon fa fa-angle-up"></i>
+</div>
+<!-- /Scroll To Top -->

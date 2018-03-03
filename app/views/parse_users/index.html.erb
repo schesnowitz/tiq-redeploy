@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Parse Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Username</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parse_users.each do |parse_user| %>
+      <tr>
+        <td><%= parse_user.email %></td>
+        <td><%= parse_user.password %></td>
+        <td><%= parse_user.username %></td>
+        <td><%= link_to 'Show', parse_user %></td>
+        <td><%= link_to 'Edit', edit_parse_user_path(parse_user) %></td>
+        <td><%= link_to 'Destroy', parse_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Parse User', new_parse_user_path %>

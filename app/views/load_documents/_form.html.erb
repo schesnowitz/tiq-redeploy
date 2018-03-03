@@ -1,0 +1,14 @@
+<%= simple_form_for [@load, @load_document] do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :file_type, collection: ApplicationRecord::LoadDocumentType, 
+    include_blank: true, placeholder: "Document Type" %> 
+    <%= f.input :doc_file, as: :file, label: "Add Image/PDF" %>
+    <%= f.input :note %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

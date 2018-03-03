@@ -1,0 +1,42 @@
+<div class="action-buttons">
+  <div class="row">
+    <div class="col-xs-4"> 
+      <%= link_to "Update Driver", edit_user_path(@driver), 
+        class: "btn btn-success btn-sm round" if current_company_user.try(:admin?) %> 
+    </div>
+    <div class="col-xs-4">
+
+    </div>
+    <div class="col-xs-4">
+    </div>
+  </div>
+</div>
+<div class="section">
+  <h3>Equipment</h3>
+  <p>
+
+  </p>
+    <% if @driver.truck.present? %>  
+    <%= link_to driver_user_truck_path(@driver, @truck) do %>   
+    <%= @driver.truck.year.strftime("%Y") %>
+    <%= @driver.truck.make %>
+    <%= @driver.truck.model %>
+
+    <% end %>
+    <% end %>
+    <% if not @driver.truck.present? %> 
+    <%= link_to "Assign a Truck", trucks_path %> 
+    <% end %>
+  <p>
+    <% if @driver.trailer.present? %>  
+    <%= link_to driver_user_trailer_path(@driver, @trailer) do %>   
+    <%= @driver.trailer.year.strftime("%Y") %>
+    <%= @driver.trailer.make %>
+    <%= @driver.trailer.model %>
+    <% end %>
+    <% end %>
+    <% if not @driver.trailer.present? %>  
+    <%= link_to "Assign a Trailer", trailers_path %> 
+    <% end %>
+  </p>
+</div>

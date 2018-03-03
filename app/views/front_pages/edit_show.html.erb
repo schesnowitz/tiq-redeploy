@@ -1,0 +1,29 @@
+<!--ADMIN Section-->
+
+<% if current_company_user && current_company_user.admin? %> 
+
+<%= render "front_pages/html/admin_html/navigation" %>
+ 
+  
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+
+<main class="main-container">
+<%= render "front_pages/html/admin_html/slider" %> 
+<%= render "front_pages/html/admin_html/about" %> 
+<%= render "front_pages/html/admin_html/events" %>
+<% render "front_pages/html/admin_html/flip_cards" %>   
+<!--< render "front_pages/html/features" %> -->
+<!--< render "front_pages/html/statistics" %>   -->
+<!--< render "front_pages/html/best_features" %>    -->
+<%= render "front_pages/html/admin_html/partners" %> 
+</main>
+<%= render "front_pages/html/admin_html/footer" %>
+
+<div id="scroll-to-top" class="scroll-to-top">
+    <i class="icon fa fa-angle-up"></i>
+</div>
+
+
+<% end %>

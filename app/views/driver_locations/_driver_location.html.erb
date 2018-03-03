@@ -1,0 +1,83 @@
+<div class="ui card message shadow">
+  <div class="media-body">
+    <div class="mar-btm">
+      <div class="col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <a href="#" class="btn-link text-semibold media-heading box-inline"> </a>
+            <p class="text-muted text-sm"><i class="fa fa-map-marker fa-lg"></i> 
+              <strong><%= @driver.first_name %>'s Location: <%= local_time (@driver_location.parse_created_at) %></strong>
+            </p>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-6">
+                <p>
+                  <strong>Mobile ID:</strong>
+                  <%= @driver_location.the_parse_id %> 
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <p>
+                  <strong>ID:</strong>
+                  <%= @driver_location.id %> 
+                </p> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <p>
+                  <strong>Latitude:</strong>
+                  <%= @driver_location.latitude %>
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <p>
+                  <strong>Longitude:</strong>
+                  <%= @driver_location.longitude %>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <p>
+                  <strong>Speed:</strong>
+                  <%= @driver_location.speed %>
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <p>
+                  <strong>Bearing:</strong>
+                  <%= @driver_location.bearing %>
+                </p>
+              </div>
+            </div>
+            <style>
+              #map {
+              height: 400px;
+              width: 100%;
+              }
+            </style>
+           <div id="map"></div>
+              <script>
+                function initMap() {
+                  var driverLocation = {lat: <%= @driver_location.latitude %>, lng: <%= @driver_location.longitude %>}; 
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: driverLocation
+                  });
+                  var marker = new google.maps.Marker({
+                    position: driverLocation,
+                    map: map,
+                        title: '<%= @driver.first_name %> is here',  
+                icon: '<%= image_path('driver-marker.png') %>'  
+                  });
+                }
+              </script>
+              <% link_to 'Back', driver_user_path(@driver) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

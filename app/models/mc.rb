@@ -1,0 +1,7 @@
+class Mc < ApplicationRecord
+end
+
+
+
+
+

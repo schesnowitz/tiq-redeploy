@@ -1,0 +1,29 @@
+
+<%= simple_form_for [@load, Transaction.new] do |f| %> 
+<%= f.error_notification %> 
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group input-group">
+
+      <%= f.input :expense_type, collection: Load::ExpenseType, label: "Expense Type" %> 
+      <%= f.input :business_name, label: "Business Name" %> 
+      <%= f.input :debit, label: "Debit Amount" %>
+      <%= f.input :credit, label: "Credit Amount" %>
+      
+
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group input-group">
+      <%= f.input :street, label: "Street" %>
+      <%= f.input :city, label: "City" %>
+      <%= f.input :state, collection: ApplicationRecord::States, 
+        label: "Provence/State" %>
+      <%= f.input :zip, label: "Postal Code" %>
+    </div>
+  </div>
+</div>
+<%= f.button :submit, "Enter Transaction",
+class: "btn btn-success btn-sm round"  %>
+
+<% end %>

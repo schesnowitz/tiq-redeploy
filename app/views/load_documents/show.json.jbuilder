@@ -1,0 +1,1 @@
+json.partial! "load_documents/load_document", load_document: @load_document

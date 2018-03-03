@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver_email: MyString
+  parse_id: MyString
+  latitude: 1.5
+  longitude: 1.5
+  speed: 1.5
+  bearing: 1.5
+  parse_created_at: 2017-07-30
+  parse_updated_at: 2017-07-30
+  driver_user_id: 1
+
+two:
+  driver_email: MyString
+  parse_id: MyString
+  latitude: 1.5
+  longitude: 1.5
+  speed: 1.5
+  bearing: 1.5
+  parse_created_at: 2017-07-30
+  parse_updated_at: 2017-07-30
+  driver_user_id: 1

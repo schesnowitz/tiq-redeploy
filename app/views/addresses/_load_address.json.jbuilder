@@ -1,0 +1,2 @@
+json.extract! load_address, :id, :address_type, :street, :latitude, :longitude, :street2, :city, :state, :zip, :company, :contact, :phone, :load_id, :created_at, :updated_at
+json.url load_address_url(load_address, format: :json)

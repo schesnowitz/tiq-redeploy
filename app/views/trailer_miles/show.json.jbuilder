@@ -1,0 +1,1 @@
+json.partial! "miles/mile", mile: @mile

@@ -1,0 +1,108 @@
+<h2><small>Editing <%= @user.full_name %></small></h2>
+<%= simple_form_for @user do |f| %>
+<%= f.error_notification %>
+<div class="row">
+  <div class="col-md-8 col-xs-offset-2 shadow">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-inputs">
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.input :first_name, required: true, autofocus: true %>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :last_name, required: true %>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :email, required: true %>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.input :cellphone %>  
+            </div>
+            <div class="col-md-4">
+              <%= f.input :telephone %> 
+            </div>
+            <div class="col-md-4">
+              <%= f.input :extention %>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-3">
+              <%= f.input :street %> 
+            </div>
+            <div class="col-md-3">
+              <%= f.input :city %> 
+            </div>
+            <div class="col-md-3">
+              <%= f.input :state, collection: ApplicationRecord::States %> 
+            </div>
+            <div class="col-md-3">
+              <%= f.input :zip %> 
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-3">
+              <%= f.input :emergency_contact %> 
+            </div>
+            <div class="col-md-3">
+              <%= f.input :emergency_contact_number %>  
+
+            </div>
+            <div class="col-md-6">
+                  <label>Change User TimeZone</label>
+                  <br />
+                  <%= f.time_zone_select :time_zone, 
+                  ActiveSupport::TimeZone.us_zones %>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.input :profile_image, as: :file, label: "Profile Image" %>  
+          </div>
+          <div class="col-md-4">
+            <%= f.input :profile_bg, as: :file, label: "Profile Background" %> 
+          </div>
+          <div class="col-md-4">
+            <% if !@user.type == "DriverUser" %>
+            <%= f.input :admin %>                                          
+            <%= f.input :company_profile_admin %>
+            <%= f.input :dispatcher %>
+            <%= f.input :office %>
+            <%= f.input :maintenance %>
+            <%= f.input :shipping_receiving %>
+            <% end %>
+            <%= f.input :employment_status, collection: ApplicationRecord::EmploymentStatus %>
+            <% if @user.type == "DriverUser" %>
+            <%= f.input :company_driver %>                              
+            <%= f.input :owner_operator %>                              
+            <%= f.input :owner_operator_pbm %>
+            <%= f.collection_select :driver_rate_id, DriverRate.all, :id, :amount %> 
+            <br />
+           <% end %>
+
+          </div>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, class: "btn btn-primary btn-xs round" %>
+          <br />
+          <br />
+          <%= link_to "Back", :back, class: "btn btn-info btn-xs round" %>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %> 
+
+
+
+
+
