@@ -1,10 +1,12 @@
 class LoadsController < ApplicationController
   before_action :validate_admin_user, only: [:destroy]
-  before_action :validate_company_user, only: [:edit, :update, :new, :new_multiple, :destroy] 
+  before_action :validate_company_user
   before_action :set_load, only: [:show, :edit, :update, :destroy, :send_pdf]
 
- 
+  
+  
   def index
+
     @all_loads = Load.all
   	@search_loads = @all_loads.search(params[:q])
   	@loads = @search_loads.result.order(:id).page(params[:page]).per(1000)
@@ -19,7 +21,7 @@ class LoadsController < ApplicationController
 
 
   def show  
-
+    
     @destination = @load.load_origin_addresses.where(["address_category_id = ?", 4]).last  
     
     if @load.has_multiple_pd? && !@destination.present? 
@@ -45,6 +47,13 @@ class LoadsController < ApplicationController
 
 
   def new 
+    if !current_company_user.employment_status == "active"
+      redirect_to root_path
+    flash[:danger] = "Sorry #{current_user.first_name}, The function requested may not exist or you are not authorized to access the function."
+
+    end
+
+
     @load = current_company_user.loads.build 
     @load.load_origin_addresses.build
     @driver = DriverUser.where(["employment_status = ?", "active"]) 
@@ -54,6 +63,7 @@ class LoadsController < ApplicationController
 
 
   def edit
+    
     @load_driver = @load.driver_user
     @driver = DriverUser.where(["employment_status = ?", "active"])
     @company_user = current_company_user
@@ -146,9 +156,6 @@ class LoadsController < ApplicationController
     def set_load
       @load = Load.find(params[:id])
     end
-    
- 
-  
 
 
 

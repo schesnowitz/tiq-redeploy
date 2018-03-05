@@ -19,7 +19,7 @@ deploy.config:
   before_live:
     web.main:
       - rake db:setup_or_migrate
-      - rake db:seeds
+      # - rake db:seeds
 data.db:
   image: nanobox/postgresql:9.5
 

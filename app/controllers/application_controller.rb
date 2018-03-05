@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   def driver_list
     @driver_list = DriverUser.where(["employment_status = ?", "active"]).order('first_name ASC')
   end
+  
 
 
   def national_average_diesel 
@@ -33,10 +34,17 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   private
+    # def validate_active_user
+    #   if current_user.employment_status == 'not_active'
+    #     redirect_to root_path
+    #   flash[:danger] = "Sorry #{current_user.first_name}, The function requested may not exist or you are not authorized to access the function."
+    #   end
+    # end
+
     def validate_company_user
-      if !current_company_user
+      if !current_company_user || current_user.employment_status == 'not_active'
         redirect_to root_path
-      flash[:danger] = " #{current_user.first_name}, The function requested does not exist or you are not authorized for access."
+      flash[:danger] = " #{current_user.first_name}, The function requested does not exist or you are not authorized to access it."
       end
     end
 

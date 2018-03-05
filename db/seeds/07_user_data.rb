@@ -22,7 +22,7 @@ kathy = CompanyUser.create(
   password_confirmation: "password",  
   first_name: "Kathy",
   last_name: "Rodriguez",
-  email: "kathy@@transportationiq.com",
+  email: "kathy@transportationiq.com",
   cellphone: "7169864010",  
   street: Faker::Address.street_name,
   telephone: Faker::PhoneNumber.phone_number,
@@ -30,9 +30,9 @@ kathy = CompanyUser.create(
   zip: "123456",
   emergency_contact: Faker::Name.first_name,
   emergency_contact_number: Faker::PhoneNumber.phone_number,
-  dispatcher: "true",
-  admin: "true",
-  employment_status: "active"
+  dispatcher: "false",
+  admin: "false",
+  employment_status: "not_active"
   )
   puts kathy.inspect
 
@@ -41,9 +41,9 @@ kathy = CompanyUser.create(
 leadfoot = DriverUser.create(
   password: "password1",
   password_confirmation: "password1", 
-  first_name: "Joe",
+  first_name: "Clark",
   last_name: "Leadfoot",
-  email: "leadfoot@example.com", 
+  email: "steve@chesnowitz.com",  
   cellphone: "7169864010",  
   street: Faker::Address.street_name,
   telephone: Faker::PhoneNumber.phone_number,
@@ -98,8 +98,8 @@ leadfoot = DriverUser.create(
 joe = DriverUser.create(
   password: "password1",
   password_confirmation: "password1", 
-  first_name: "Joe",
-  last_name: "Sixpack",
+  first_name: "Baba",
+  last_name: "Booey",
   email: "s.chesnowitz@gmail.com",   
   cellphone: "7169864010",  
   street: Faker::Address.street_name,

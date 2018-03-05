@@ -1,6 +1,6 @@
 class DriverUsersController < UsersController 
   include ApplicationHelper
-  before_action :validate_company_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user
   
   def index
   	@search = DriverUser.search(params[:q])

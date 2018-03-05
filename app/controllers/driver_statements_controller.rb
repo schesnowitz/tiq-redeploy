@@ -1,6 +1,8 @@
 class DriverStatementsController < ApplicationController
   before_action :set_driver_statement, only: [:show, :edit, :update, :destroy]  
+  before_action :authenticate_user!
   #before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy] 
+  before_action :validate_company_user
   # GET /driver_statements
   # GET /driver_statements.json
   def index
@@ -113,14 +115,7 @@ class DriverStatementsController < ApplicationController
       @driver_statement = DriverStatement.find(params[:id])
     end
     
-    def validate_company_user
-      if !validate_company_user  
-        redirect_to root_path
-      flash[:danger] = " #{current_user.first_name}, The function requested does not exist or you are not authorized for access."
-      end
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
+     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_statement_params
       params.require(:driver_statement).permit(
           :notes,

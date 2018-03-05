@@ -78,7 +78,12 @@
             <%= f.input :maintenance %>
             <%= f.input :shipping_receiving %>
             <% end %>
+            <% if current_user.try(:admin?) %>       
+            <%= f.input :admin %>       
+            <%= f.input :dispatcher %>
             <%= f.input :employment_status, collection: ApplicationRecord::EmploymentStatus %>
+            <% end %>
+
             <% if @user.type == "DriverUser" %>
             <%= f.input :company_driver %>                              
             <%= f.input :owner_operator %>                              
