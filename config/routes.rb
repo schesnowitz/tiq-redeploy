@@ -123,6 +123,6 @@ Rails.application.routes.draw do
   require 'sidekiq/cron/web'
   mount Sidekiq::Web => "/sidekiq" 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  # mount ActionCable.server => '/cable' 
+  mount ActionCable.server => '/cable' 
 
 end

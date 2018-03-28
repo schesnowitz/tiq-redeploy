@@ -30,19 +30,19 @@ kathy = CompanyUser.create(
   zip: "123456",
   emergency_contact: Faker::Name.first_name,
   emergency_contact_number: Faker::PhoneNumber.phone_number,
-  dispatcher: "false",
-  admin: "false",
-  employment_status: "not_active"
+  dispatcher: "true",
+  admin: "true",
+  employment_status: "active"
   )
   puts kathy.inspect
 
 
 
 leadfoot = DriverUser.create(
-  password: "password1",
-  password_confirmation: "password1", 
-  first_name: "Clark",
-  last_name: "Leadfoot",
+  password: "password",
+  password_confirmation: "password", 
+  first_name: "Bill",
+  last_name: "Burr",
   email: "steve@chesnowitz.com",  
   cellphone: "7169864010",  
   street: Faker::Address.street_name,
@@ -96,8 +96,8 @@ leadfoot = DriverUser.create(
   # puts slowmoe.inspect
   
 joe = DriverUser.create(
-  password: "password1",
-  password_confirmation: "password1", 
+  password: "password",
+  password_confirmation: "password", 
   first_name: "Baba",
   last_name: "Booey",
   email: "s.chesnowitz@gmail.com",   

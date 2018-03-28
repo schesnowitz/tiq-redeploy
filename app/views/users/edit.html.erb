@@ -77,7 +77,7 @@
             <%= f.input :office %>
             <%= f.input :maintenance %>
             <%= f.input :shipping_receiving %>
-            <%= f.input :employment_status, collection: ApplicationRecord::EmploymentStatus %>
+
             <% end %>
             <% if current_user.try(:admin?) %>       
             <%= f.input :admin %>       
@@ -90,6 +90,7 @@
             <%= f.input :owner_operator %>                              
             <%= f.input :owner_operator_pbm %>
             <%= f.collection_select :driver_rate_id, DriverRate.all, :id, :amount %> 
+            <%= f.input :employment_status, collection: ApplicationRecord::EmploymentStatus %>
             <br />
            <% end %>
 
